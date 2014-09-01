@@ -1,0 +1,5 @@
+{
+    "name": "Estimote",
+    "path": "com.estimote.sdk.Beacon",
+    "source": "https://github.com/Estimote/Android-SDK"
+},

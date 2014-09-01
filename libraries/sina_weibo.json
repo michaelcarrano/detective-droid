@@ -1,0 +1,5 @@
+{
+    "name": "Sina Weibo",
+    "path": "com.sina.weibo.sdk.auth.WeiboAuth",
+    "source": "https://github.com/sinaweibosdk/weibo_android_sdk"
+},

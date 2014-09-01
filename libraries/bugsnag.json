@@ -1,0 +1,5 @@
+{
+    "name": "Bugsnag",
+    "path": "com.bugsnag.android.Bugsnag",
+    "source": "https://bugsnag.com/docs/notifiers/android"
+},

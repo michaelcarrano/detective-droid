@@ -1,0 +1,5 @@
+{
+    "name": "Mixpanel",
+    "path": "com.mixpanel.android.mpmetrics.MixpanelAPI",
+    "source": "https://mixpanel.com/help/reference/android"
+},

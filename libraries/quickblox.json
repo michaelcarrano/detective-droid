@@ -1,0 +1,5 @@
+{
+    "name": "QuickBlox",
+    "path": "com.quickblox.module.auth.QBAuth",
+    "source": "https://github.com/QuickBlox/quickblox-android-sdk"
+},

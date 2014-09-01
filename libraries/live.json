@@ -1,0 +1,5 @@
+{
+    "name": "Live",
+    "path": "com.microsoft.live.LiveAuthClient",
+    "source": "https://github.com/liveservices/LiveSDK-for-Android"
+},

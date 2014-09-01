@@ -1,0 +1,5 @@
+{
+    "name": "Countly",
+    "path": "ly.count.android.api.Countly",
+    "source": "https://github.com/Countly/countly-sdk-android"
+},

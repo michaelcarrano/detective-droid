@@ -1,0 +1,5 @@
+{
+    "name": "Spotify",
+    "path": "com.spotify.sdk.android.Spotify",
+    "source": "https://github.com/spotify/android-sdk"
+},

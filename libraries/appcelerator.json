@@ -1,0 +1,5 @@
+{
+    "name": "Appcelerator Cloud",
+    "path": "com.appcelerator.cloud.sdk.ACSClient",
+    "source": "https://github.com/appcelerator/acs-android-sdk"
+},

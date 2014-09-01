@@ -1,0 +1,5 @@
+{
+    "name": "Square OkHttp",
+    "path": "com.squareup.okhttp.OkHttpClient",
+    "source": "https://github.com/square/okhttp"
+},

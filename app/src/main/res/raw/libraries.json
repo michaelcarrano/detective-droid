@@ -1,0 +1,396 @@
+[{
+    "name": "500px",
+    "path": "com.fivehundredpx.api.PxApi",
+    "source": "https://github.com/500px/500px-android-sdk"
+},{
+    "name": "ActionBarSherlock",
+    "path": "com.actionbarsherlock.ActionBarSherlock",
+    "source": "http://actionbarsherlock.com/"
+},{
+    "name": "AdColony",
+    "path": "com.jirbo.adcolony.AdColony",
+    "source": "https://github.com/AdColony/AdColony-Android-SDK"
+},
+{
+    "name": "AdColony Tracker",
+    "path": "com.jirbo.adcolony.tracking.ADCTracker",
+    "source": "https://github.com/AdColony/AdColony-Android-SDK"
+},{
+    "name": "Adinch Tracking",
+    "path": "adinch.app.install.AdinchConnect",
+    "source": "https://github.com/Adinch/ADTrackingSDK-Android"
+},
+{
+    "name": "Adinch Advertising",
+    "path": "com.adinch.ads.AdinchLayout",
+    "source": "https://github.com/Adinch/AdinchSDK-Android"
+},{
+    "name": "Adjust",
+    "path": "com.adjust.sdk.Adjust",
+    "source": "https://github.com/adjust/android_sdk"
+},{
+    "name": "AdMarvel",
+    "path": "com.admarvel.android.ads.AdMarvelActivity",
+    "source": "https://wiki.operamediaworks.com/display/AMS/Android+SDK+Integration+Guide"
+},{
+    "name": "Amazon Web Services",
+    "path": "com.amazonaws.AmazonWebServiceClient",
+    "source": "https://github.com/aws/aws-sdk-android"
+},{
+    "name": "AppBlade",
+    "path": "com.appblade.framework.AppBlade",
+    "source": "https://github.com/AppBlade/AppBladeSDK"
+},{
+    "name": "Appboy",
+    "path": "com.appboy.Appboy",
+    "source": "https://github.com/Appboy/appboy-android-sdk"
+},{
+    "name": "AppBrain",
+    "path": "com.appbrain.AppBrain",
+    "source": "https://github.com/swisscodemonkeys/appbrain-sdk"
+},{
+    "name": "Appcelerator Cloud",
+    "path": "com.appcelerator.cloud.sdk.ACSClient",
+    "source": "https://github.com/appcelerator/acs-android-sdk"
+},{
+    "name": "AppNexus",
+    "path": "com.appnexus.opensdk.AdActivity",
+    "source": "https://github.com/appnexus/mobile-sdk-android"
+},{
+    "name": "Axonix / Mobclix",
+    "path": "com.mobclix.android.sdk.Mobclix",
+    "source": "https://developer.mobclix.com/help/general/download"
+},{
+    "name": "Backbeam.io",
+    "path": "io.backbeam.Backbeam",
+    "source": "https://github.com/backbeam/BackbeamAndroid"
+},{
+    "name": "Bazaarvoice",
+    "path": "com.bazaarvoice.BazaarRequest",
+    "source": "https://github.com/bazaarvoice/bv-android-sdk"
+},{
+    "name": "Box",
+    "path": "com.box.boxandroidlibv2.BoxAndroidClient",
+    "source": "https://github.com/box/box-android-sdk-v2"
+},{
+    "name": "Braintree Payments",
+    "path": "com.braintreegateway.encryption.Braintree",
+    "source": "https://www.braintreepayments.com/docs/android"
+},{
+    "name": "BugSense",
+    "path": "com.bugsense.trace.BugSenseHandler",
+    "source": "https://www.bugsense.com/docs/android"
+},{
+    "name": "Bugsnag",
+    "path": "com.bugsnag.android.Bugsnag",
+    "source": "https://bugsnag.com/docs/notifiers/android"
+},{
+    "name": "Card.io",
+    "path": "io.card.payment.CardIOActivity",
+    "source": "https://github.com/card-io/card.io-Android-SDK"
+},{
+    "name": "Chartboost",
+    "path": "com.chartboost.sdk.Chartboost",
+    "source": "https://answers.chartboost.com/hc/en-us/articles/201219545-Android-Integration"
+},{
+    "name": "Clover",
+    "path": "com.clover.sdk.util.CloverAuth",
+    "source": "https://github.com/clover/clover-android-sdk"
+},{
+    "name": "Coinbase",
+    "path": "com.bitmonet.Bitmonet",
+    "source": "https://github.com/coinbase/coinbase-android-sdk"
+},{
+    "name": "Conversant / Greystripe",
+    "path": "com.greystripe.sdk.GSFullscreenAd",
+    "source": "https://github.com/conversant/conversant-android-sdk"
+},{
+    "name": "Countly",
+    "path": "ly.count.android.api.Countly",
+    "source": "https://github.com/Countly/countly-sdk-android"
+},{
+    "name": "Crashlytics",
+    "path": "com.crashlytics.android.Crashlytics",
+    "source": "https://crashlytics.com"
+},{
+    "name": "Crittercism",
+    "path": "com.crittercism.app.Crittercism",
+    "source": "http://docs.crittercism.com/android/android.html"
+},{
+    "name": "Dailymotion",
+    "path": "com.dailymotion.websdk.DMWebVideoView",
+    "source": "https://github.com/dailymotion/dailymotion-sdk-android"
+},{
+    "name": "Dropbox",
+    "path": "com.dropbox.client2.DropboxAPI",
+    "source": "https://www.dropbox.com/developers/core/sdks/android"
+},{
+    "name": "Estimote",
+    "path": "com.estimote.sdk.Beacon",
+    "source": "https://github.com/Estimote/Android-SDK"
+},{
+    "name": "Etsy",
+    "path": "com.etsy.etsyScribe.EtsyAPI",
+    "source": "https://github.com/etsy/EtsyAndroidSDK"
+},{
+    "name": "Evernote",
+    "path": "com.evernote.client.android.EvernoteSession",
+    "source": "https://github.com/evernote/evernote-sdk-android"
+},{
+    "name": "Everyplay",
+    "path": "com.everyplay.Everyplay.Everyplay",
+    "source": "https://github.com/Everyplay/everyplay-android-sdk"
+},{
+    "name": "Facebook",
+    "path": "com.facebook.android.Facebook",
+    "source": "https://github.com/facebook/facebook-android-sdk"
+},{
+    "name": "Face++",
+    "path": "com.faceapp.result.FaceappResult",
+    "source": "https://github.com/FacePlusPlus/facepp-java-sdk"
+},{
+    "name": "Firebase",
+    "path": "com.firebase.client.Firebase",
+    "source": "https://firebase.com"
+},{
+    "name": "Flurry Ads",
+    "path": "com.flurry.android.FlurryAds",
+    "source": "http://support.flurry.com/index.php?title=Publisher/Code/Doc/Android"
+},
+{
+    "name": "Flurry Analytics",
+    "path": "com.flurry.android.FlurryAgent",
+    "source": "http://support.flurry.com/index.php?title=Publisher/Code/Doc/Android"
+},{
+    "name": "Fyber / SponsorPay",
+    "path": "com.sponsorpay.SponsorPay",
+    "source": "http://developer.fyber.com/content/android/basics/downloads/"
+},{
+    "name": "Geoloqi",
+    "path": "com.geoloqi.android.sdk.LQTracker",
+    "source": "https://github.com/geoloqi/Geoloqi-Android-SDK"
+},{
+    "name": "GetJar",
+    "path": "com.getjar.sdk.GetjarClient",
+    "source": "http://developer.getjar.com/android/download/"
+},{
+    "name": "Gson",
+    "path": "com.google.gson.Gson",
+    "source": "https://code.google.com/p/google-gson/"
+},{
+    "name": "Guava",
+    "path": "com.google.common.collect.HashMultimap",
+    "source": "https://code.google.com/p/guava-libraries/"
+},{
+    "name": "HockeyApp",
+    "path": "net.hockeyapp.android.Tracking",
+    "source": "https://github.com/bitstadium/HockeySDK-Android"
+},{
+    "name": "InMobi",
+    "path": "com.inmobi.commons.InMobi",
+    "source": "http://www.inmobi.com/products/sdk/"
+},{
+    "name": "Inneractive",
+    "path": "com.inneractive.api.ads.sdk.InneractiveInternalBrowserActivity",
+    "source": "https://inneractive.jira.com/wiki/display/DevWiki/Android+SDK+guidelines"
+},{
+    "name": "Keen.io",
+    "path": "io.keen.client.AndroidKeenClientBuilder",
+    "source": "https://github.com/keenlabs/KeenClient-Java"
+},
+{
+    "name": "Keen.io",
+    "path": "io.keen.client.android.KeenClient",
+    "source": "https://github.com/keenlabs/KeenClient-Java"
+},{
+    "name": "Kickflip",
+    "path": "io.kickflip.sdk.Kickflip",
+    "source": "https://github.com/Kickflip/kickflip-android-sdk"
+},{
+    "name": "Kiip.me",
+    "path": "me.kiip.sdk.Kiip",
+    "source": "http://docs.kiip.me/en/downloads/"
+},{
+    "name": "LIFX",
+    "path": "lifx.java.android.client.LFXClient",
+    "source": "https://github.com/LIFX/lifx-sdk-android"
+},{
+    "name": "Live",
+    "path": "com.microsoft.live.LiveAuthClient",
+    "source": "https://github.com/liveservices/LiveSDK-for-Android"
+},{
+    "name": "Livefyre",
+    "path": "com.livefyre.android.core.PublicAPIClient",
+    "source": "https://github.com/Livefyre/StreamHub-Android-SDK"
+},{
+    "name": "Localytics",
+    "path": "com.localytics.android.LocalyticsActivity",
+    "source": "http://support.localytics.com/SDK_Downloads"
+},{
+    "name": "Mapbox",
+    "path": "com.mapbox.mapboxsdk.constants.MapboxConstants",
+    "source": "https://github.com/mapbox/mapbox-android-sdk"
+},{
+    "name": "MdotM",
+    "path": "com.mdotm.android.view.MdotMActivity",
+    "source": "http://docs.mdotm.com/index.php/MdotM_Android_SDK"
+},{
+    "name": "Millennial Media",
+    "path": "com.millennialmedia.android.MMSDK",
+    "source": "http://docs.millennialmedia.com/android-SDK/"
+},{
+    "name": "Mixpanel",
+    "path": "com.mixpanel.android.mpmetrics.MixpanelAPI",
+    "source": "https://mixpanel.com/help/reference/android"
+},{
+    "name": "Mobeelizer",
+    "path": "com.mobeelizer.mobile.android.Mobeelizer",
+    "source": "https://github.com/mobeelizer/android-sdk"
+},{
+    "name": "MobFox",
+    "path": "com.adsdk.sdk.Ad",
+    "source": "https://github.com/mobfox/MobFox-Android-SDK"
+},{
+    "name": "mobileCore",
+    "path": "com.ironsource.mobilecore.MobileCore",
+    "source": "https://www.mobilecore.com/dashboard/#resources"
+},{
+    "name": "MobPartner",
+    "path": "com.mobpartner.android.publisher.views.MobPartnerAdBanner",
+    "source": "https://github.com/MobPartner/AndroidPublisherSDK"
+},{
+    "name": "Moodstocks",
+    "path": "com.moodstocks.android.Configuration",
+    "source": "https://github.com/Moodstocks/moodstocks-sdk"
+},{
+    "name": "MoPub",
+    "path": "com.mopub.common.MoPub",
+    "source": "https://github.com/mopub/mopub-android-sdk"
+},{
+    "name": "Office 365",
+    "path": "com.microsoft.office365.OfficeClient",
+    "source": "https://github.com/OfficeDev/Office-365-SDK-for-Android"
+},{
+    "name": "OpenKit",
+    "path": "io.openkit.OpenKit",
+    "source": "https://github.com/OpenKit/openkit-android"
+},
+{
+    "name": "OpenKit",
+    "path": "io.openkit.unity.android.UnityPlugin",
+    "source": "https://github.com/OpenKit/openkit-android"
+},{
+    "name": "OpenTok",
+    "path": "com.opentok.android.Publisher",
+    "source": "https://github.com/opentok/opentok-android-sdk"
+},{
+    "name": "Parse",
+    "path": "com.parse.Parse",
+    "source": "https://parse.com/docs/downloads"
+},{
+    "name": "Paypal",
+    "path": "com.paypal.android.sdk.payments.PaymentActivity",
+    "source": "https://github.com/paypal/PayPal-Android-SDK"
+},{
+    "name": "PlayHaven",
+    "path": "com.playhaven.src.common.PHConfig",
+    "source": "https://github.com/playhaven/sdk-android"
+},
+{
+    "name": "PlayHaven",
+    "path": "com.playhaven.android.PlayHaven",
+    "source": "https://github.com/playhaven/sdk-android-2"
+},{
+    "name": "Qiniu",
+    "path": "com.qiniu.auth.Client",
+    "source": "https://github.com/qiniu/android-sdk"
+},{
+    "name": "QuickBlox",
+    "path": "com.quickblox.module.auth.QBAuth",
+    "source": "https://github.com/QuickBlox/quickblox-android-sdk"
+},{
+    "name": "Rdio",
+    "path": "com.rdio.android.api.Rdio",
+    "source": "http://www.rdio.com/media/static/developer/android/docs/"
+},{
+    "name": "RevMob",
+    "path": "com.revmob.RevMob",
+    "source": "http://sdk.revmobmobileadnetwork.com/android.html"
+},{
+    "name": "Salesforce",
+    "path": "com.salesforce.androidsdk.SalesforceSDKManager",
+    "source": "https://github.com/forcedotcom/SalesforceMobileSDK-Android"
+},{
+    "name": "Simple Facebook",
+    "path": "com.sromku.simple.fb.SimpleFacebook",
+    "source": "https://github.com/sromku/android-simple-facebook"
+},{
+    "name": "Sina Weibo",
+    "path": "com.sina.weibo.sdk.auth.WeiboAuth",
+    "source": "https://github.com/sinaweibosdk/weibo_android_sdk"
+},{
+    "name": "Spotify",
+    "path": "com.spotify.sdk.android.Spotify",
+    "source": "https://github.com/spotify/android-sdk"
+},{
+    "name": "Square Dagger",
+    "path": "dagger.ObjectGraph",
+    "source": "https://github.com/square/dagger"
+},{
+    "name": "Square OkHttp",
+    "path": "com.squareup.okhttp.OkHttpClient",
+    "source": "https://github.com/square/okhttp"
+},{
+    "name": "Square Otto",
+    "path": "com.squareup.otto.Bus",
+    "source": "https://github.com/square/otto"
+},{
+    "name": "Square Picasso",
+    "path": "com.squareup.picasso.Picasso",
+    "source": "https://github.com/square/picasso"
+},{
+    "name": "Square Retrofit",
+    "path": "retrofit.RestAdapter",
+    "source": "https://github.com/square/retrofit"
+},{
+    "name": "Tapad [Ad Serving]",
+    "path": "com.tapad.adserving.AdRequest",
+    "source": "https://github.com/Tapad/tapad-android-sdk"
+},
+{
+    "name": "Tapad [Event Tracking]",
+    "path": "com.tapad.tracking.Tracking",
+    "source": "https://github.com/Tapad/tapad-android-sdk"
+},{
+    "name": "TapIt",
+    "path": "com.tapit.advertising.TapItAdvertising",
+    "source": "https://github.com/tapit/TapIt-Android-SDK-Source"
+},{
+    "name": "Tapjoy",
+    "path": "com.tapjoy.TapjoyConnect",
+    "source": "http://tech.tapjoy.com/product-overview/tapjoy-sdks/sdk"
+},{
+    "name": "Urban Airship",
+    "path": "com.urbanairship.UAirship",
+    "source": "http://docs.urbanairship.com/reference/libraries/android/latest/reference/packages.html"
+},{
+    "name": "UserVoice",
+    "path": "com.uservoice.uservoicesdk.UserVoice",
+    "source": "https://github.com/uservoice/uservoice-android-sdk"
+},{
+    "name": "ViewPager Indicator",
+    "path": "com.viewpagerindicator.TitlePageIndicator",
+    "source": "http://viewpagerindicator.com/"
+},{
+    "name": "VKontakte",
+    "path": "com.perm.kate.api",
+    "source": "https://github.com/thest1/Android-VKontakte-SDK"
+},{
+    "name": "Wit.ai",
+    "path": "ai.wit.sdk.Wit",
+    "source": "https://github.com/wit-ai/wit-android-sdk"
+},{
+    "name": "Youtube",
+    "path": "com.google.android.youtube.player.YoutubePlayer",
+    "source": "https://developers.google.com/youtube/android/player/downloads/"
+}]

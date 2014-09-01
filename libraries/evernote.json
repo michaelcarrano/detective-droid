@@ -1,0 +1,5 @@
+{
+    "name": "Evernote",
+    "path": "com.evernote.client.android.EvernoteSession",
+    "source": "https://github.com/evernote/evernote-sdk-android"
+},

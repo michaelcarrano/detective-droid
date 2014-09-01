@@ -1,0 +1,5 @@
+{
+    "name": "Clover",
+    "path": "com.clover.sdk.util.CloverAuth",
+    "source": "https://github.com/clover/clover-android-sdk"
+},

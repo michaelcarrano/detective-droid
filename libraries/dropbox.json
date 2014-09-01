@@ -1,0 +1,5 @@
+{
+    "name": "Dropbox",
+    "path": "com.dropbox.client2.DropboxAPI",
+    "source": "https://www.dropbox.com/developers/core/sdks/android"
+},

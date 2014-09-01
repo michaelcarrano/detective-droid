@@ -1,0 +1,10 @@
+{
+    "name": "AdColony",
+    "path": "com.jirbo.adcolony.AdColony",
+    "source": "https://github.com/AdColony/AdColony-Android-SDK"
+},
+{
+    "name": "AdColony Tracker",
+    "path": "com.jirbo.adcolony.tracking.ADCTracker",
+    "source": "https://github.com/AdColony/AdColony-Android-SDK"
+},

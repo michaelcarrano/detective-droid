@@ -1,0 +1,5 @@
+{
+    "name": "Mapbox",
+    "path": "com.mapbox.mapboxsdk.constants.MapboxConstants",
+    "source": "https://github.com/mapbox/mapbox-android-sdk"
+},

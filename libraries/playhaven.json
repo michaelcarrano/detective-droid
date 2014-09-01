@@ -1,0 +1,10 @@
+{
+    "name": "PlayHaven",
+    "path": "com.playhaven.src.common.PHConfig",
+    "source": "https://github.com/playhaven/sdk-android"
+},
+{
+    "name": "PlayHaven",
+    "path": "com.playhaven.android.PlayHaven",
+    "source": "https://github.com/playhaven/sdk-android-2"
+},

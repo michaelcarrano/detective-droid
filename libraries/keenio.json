@@ -1,0 +1,10 @@
+{
+    "name": "Keen.io",
+    "path": "io.keen.client.AndroidKeenClientBuilder",
+    "source": "https://github.com/keenlabs/KeenClient-Java"
+},
+{
+    "name": "Keen.io",
+    "path": "io.keen.client.android.KeenClient",
+    "source": "https://github.com/keenlabs/KeenClient-Java"
+},

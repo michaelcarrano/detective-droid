@@ -1,0 +1,5 @@
+{
+    "name": "Etsy",
+    "path": "com.etsy.etsyScribe.EtsyAPI",
+    "source": "https://github.com/etsy/EtsyAndroidSDK"
+},

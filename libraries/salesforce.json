@@ -1,0 +1,5 @@
+{
+    "name": "Salesforce",
+    "path": "com.salesforce.androidsdk.SalesforceSDKManager",
+    "source": "https://github.com/forcedotcom/SalesforceMobileSDK-Android"
+},

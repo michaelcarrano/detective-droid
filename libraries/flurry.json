@@ -1,0 +1,10 @@
+{
+    "name": "Flurry Ads",
+    "path": "com.flurry.android.FlurryAds",
+    "source": "http://support.flurry.com/index.php?title=Publisher/Code/Doc/Android"
+},
+{
+    "name": "Flurry Analytics",
+    "path": "com.flurry.android.FlurryAgent",
+    "source": "http://support.flurry.com/index.php?title=Publisher/Code/Doc/Android"
+},

@@ -1,0 +1,5 @@
+{
+    "name": "Livefyre",
+    "path": "com.livefyre.android.core.PublicAPIClient",
+    "source": "https://github.com/Livefyre/StreamHub-Android-SDK"
+},

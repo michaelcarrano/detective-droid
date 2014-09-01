@@ -1,0 +1,5 @@
+{
+    "name": "Bazaarvoice",
+    "path": "com.bazaarvoice.BazaarRequest",
+    "source": "https://github.com/bazaarvoice/bv-android-sdk"
+},

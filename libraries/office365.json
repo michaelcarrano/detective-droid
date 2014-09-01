@@ -1,0 +1,5 @@
+{
+    "name": "Office 365",
+    "path": "com.microsoft.office365.OfficeClient",
+    "source": "https://github.com/OfficeDev/Office-365-SDK-for-Android"
+},

@@ -1,0 +1,5 @@
+{
+    "name": "GetJar",
+    "path": "com.getjar.sdk.GetjarClient",
+    "source": "http://developer.getjar.com/android/download/"
+},

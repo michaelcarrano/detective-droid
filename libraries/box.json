@@ -1,0 +1,5 @@
+{
+    "name": "Box",
+    "path": "com.box.boxandroidlibv2.BoxAndroidClient",
+    "source": "https://github.com/box/box-android-sdk-v2"
+},

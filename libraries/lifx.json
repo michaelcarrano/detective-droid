@@ -1,0 +1,5 @@
+{
+    "name": "LIFX",
+    "path": "lifx.java.android.client.LFXClient",
+    "source": "https://github.com/LIFX/lifx-sdk-android"
+},

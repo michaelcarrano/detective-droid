@@ -1,0 +1,5 @@
+{
+    "name": "OpenTok",
+    "path": "com.opentok.android.Publisher",
+    "source": "https://github.com/opentok/opentok-android-sdk"
+},

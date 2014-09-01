@@ -1,0 +1,5 @@
+{
+    "name": "Square Retrofit",
+    "path": "retrofit.RestAdapter",
+    "source": "https://github.com/square/retrofit"
+},

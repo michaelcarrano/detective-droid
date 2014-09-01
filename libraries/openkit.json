@@ -1,0 +1,10 @@
+{
+    "name": "OpenKit",
+    "path": "io.openkit.OpenKit",
+    "source": "https://github.com/OpenKit/openkit-android"
+},
+{
+    "name": "OpenKit",
+    "path": "io.openkit.unity.android.UnityPlugin",
+    "source": "https://github.com/OpenKit/openkit-android"
+},

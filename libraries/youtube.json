@@ -1,0 +1,5 @@
+{
+    "name": "Youtube",
+    "path": "com.google.android.youtube.player.YoutubePlayer",
+    "source": "https://developers.google.com/youtube/android/player/downloads/"
+},
