@@ -1,0 +1,5 @@
+{
+    "name": "Android Universal Image Loader",
+    "path": "com.nostra13.universalimageloader.core.ImageLoader",
+    "source": "https://github.com/nostra13/Android-Universal-Image-Loader"
+},
