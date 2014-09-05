@@ -1,0 +1,5 @@
+{
+    "name": "Raygun",
+    "path": "com.mindscapehq.android.raygun4android.RaygunClient",
+    "source": "https://raygun.io/raygun-providers/android"
+},
