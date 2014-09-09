@@ -28,6 +28,14 @@
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value=".AppListActivity" />
         </activity>
+        <activity
+            android:name=".view.SettingsActivity"
+            android:label="@string/settings"
+            android:parentActivityName=".view.AppListActivity">
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value="com.michaelcarrano.detectivedroid.view.AppListActivity" />
+        </activity>
     </application>
 
 </manifest>
