@@ -3,5 +3,7 @@
 
     <string name="app_name">Detective Droid</string>
     <string name="no_results">No libraries detected.</string>
-
+    <string name="progress_dialog_title">One Moment...</string>
+    <string name="progress_dialog_message_1">Detective Droid is investigating %1$s</string>
+    <string name="progress_dialog_message_2">\nDetective Droid is looking for known advertising, analytics, crash reporting, and other developer libraries that are used in applications.</string>
 </resources>

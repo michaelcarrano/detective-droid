@@ -1,5 +1,6 @@
 package com.michaelcarrano.detectivedroid.task;
 
+import com.michaelcarrano.detectivedroid.App;
 import com.michaelcarrano.detectivedroid.model.AppSource;
 import com.michaelcarrano.detectivedroid.model.AppSources;
 import com.michaelcarrano.detectivedroid.model.Libraries;
@@ -20,7 +21,7 @@ import java.util.List;
  *
  * Created by michaelcarrano on 8/30/14.
  */
-public class DetectorAsyncTask extends AsyncTask<Void, Void, List<AppSource>> {
+public class DetectorAsyncTask extends AsyncTask<Void, Integer, List<AppSource>> {
 
     private static Context mContext;
 
@@ -28,10 +29,12 @@ public class DetectorAsyncTask extends AsyncTask<Void, Void, List<AppSource>> {
 
     private final PackageManager mPackageManager;
 
-    public DetectorAsyncTask(Context context, PackageManager packageManager, Callbacks callbacks) {
+    private List<ApplicationInfo> mInstalledApplications;
+
+    public DetectorAsyncTask(PackageManager packageManager, Callbacks callbacks) {
         mPackageManager = packageManager;
         mCallbacks = callbacks;
-        mContext = context;
+        mContext = App.getInstance();
     }
 
     /**
@@ -63,9 +66,9 @@ public class DetectorAsyncTask extends AsyncTask<Void, Void, List<AppSource>> {
     @Override
     protected List<AppSource> doInBackground(Void... voids) {
         List<AppSource> appSources = new ArrayList<AppSource>();
-        List<ApplicationInfo> installedApplications = mPackageManager.getInstalledApplications(0);
-        for (int i = 0; i < installedApplications.size(); i++) {
-            ApplicationInfo appInfo = installedApplications.get(i);
+        for (int i = 0; i < mInstalledApplications.size(); i++) {
+            ApplicationInfo appInfo = mInstalledApplications.get(i);
+            publishProgress(mInstalledApplications.size(), i);
             try {
                 PackageInfo pkgInfo = mPackageManager.getPackageInfo(appInfo.packageName,
                         PackageManager.GET_PERMISSIONS);
@@ -83,6 +86,17 @@ public class DetectorAsyncTask extends AsyncTask<Void, Void, List<AppSource>> {
     }
 
     @Override
+    protected void onPreExecute() {
+        mInstalledApplications = mPackageManager.getInstalledApplications(0);
+    }
+
+    @Override
+    protected void onProgressUpdate(Integer... progress) {
+        mCallbacks.onProgressUpdate(progress[0], progress[1], mPackageManager.getApplicationLabel(
+                mInstalledApplications.get(progress[1])));
+    }
+
+    @Override
     protected void onPostExecute(List<AppSource> sources) {
         AppSources.getInstance().setSources(sources);
         mCallbacks.onTaskFinished();
@@ -91,6 +105,8 @@ public class DetectorAsyncTask extends AsyncTask<Void, Void, List<AppSource>> {
     public static interface Callbacks {
 
         public void onTaskFinished();
+
+        public void onProgressUpdate(int max, int percent, CharSequence app);
     }
 
 }

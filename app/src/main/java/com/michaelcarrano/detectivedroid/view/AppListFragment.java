@@ -4,15 +4,15 @@ import com.michaelcarrano.detectivedroid.App;
 import com.michaelcarrano.detectivedroid.R;
 import com.michaelcarrano.detectivedroid.adapter.AppSourceAdapter;
 import com.michaelcarrano.detectivedroid.model.AppSources;
-import com.michaelcarrano.detectivedroid.task.DetectorAsyncTask;
 
 import android.app.Activity;
 import android.os.Bundle;
+import android.support.v4.app.FragmentManager;
 import android.support.v4.app.ListFragment;
 import android.view.View;
 import android.widget.ListView;
 
-public class AppListFragment extends ListFragment implements DetectorAsyncTask.Callbacks {
+public class AppListFragment extends ListFragment implements DetectorTaskFragment.Callbacks {
 
     /**
      * The serialization (saved instance state) Bundle key representing the activated item position.
@@ -21,8 +21,8 @@ public class AppListFragment extends ListFragment implements DetectorAsyncTask.C
     private static final String STATE_ACTIVATED_POSITION = "activated_position";
 
     /**
-     * A implementation of the {@link com.michaelcarrano.detectivedroid.view.AppListFragment.Callbacks} interface that does nothing. Used only when this
-     * fragment is not attached to an activity.
+     * A implementation of the {@link com.michaelcarrano.detectivedroid.view.AppListFragment.Callbacks}
+     * interface that does nothing. Used only when this fragment is not attached to an activity.
      */
     private static Callbacks sCallbacks = new Callbacks() {
         @Override
@@ -51,14 +51,18 @@ public class AppListFragment extends ListFragment implements DetectorAsyncTask.C
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
-        // Retain instance on device rotation
-        setRetainInstance(true);
-
-        // Begin scanning for ad providers
-        if (AppSources.getInstance().getSources().isEmpty()) {
-            new DetectorAsyncTask(getActivity(), getActivity().getPackageManager(), this).execute();
+        // If there already exists fragments doing work, reattach to them
+        FragmentManager fm = getFragmentManager();
+        DetectorTaskFragment taskFragment = (DetectorTaskFragment) fm
+                .findFragmentByTag(DetectorTaskFragment.TAG);
+        if (taskFragment != null) {
+            taskFragment.setTargetFragment(this, DetectorTaskFragment.TASK_REQUEST_CODE);
         } else {
-            setListView();
+            if (AppSources.getInstance().getSources().isEmpty()) {
+                startDetectionTask();
+            } else {
+                setListView();
+            }
         }
     }
 
@@ -133,6 +137,12 @@ public class AppListFragment extends ListFragment implements DetectorAsyncTask.C
         mActivatedPosition = position;
     }
 
+    private void startDetectionTask() {
+        DetectorTaskFragment taskFragment = new DetectorTaskFragment();
+        taskFragment.setTargetFragment(this, DetectorTaskFragment.TASK_REQUEST_CODE);
+        taskFragment.show(getFragmentManager(), DetectorTaskFragment.TAG);
+    }
+
     private void setListView() {
         if (!AppSources.getInstance().getSources().isEmpty()) {
             AppSourceAdapter adapter = new AppSourceAdapter(App.getInstance().getBaseContext(),
@@ -158,6 +168,11 @@ public class AppListFragment extends ListFragment implements DetectorAsyncTask.C
      */
     @Override
     public void onTaskFinished() {
+        setListView();
+    }
+
+    @Override
+    public void onTaskCancelled() {
         setListView();
     }
 
