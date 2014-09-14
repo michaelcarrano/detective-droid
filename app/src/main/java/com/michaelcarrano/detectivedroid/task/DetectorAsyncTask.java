@@ -66,20 +66,26 @@ public class DetectorAsyncTask extends AsyncTask<Void, Integer, List<AppSource>>
     @Override
     protected List<AppSource> doInBackground(Void... voids) {
         List<AppSource> appSources = new ArrayList<AppSource>();
+        // 0: scan system apps, 1: do not scan system apps
+        int system = App.getInstance().getPreferenceScanSystemApps();
         for (int i = 0; i < mInstalledApplications.size(); i++) {
             ApplicationInfo appInfo = mInstalledApplications.get(i);
-            publishProgress(mInstalledApplications.size(), i);
-            try {
-                PackageInfo pkgInfo = mPackageManager.getPackageInfo(appInfo.packageName,
-                        PackageManager.GET_PERMISSIONS);
+            if ((appInfo.flags & ApplicationInfo.FLAG_SYSTEM) <= 0
+                    || (appInfo.flags & ApplicationInfo.FLAG_UPDATED_SYSTEM_APP) != 0
+                    || ((appInfo.flags & ApplicationInfo.FLAG_SYSTEM) == 1 && system == 0)) {
+                publishProgress(mInstalledApplications.size(), i);
+                try {
+                    PackageInfo pkgInfo = mPackageManager.getPackageInfo(appInfo.packageName,
+                            PackageManager.GET_PERMISSIONS);
 
-                AppSource src = detect(pkgInfo);
-                if (src != null) {
-                    appSources.add(src);
+                    AppSource src = detect(pkgInfo);
+                    if (src != null) {
+                        appSources.add(src);
+                    }
+
+                } catch (PackageManager.NameNotFoundException e) {
+                    Log.i(this.getClass().getSimpleName(), "doInBackground: " + e.toString());
                 }
-
-            } catch (PackageManager.NameNotFoundException e) {
-                Log.i(this.getClass().getSimpleName(), "doInBackground: " + e.toString());
             }
         }
         return appSources;

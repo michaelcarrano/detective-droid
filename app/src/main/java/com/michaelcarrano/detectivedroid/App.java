@@ -8,6 +8,8 @@ import org.json.JSONException;
 import org.json.JSONObject;
 
 import android.app.Application;
+import android.content.SharedPreferences;
+import android.preference.PreferenceManager;
 import android.util.Log;
 
 import java.util.HashSet;
@@ -19,6 +21,8 @@ import java.util.Set;
 public class App extends Application {
 
     private static App instance;
+
+    private SharedPreferences mPreferences;
 
     public static App getInstance() {
         return instance;
@@ -33,6 +37,8 @@ public class App extends Application {
         } catch (JSONException e) {
             Log.i(this.getClass().getSimpleName(), "parseLibrariesJson: " + e.toString());
         }
+
+        mPreferences = PreferenceManager.getDefaultSharedPreferences(this);
     }
 
     private void parseLibrariesJson() throws JSONException {
@@ -48,5 +54,9 @@ public class App extends Application {
             libraries.add(new Library(name, path, source));
         }
         Libraries.getInstance().setLibraries(libraries);
+    }
+
+    public int getPreferenceScanSystemApps() {
+        return mPreferences.getBoolean("pref_skip_system_apps", true) ? 1 : 0;
     }
 }
