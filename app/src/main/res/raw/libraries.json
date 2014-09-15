@@ -37,6 +37,18 @@
     "path": "com.amazonaws.AmazonWebServiceClient",
     "source": "https://github.com/aws/aws-sdk-android"
 },{
+    "name": "Amplitude",
+    "path": "com.amplitude.api.Amplitude",
+    "source": "https://github.com/amplitude/Amplitude-Android"
+},{
+    "name": "Android Universal Image Loader",
+    "path": "com.nostra13.universalimageloader.core.ImageLoader",
+    "source": "https://github.com/nostra13/Android-Universal-Image-Loader"
+},{
+    "name": "AndroidQuickUtils",
+    "path": "quickutils.core.QuickUtils",
+    "source": "https://github.com/cesarferreira/AndroidQuickUtils"
+},{
     "name": "AppBlade",
     "path": "com.appblade.framework.AppBlade",
     "source": "https://github.com/AppBlade/AppBladeSDK"
@@ -267,6 +279,10 @@
     "path": "com.mopub.common.MoPub",
     "source": "https://github.com/mopub/mopub-android-sdk"
 },{
+    "name": "New Relic",
+    "path": "com.newrelic.agent.android.NewRelic",
+    "source": "https://newrelic.com/android-app-optimization"
+},{
     "name": "Office 365",
     "path": "com.microsoft.office365.OfficeClient",
     "source": "https://github.com/OfficeDev/Office-365-SDK-for-Android"
@@ -308,6 +324,10 @@
     "name": "QuickBlox",
     "path": "com.quickblox.module.auth.QBAuth",
     "source": "https://github.com/QuickBlox/quickblox-android-sdk"
+},{
+    "name": "Raygun",
+    "path": "com.mindscapehq.android.raygun4android.RaygunClient",
+    "source": "https://raygun.io/raygun-providers/android"
 },{
     "name": "Rdio",
     "path": "com.rdio.android.api.Rdio",
