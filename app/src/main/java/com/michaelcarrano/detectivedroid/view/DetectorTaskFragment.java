@@ -22,11 +22,11 @@ public class DetectorTaskFragment extends DialogFragment implements DetectorAsyn
 
     public static final int TASK_REQUEST_CODE = 0;
 
-    DetectorAsyncTask mDetectorTask;
+    private DetectorAsyncTask mDetectorTask;
 
-    ProgressBar mProgressBar;
+    private ProgressBar mProgressBar;
 
-    TextView mProgressText;
+    private TextView mProgressText;
 
     public void setTask(DetectorAsyncTask task) {
         mDetectorTask = task;
