@@ -1,4 +1,4 @@
-# Detective Droid
+# Detective Droid [![Android Arsenal](https://img.shields.io/badge/Android%20Arsenal-detective--droid-brightgreen.svg?style=flat)](https://android-arsenal.com/details/1/898)
 
 Detective Droid is here to help you investigate what libraries are being used inside applications that are installed on your device.
 
@@ -28,6 +28,22 @@ See current [libaries](https://github.com/michaelcarrano/detective-droid/tree/ma
 
 All the JSON files are combined into a single libaries.json file via a Gradle task when building the Detective Droid application.
 
+## Versions
+The versionName follows the format of **major.minor.patch.library**
+
+For example, new functionality would result in increasing the **minor** number and if new libraries are added then we increase the **library** number.
+
+
+1.2.0.1
+
+- Add ProgressDialog to better inform users what is going on.
+- Add SettingsActivity to allow users to choose whether the system apps should be scanned. (By default they are not)
+- Add new libraries to investigate.
+
+
+1.0
+
+- Initial release
 
 ## Credits
 
