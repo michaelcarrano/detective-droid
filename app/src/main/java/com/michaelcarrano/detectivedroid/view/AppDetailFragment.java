@@ -6,11 +6,14 @@ import com.michaelcarrano.detectivedroid.adapter.LibraryAdapter;
 import com.michaelcarrano.detectivedroid.model.AppSource;
 import com.michaelcarrano.detectivedroid.model.AppSources;
 
+import android.content.Intent;
+import android.net.Uri;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.AdapterView;
 import android.widget.ListView;
 
 public class AppDetailFragment extends Fragment {
@@ -52,6 +55,16 @@ public class AppDetailFragment extends Fragment {
         ListView listView = (ListView) rootView.findViewById(R.id.list);
         listView.setDividerHeight(0);
         listView.setAdapter(adapter);
+        listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+                // Create intent to launch a browser
+                String url = mAppSource.getLibraries().get(position).getSource();
+                Intent intent = new Intent(Intent.ACTION_VIEW);
+                intent.setData(Uri.parse(url));
+                startActivity(intent);
+            }
+        });
 
         return rootView;
     }
