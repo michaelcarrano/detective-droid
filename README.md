@@ -33,6 +33,10 @@ The versionName follows the format of **major.minor.patch.library**
 
 For example, new functionality would result in increasing the **minor** number and if new libraries are added then we increase the **library** number.
 
+1.3.1.1
+
+- Add intent to launch browser to view library source Url.
+- Update launcher icon and Play Store assets.
 
 1.2.0.1
 
