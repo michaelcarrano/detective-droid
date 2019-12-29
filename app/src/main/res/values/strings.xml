@@ -1,0 +1,23 @@
+<resources>
+    <string name="app_name">Detective Droid</string>
+
+    <string name="error_loading_apps">Error loading apps</string>
+    <string name="error_scanning_app">Error scanning app</string>
+    <string name="no_libraries_found">No libraries detected.\n\nMany apps use Proguard/R8 to obfuscate their code which makes detecting which libraries they use difficult.</string>
+
+
+    <string name="settings">Settings</string>
+    <string name="general">General</string>
+
+    <string name="pref_title_system_apps">System applications</string>
+    <string name="pref_desc_system_apps">Show the pre-installed system applications.</string>
+    <string name="pref_title_say_thanks">Say thanks!</string>
+    <string name="pref_desc_say_thanks">Enjoying Detective Droid? Please consider leaving a Play Store review.</string>
+    <string name="pref_title_want_to_help">Want to help?</string>
+    <string name="pref_desc_want_to_help">Detective Droid\'s source code is on Github.</string>
+    <string name="pref_title_open_source">Open source licenses</string>
+    <string name="pref_desc_open_source">License details for open source software.</string>
+    <string name="pref_title_app_icon">App icon attribution</string>
+    <string name="pref_desc_app_icon">Icon "android security" by achmad mulyana from the Noun Project</string>
+
+</resources>
