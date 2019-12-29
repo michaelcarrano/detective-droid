@@ -1,5 +1,0 @@
-{
-    "name": "New Relic",
-    "path": "com.newrelic.agent.android.NewRelic",
-    "source": "https://newrelic.com/android-app-optimization"
-},

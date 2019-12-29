@@ -1,5 +1,0 @@
-{
-    "name": "Paypal",
-    "path": "com.paypal.android.sdk.payments.PaymentActivity",
-    "source": "https://github.com/paypal/PayPal-Android-SDK"
-},
