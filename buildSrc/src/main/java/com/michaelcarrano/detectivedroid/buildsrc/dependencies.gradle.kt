@@ -5,7 +5,7 @@ object Versions {
 }
 
 object Libs {
-    const val androidGradlePlugin = "com.android.tools.build:gradle:4.0.0-alpha07"
+    const val androidGradlePlugin = "com.android.tools.build:gradle:4.0.0-alpha08"
     const val playPublisherPlugin = "com.github.triplet.gradle:play-publisher:2.6.1"
     const val jacoco = "org.jacoco:org.jacoco.core:0.8.5"
 
@@ -19,19 +19,19 @@ object Libs {
     const val mockK = "io.mockk:mockk:1.9.3"
     const val mockitoKtx = "com.nhaarman:mockito-kotlin:1.6.0"
 
-    const val leakCanary = "com.squareup.leakcanary:leakcanary-android:2.0"
+    const val leakCanary = "com.squareup.leakcanary:leakcanary-android:2.1"
 
     const val roxie = "com.ww:roxie:0.4.0"
 
     object Google {
         const val material = "com.google.android.material:material:1.2.0-alpha03"
-        const val openSourceLicensesPlugin = "com.google.android.gms:oss-licenses-plugin:0.10.0"
+        const val openSourceLicensesPlugin = "com.google.android.gms:oss-licenses-plugin:0.10.1"
         const val openSourceLicensesLibrary =
             "com.google.android.gms:play-services-oss-licenses:17.0.0"
     }
 
     object Kotlin {
-        private const val version = "1.3.61"
+        private const val version = "1.3.70-eap-42"
         const val stdlib = "org.jetbrains.kotlin:kotlin-stdlib-jdk8:$version"
         const val reflect = "org.jetbrains.kotlin:kotlin-reflect:$version"
         const val gradlePlugin = "org.jetbrains.kotlin:kotlin-gradle-plugin:$version"
@@ -100,7 +100,7 @@ object Libs {
     }
 
     object RxJava {
-        const val rxJava = "io.reactivex.rxjava2:rxjava:2.2.16"
+        const val rxJava = "io.reactivex.rxjava2:rxjava:2.2.17"
         const val rxAndroid = "io.reactivex.rxjava2:rxandroid:2.1.1"
         const val rxKotlin = "io.reactivex.rxjava2:rxkotlin:2.4.0"
     }
