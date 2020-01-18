@@ -32,14 +32,16 @@ class AppDetailFragment : BaseFragment() {
 
     private val args: AppDetailFragmentArgs by navArgs()
 
-    private lateinit var binding: FragmentAppDetailBinding
+    private var _binding: FragmentAppDetailBinding? = null
+    // This property is only valid between onCreateView and onDestroyView.
+    private val binding get() = _binding!!
 
     override fun onCreateView(
         inflater: LayoutInflater,
         container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View {
-        binding = FragmentAppDetailBinding.inflate(layoutInflater)
+        _binding = FragmentAppDetailBinding.inflate(layoutInflater, container, false)
         return binding.root
     }
 
@@ -57,6 +59,7 @@ class AppDetailFragment : BaseFragment() {
 
     override fun onDestroyView() {
         binding.librariesRecyclerView.adapter = null
+        _binding = null
         super.onDestroyView()
     }
 

@@ -38,7 +38,9 @@ class AppListFragment : DaggerFragment() {
         AppAdapter(packageManager, clickListener)
     }
 
-    private lateinit var binding: FragmentAppListBinding
+    private var _binding: FragmentAppListBinding? = null
+    // This property is only valid between onCreateView and onDestroyView.
+    private val binding get() = _binding!!
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -46,7 +48,7 @@ class AppListFragment : DaggerFragment() {
         savedInstanceState: Bundle?
     ): View {
         setHasOptionsMenu(true)
-        binding = FragmentAppListBinding.inflate(layoutInflater)
+        _binding = FragmentAppListBinding.inflate(layoutInflater, container, false)
         return binding.root
     }
 
@@ -64,6 +66,7 @@ class AppListFragment : DaggerFragment() {
 
     override fun onDestroyView() {
         binding.appsRecyclerView.adapter = null
+        _binding = null
         super.onDestroyView()
     }
 
