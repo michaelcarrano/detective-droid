@@ -10,14 +10,32 @@ executors:
       GRADLE_OPTS: "-Dorg.gradle.daemon=false -Dorg.gradle.workers.max=2"
       TERM: dumb
 
+references:
+  android_dependencies: &android_dependencies
+    run:
+      name: Download Android Dependencies
+      command: ./gradlew androidDependencies
+
+  gradle_key: &gradle_key
+    gradle-{{ checksum "gradle/wrapper/gradle-wrapper.properties" }}-{{ checksum "buildSrc/src/main/java/com/michaelcarrano/detectivedroid/buildsrc/dependencies.gradle.kt" }}
+
+  restore_gradle_cache: &restore_gradle_cache
+    restore_cache:
+      key: *gradle_key
+
+  save_gradle_cache: &save_gradle_cache
+    save_cache:
+      key: *gradle_key
+      paths:
+        - ~/.gradle
+
 jobs:
   build:
     executor: android-executor
     steps:
       - checkout
-      - run:
-          name: Download Dependencies
-          command: ./gradlew dependencies
+      - *restore_gradle_cache
+      - *android_dependencies
       - run:
           name: Run JVM Tests & Lint, assemble app and test APKs for debug and release
           command: ./gradlew check assemble assembleAndroidTest --stacktrace
@@ -27,9 +45,35 @@ jobs:
           paths:
             - build
             - ./**/build
+      - *save_gradle_cache
+
+  test:
+    executor: android-executor
+    steps:
+      - checkout
+      - attach_workspace:
+          at: .
+      - *restore_gradle_cache
+      - *android_dependencies
+      - run:
+          name: Run Unit Tests
+          command: ./gradlew test
+      - run:
+          name: Save Unit Test Results
+          command: |
+            mkdir -p ~/test-results/junit/
+            find . -type f -regex ".*/build/test-results/.*xml" -exec cp {} ~/test-results/junit/ \;
+      - store_test_results:
+          path: ~/test-results
+      - store_artifacts:
+          path: ~/test-results/junit
+      - *save_gradle_cache
 
 workflows:
   version: 2
   build_and_test:
     jobs:
       - build
+      - test
+        requires:
+          - build
