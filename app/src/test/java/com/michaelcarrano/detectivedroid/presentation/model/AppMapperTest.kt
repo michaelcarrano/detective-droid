@@ -16,7 +16,7 @@ class AppMapperTest {
 
     @Test
     fun `Given AppEntity, When mapping to AppUiModel, Then return valid AppUiModel`() {
-        val appEntity = AppEntity("foo", "bar", "baz")
+        val appEntity = AppEntity("foo", "bar", "baz", true)
         val appUiModel = testSubject.mapToUiModel(appEntity)
 
         assertEquals(appEntity.name, appUiModel.name)
@@ -25,5 +25,20 @@ class AppMapperTest {
 
         // 3 fields + Parcelable.CREATOR
         // assertEquals(4, appUiModel.javaClass.declaredFields.size)
+    }
+
+    @Test
+    fun `Given AppEntitys, When mapping to AppUiModels, Then return valid AppUiModels`() {
+        val appEntitys = listOf(
+            AppEntity("foo1", "bar1", "baz1", true),
+            AppEntity("foo2", "bar2", "baz2", true)
+        )
+        val appUiModels = testSubject.mapToUiModels(appEntitys)
+
+        for (i in 0 until appEntitys.count()) {
+            assertEquals(appEntitys[i].name, appUiModels[i].name)
+            assertEquals(appEntitys[i].packageName, appUiModels[i].packageName)
+            assertEquals(appEntitys[i].versionName, appUiModels[i].versionName)
+        }
     }
 }

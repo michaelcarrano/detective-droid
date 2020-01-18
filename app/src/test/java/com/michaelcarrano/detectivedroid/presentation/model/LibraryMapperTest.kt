@@ -35,4 +35,19 @@ class LibraryMapperTest {
         // 3 fields + Parcelable.CREATOR
         // assertEquals(4, libraryUiModel.javaClass.declaredFields.size)
     }
+
+    @Test
+    fun `Given LibraryEntitys, When mapping to LibraryUiModels, Then return valid LibraryUiModels`() {
+        val libraryEntitys = listOf(
+            LibraryEntity(UUID.randomUUID(), "foo1", "bar1", "baz1", Date().time, Date().time),
+            LibraryEntity(UUID.randomUUID(), "foo2", "bar2", "baz2", Date().time, Date().time)
+        )
+        val libraryUiModels = testSubject.mapToUiModels(libraryEntitys)
+
+        for (i in 0 until libraryEntitys.count()) {
+            assertEquals(libraryEntitys[i].name, libraryUiModels[i].name)
+            assertEquals(libraryEntitys[i].source, libraryUiModels[i].source)
+            assertEquals(libraryEntitys[i].classPath, libraryUiModels[i].classPath)
+        }
+    }
 }
