@@ -7,7 +7,7 @@ apply plugin: 'kotlin-kapt'
 apply plugin: 'com.google.android.gms.oss-licenses-plugin'
 apply plugin: 'androidx.navigation.safeargs.kotlin'
 
-//apply from: '../gradle/scripts/jacoco.gradle'
+apply from: '../gradle/scripts/jacoco.gradle'
 
 kapt {
     correctErrorTypes = true
@@ -49,6 +49,9 @@ android {
     }
 
     buildTypes {
+        debug {
+            testCoverageEnabled true
+        }
         release {
             minifyEnabled true
             proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'

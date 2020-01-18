@@ -94,15 +94,13 @@ project.afterEvaluate {
                         "src/$buildTypeName/kotlin"
                 ]
 
-                sourceDirectories = files([javaSrc], [kotlinSrc])
-                classDirectories = files([javaClasses], [kotlinClasses])
-                executionData = files("${project.buildDir}/jacoco/${testTaskName}.exec")
+                sourceDirectories.setFrom(files([javaSrc], [kotlinSrc]))
+                classDirectories.setFrom(files([javaClasses], [kotlinClasses]))
+                executionData.setFrom(files("${project.buildDir}/jacoco/${testTaskName}.exec"))
 
                 reports {
                     xml.enabled = true
                     html.enabled = true
-                    xml.setDestination file("${project.rootDir}/coverage/jacoco.xml")
-                    html.setDestination file("${project.rootDir}/coverage/html")
                 }
             }
         }
