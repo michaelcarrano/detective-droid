@@ -1,5 +1,0 @@
-{
-    "name": "Amazon Web Services",
-    "path": "com.amazonaws.AmazonWebServiceClient",
-    "source": "https://github.com/aws/aws-sdk-android"
-},

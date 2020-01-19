@@ -1,0 +1,108 @@
+// Merge of
+// https://github.com/mgouline/android-samples/blob/master/jacoco/app/build.gradle
+// and https://github.com/pushtorefresh/storio/blob/master/gradle/jacoco-android.gradle
+
+apply plugin: 'jacoco'
+
+ext {
+    fileFilter = [
+            '**/R.class',
+            '**/R$*.class',
+            '**/Manifest*.*',
+            'android/**/*.*',
+            'com/android/*',
+            '**/BuildConfig.*',
+            '**/*$ViewBinder*.*',
+            '**/*$ViewInjector*.*',
+            '**/Lambda$*.class',
+            '**/*$Lambda$*.*',
+            '**/Lambda.class',
+            '**/*Lambda.class',
+            '**/*Lambda*.class',
+            '**/*Test*.*',
+            '**/AutoValue_*.*',
+            '**/$AutoValue_*.*',
+            '**/$$AutoValue_*.*',
+            '**/*JavascriptBridge.class',
+            '**/*$inlined$*.*',
+            '**/*Module.*',
+            '**/*Module$Companion.*',
+            '**/*Dagger*.*',
+            '**/*$InjectAdapter.class',
+            '**/*$ModuleAdapter.class',
+            '**/*$ViewInjector*.class',
+            '**/*MembersInjector*.*',
+            '**/*_MembersInjector.class',
+            '*/*_MembersInjector*.*',
+            '**/*_*Factory*.*',
+            '**/*_Provide*Factory*.*',
+            '*/*Component*.*',
+            '**/**JsonAdapter*',
+            '**/**JsonAdapter.*',
+            '*/*_LifecycleAdapter.*',
+            '**/*_LifecycleAdapter.*',
+            'androidx/**',
+
+            // Views
+            '**/*Activity.class',
+            '**/*Fragment.class',
+            '**/*Adapter.class',
+            '**/*ViewHolder.class',
+            '**/*View.class',
+    ]
+}
+
+// Enables code coverage for JVM tests.
+// Android Gradle Plugin out of the box supports only code coverage for instrumentation tests.
+project.afterEvaluate {
+    // Grab all build types and product flavors
+    def buildTypes = android.buildTypes.collect { type -> type.name }
+    def productFlavors = android.productFlavors.collect { flavor -> flavor.name }
+
+    // When no product flavors defined, use empty
+    if (!productFlavors) productFlavors.add('')
+
+    productFlavors.each { productFlavorName ->
+        buildTypes.each { buildTypeName ->
+            def sourceName
+            if (!productFlavorName) {
+                sourceName = "${buildTypeName}"
+            } else {
+                sourceName = "${productFlavorName}${buildTypeName.capitalize()}"
+            }
+            def testTaskName = "test${sourceName.capitalize()}UnitTest"
+            def coverageTaskName = "${testTaskName}Coverage"
+
+            // Create coverage task of form 'testFlavorTypeUnitTestCoverage' depending on 'testFlavorTypeUnitTest'
+            task "${coverageTaskName}"(type: JacocoReport, dependsOn: "$testTaskName") {
+                // TODO: LifecycleBasePlugin.VERIFICATION_GROUP?
+                group = 'Reporting'
+                description = "Generate Jacoco coverage reports for the ${sourceName.capitalize()} build."
+
+                def javaClasses = fileTree(dir: "${project.buildDir}/intermediates/javac/${sourceName}/compile${sourceName.capitalize()}JavaWithJavac/classes", excludes: fileFilter)
+                def kotlinClasses = fileTree(dir: "${project.buildDir}/tmp/kotlin-classes/${sourceName}", excludes: fileFilter)
+
+                def javaSrc = [
+                        'src/main/java',
+                        "src/$productFlavorName/java",
+                        "src/$buildTypeName/java"
+                ]
+
+                def kotlinSrc = [
+                        'src/main/kotlin',
+                        "src/$productFlavorName/kotlin",
+                        "src/$buildTypeName/kotlin"
+                ]
+
+                sourceDirectories.setFrom(files([javaSrc], [kotlinSrc]))
+                classDirectories.setFrom(files([javaClasses], [kotlinClasses]))
+                executionData.setFrom(files("${project.buildDir}/jacoco/${testTaskName}.exec"))
+
+                reports {
+                    xml.enabled = true
+                    html.enabled = true
+                }
+            }
+        }
+    }
+}

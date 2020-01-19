@@ -1,19 +1,66 @@
-// Top-level build file where you can add configuration options common to all sub-projects/modules.
+import com.michaelcarrano.detectivedroid.buildsrc.Libs
+import com.michaelcarrano.detectivedroid.buildsrc.Versions
 
 buildscript {
-    repositories {
-        jcenter()
-    }
-    dependencies {
-        classpath 'com.android.tools.build:gradle:2.2.0'
+    ext.buildConfig = [
+            'compileSdk': 29,
+            'minSdk'    : 21,
+            'targetSdk' : 29,
+    ]
 
-        // NOTE: Do not place your application dependencies here; they belong
-        // in the individual module build.gradle files
+    repositories {
+        google()
+        jcenter()
+        maven { url 'https://dl.bintray.com/kotlin/kotlin-eap' }
     }
+
+    dependencies {
+        classpath Libs.androidGradlePlugin
+
+        classpath Libs.Kotlin.gradlePlugin
+        classpath Libs.Kotlin.extensions
+
+        classpath Libs.Google.openSourceLicensesPlugin
+
+        classpath Libs.AndroidX.Navigation.safeArgs
+
+        classpath Libs.jacoco
+    }
+}
+
+plugins {
+    id 'com.diffplug.gradle.spotless' version '3.27.1'
+    id 'com.github.ben-manes.versions' version '0.27.0'
 }
 
 allprojects {
     repositories {
+        google()
         jcenter()
+        maven { url 'https://dl.bintray.com/kotlin/kotlin-eap' }
+    }
+}
+
+subprojects {
+    apply plugin: 'com.diffplug.gradle.spotless'
+    spotless {
+        kotlin {
+            target "**/*.kt"
+            ktlint(Versions.ktlint)
+        }
+    }
+
+    tasks.withType(org.jetbrains.kotlin.gradle.tasks.KotlinCompile).all {
+        kotlinOptions {
+            // Treat all Kotlin warnings as errors
+            allWarningsAsErrors = true
+
+            // Enable experimental coroutines APIs, including Flow
+            freeCompilerArgs += "-Xuse-experimental=kotlinx.coroutines.ExperimentalCoroutinesApi"
+            freeCompilerArgs += "-Xuse-experimental=kotlinx.coroutines.FlowPreview"
+
+            // Set JVM target to 1.8
+            jvmTarget = "1.8"
+        }
     }
 }

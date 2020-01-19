@@ -1,15 +1,24 @@
 <?xml version="1.0" encoding="utf-8"?>
-
 <PreferenceScreen xmlns:android="http://schemas.android.com/apk/res/android">
-
     <PreferenceCategory
         android:key="pref_settings"
         android:title="@string/settings">
-        <CheckBoxPreference
-            android:defaultValue="true"
-            android:key="pref_skip_system_apps"
+
+        <SwitchPreferenceCompat
+            android:defaultValue="false"
+            android:key="pref_system_apps"
+            android:persistent="true"
             android:summary="@string/pref_desc_system_apps"
             android:title="@string/pref_title_system_apps" />
+
+        <ListPreference
+            android:defaultValue="default"
+            android:dialogTitle="Choose theme"
+            android:entries="@array/theme_list_array"
+            android:entryValues="@array/theme_entry_array"
+            android:summary="%s"
+            android:key="pref_app_theme"
+            android:title="Choose theme" />
     </PreferenceCategory>
 
     <PreferenceCategory
@@ -28,6 +37,17 @@
             <intent
                 android:action="android.intent.action.VIEW"
                 android:data="https://github.com/michaelcarrano/detective-droid" />
+        </Preference>
+        <Preference
+            android:key="pref_open_source"
+            android:summary="@string/pref_desc_open_source"
+            android:title="@string/pref_title_open_source" />
+        <Preference
+            android:summary="@string/pref_desc_app_icon"
+            android:title="@string/pref_title_app_icon">
+            <intent
+                android:action="android.intent.action.VIEW"
+                android:data="https://thenounproject.com/term/android-security/2553347/" />
         </Preference>
     </PreferenceCategory>
 </PreferenceScreen>

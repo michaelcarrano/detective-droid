@@ -1,38 +1,117 @@
+import com.michaelcarrano.detectivedroid.buildsrc.Libs
+
 apply plugin: 'com.android.application'
+apply plugin: 'kotlin-android'
+apply plugin: 'kotlin-android-extensions'
+apply plugin: 'kotlin-kapt'
+apply plugin: 'com.google.android.gms.oss-licenses-plugin'
+apply plugin: 'androidx.navigation.safeargs.kotlin'
+
+apply from: '../gradle/scripts/jacoco.gradle'
+
+kapt {
+    correctErrorTypes = true
+    useBuildCache = true
+}
 
 android {
-    compileSdkVersion 24
-    buildToolsVersion "24.0.2"
-
+    compileSdkVersion buildConfig.compileSdk
     defaultConfig {
         applicationId "com.michaelcarrano.detectivedroid"
-        minSdkVersion 9
-        targetSdkVersion 24
-        versionCode 3
-        versionName "1.3.1.1"
+        minSdkVersion buildConfig.minSdk
+        targetSdkVersion buildConfig.targetSdk
+
+        versionCode 4
+        versionName "2.0.0"
+
+        resConfig "en"
+
+        testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
+
+        buildFeatures {
+            compose = false
+            buildConfig = true
+            viewBinding = true
+            dataBinding = false
+        }
     }
+
+    bundle {
+        language {
+            enableSplit = true
+        }
+        density {
+            enableSplit = true
+        }
+        abi {
+            enableSplit = true
+        }
+    }
+
     buildTypes {
+        debug {
+            testCoverageEnabled true
+        }
         release {
             minifyEnabled true
-            proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
+            proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
         }
+    }
+
+    testOptions {
+        unitTests.returnDefaultValues = true
+    }
+
+    compileOptions {
+        coreLibraryDesugaringEnabled true
+        sourceCompatibility JavaVersion.VERSION_1_8
+        targetCompatibility JavaVersion.VERSION_1_8
     }
 }
 
 dependencies {
-    def support = '24.2.1'
-    compile "com.android.support:appcompat-v7:${support}"
-    compile "com.android.support:support-v4:${support}"
-    compile "com.android.support:cardview-v7:${support}"
-}
+    coreLibraryDesugaring Libs.desugar
 
-// Task that combines all JSON files in ../libraries into src/main/res/raw/libraries.json
-task combineJsonFiles {
-    String content = ""
-    FileTree tree = fileTree(dir: '../libraries', include: '**/*.json')
-    tree.each { File file ->
-        content += file.getText()
-    }
-    def libraries = new File("app/src/main/res/raw/libraries.json")
-    libraries.text = "[" + content.substring(0, content.length() - 1) + "]"
+    implementation Libs.Kotlin.stdlib
+    implementation Libs.Kotlin.reflect
+
+    implementation Libs.AndroidX.coreKtx
+    implementation Libs.AndroidX.constraintlayout
+    implementation Libs.AndroidX.preference
+    implementation Libs.AndroidX.recyclerview
+    implementation Libs.AndroidX.Lifecycle.extensions
+    implementation Libs.AndroidX.Navigation.fragment
+    implementation Libs.AndroidX.Navigation.ui
+
+    implementation Libs.Google.material
+    implementation Libs.Google.openSourceLicensesLibrary
+
+    implementation Libs.roxie
+
+    implementation Libs.Dagger.dagger
+    kapt Libs.Dagger.compiler
+
+    implementation Libs.Dagger.androidSupport
+    kapt Libs.Dagger.androidProcessor
+
+    implementation Libs.RxJava.rxJava
+    implementation Libs.RxJava.rxKotlin
+    implementation Libs.RxJava.rxAndroid
+
+    implementation Libs.timber
+
+    debugImplementation Libs.Facebook.flipper
+    debugImplementation Libs.Facebook.soloader
+
+    debugImplementation Libs.leakCanary
+
+    testImplementation Libs.json
+    testImplementation Libs.junit
+    testImplementation Libs.mockitoKtx
+    testImplementation Libs.AndroidX.Test.archCoreTesting
+    testImplementation Libs.AndroidX.Test.core
+    testImplementation Libs.AndroidX.Test.runner
+    testImplementation Libs.AndroidX.Test.rules
+    androidTestImplementation Libs.AndroidX.Test.espressoCore
+    androidTestImplementation Libs.AndroidX.Test.junit
 }

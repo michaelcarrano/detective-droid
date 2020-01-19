@@ -1,5 +1,0 @@
-{
-    "name": "Dailymotion",
-    "path": "com.dailymotion.websdk.DMWebVideoView",
-    "source": "https://github.com/dailymotion/dailymotion-sdk-android"
-},

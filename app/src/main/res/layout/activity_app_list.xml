@@ -1,9 +1,0 @@
-<fragment
-    android:id="@+id/app_list"
-    android:name="com.michaelcarrano.detectivedroid.view.AppListFragment"
-    xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:tools="http://schemas.android.com/tools"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    tools:context=".AppListActivity"
-    tools:layout="@android:layout/list_content" />

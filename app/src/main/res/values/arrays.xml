@@ -1,0 +1,11 @@
+<resources xmlns:tools="http://schemas.android.com/tools">
+    <string-array name="theme_list_array" tools:ignore="InconsistentArrays">
+        <item>Light</item>
+        <item>Dark</item>
+    </string-array>
+
+    <string-array name="theme_entry_array" tools:ignore="InconsistentArrays">
+        <item>light</item>
+        <item>dark</item>
+    </string-array>
+</resources>
