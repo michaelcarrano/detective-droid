@@ -106,29 +106,29 @@ jobs:
 
   release:
     executor: android-executor
-      steps:
-        - run:
-            name: Verify PR owner
-            command: |
-              if [ "$CIRCLE_USERNAME" != "michaelcarrano" ]; then
-                circleci-agent step halt
-              fi
-        - checkout
-        - *restore_gems_cache
-        - *ruby_dependencies
-        - *save_gems_cache
-        - *restore_gradle_cache
-        - *android_dependencies
-        - run:
-            name: Decrypt signing secrets
-            command: release/signing-setup.sh $KEYSTORE_DECRYPTION_PWD
-        - run:
-            name: Build Release App and Upload to Google Play
-            command: bundle exec fastlane release
-        - run:
-            name: Delete signing secrets
-            command: release/signing-cleanup.sh
-            when: always
+    steps:
+      - run:
+          name: Verify PR owner
+          command: |
+            if [ "$CIRCLE_USERNAME" != "michaelcarrano" ]; then
+              circleci-agent step halt
+            fi
+      - checkout
+      - *restore_gems_cache
+      - *ruby_dependencies
+      - *save_gems_cache
+      - *restore_gradle_cache
+      - *android_dependencies
+      - run:
+          name: Decrypt signing secrets
+          command: release/signing-setup.sh $KEYSTORE_DECRYPTION_PWD
+      - run:
+          name: Build Release App and Upload to Google Play
+          command: bundle exec fastlane release
+      - run:
+          name: Delete signing secrets
+          command: release/signing-cleanup.sh
+          when: always
 
 workflows:
   version: 2
