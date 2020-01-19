@@ -29,6 +29,24 @@ references:
       paths:
         - ~/.gradle
 
+  gems_key: &gems_key
+    gems-{{ checksum "Gemfile.lock" }}
+
+  restore_gems_cache: &restore_gems_cache
+    restore_cache:
+      key: *gems_key
+
+  save_gems_cache: &save_gems_cache
+    save_cache:
+      key: *gems_key
+      paths:
+        - vendor/bundle
+
+  ruby_dependencies: &ruby_dependencies
+    run:
+      name: Download Ruby Dependencies
+      command: bundle check || bundle install --path vendor/bundle
+
 jobs:
   build:
     executor: android-executor
@@ -86,6 +104,32 @@ jobs:
             ./cc-test-reporter upload-coverage -d
       - *save_gradle_cache
 
+  release:
+    executor: android-executor
+      steps:
+        - run:
+            name: Verify PR owner
+            command: |
+              if [ "$CIRCLE_USERNAME" != "michaelcarrano" ]; then
+                circleci-agent step halt
+              fi
+        - checkout
+        - *restore_gems_cache
+        - *ruby_dependencies
+        - *save_gems_cache
+        - *restore_gradle_cache
+        - *android_dependencies
+        - run:
+            name: Decrypt signing secrets
+            command: release/signing-setup.sh $KEYSTORE_DECRYPTION_PWD
+        - run:
+            name: Build Release App and Upload to Google Play
+            command: bundle exec fastlane release
+        - run:
+            name: Delete signing secrets
+            command: release/signing-cleanup.sh
+            when: always
+
 workflows:
   version: 2
   build_and_test:
@@ -94,3 +138,10 @@ workflows:
       - test:
           requires:
             - build
+
+  release_to_google:
+    jobs:
+      - release:
+          filters:
+            branches:
+              only: release/*
