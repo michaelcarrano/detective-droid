@@ -56,6 +56,14 @@ jobs:
       - *restore_gradle_cache
       - *android_dependencies
       - run:
+          name: Setup Code Climate test-reporter
+          command: |
+            curl -L https://codeclimate.com/downloads/test-reporter/test-reporter-latest-linux-amd64 > ./cc-test-reporter
+            chmod +x ./cc-test-reporter
+      - run:
+          name: Code Climate pre-build
+          command: ./cc-test-reporter before-build
+      - run:
           name: Run Unit Tests
           command: ./gradlew test
       - run:
@@ -67,6 +75,12 @@ jobs:
           path: ~/test-results
       - store_artifacts:
           path: ~/test-results/junit
+      - run:
+          name: Run Jacoco Test Coverage
+          command: ./gradlew testReleaseUnitTestCoverage
+      - run:
+          name: Upload test coverage report to Code Climate
+          command: ./cc-test-reporter after-build --coverage-input-type jacoco --exit-code $?
       - *save_gradle_cache
 
 workflows:
