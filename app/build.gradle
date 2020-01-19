@@ -48,6 +48,15 @@ android {
         }
     }
 
+    signingConfigs {
+        release {
+            storeFile rootProject.file("release/detectivedroid-release.keystore")
+            storePassword SIGNING_CONFIG_RELEASE_KEYSTORE_PWD
+            keyAlias "detective_droid"
+            keyPassword SIGNING_CONFIG_RELEASE_KEY_PWD
+        }
+    }
+
     buildTypes {
         debug {
             testCoverageEnabled true
@@ -55,6 +64,7 @@ android {
         release {
             minifyEnabled true
             proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
+            signingConfig signingConfigs.release
         }
     }
 
