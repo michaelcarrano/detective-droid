@@ -50,17 +50,12 @@ references:
   signing_configs_setup: &signing_configs_setup
     run: 
       name: Setup Signing Configs
-      command: |
-        release/signing-setup.sh $KEYSTORE_DECRYPTION_PWD
-        echo "SIGNING_CONFIG_RELEASE_KEYSTORE_PWD=$SIGNING_CONFIG_RELEASE_KEYSTORE_PWD" >> ~/.gradle/gradle.properties
-        echo "SIGNING_CONFIG_RELEASE_KEY_PWD=$SIGNING_CONFIG_RELEASE_KEY_PWD" >> ~/.gradle/gradle.properties
+      command: release/signing-setup.sh $KEYSTORE_DECRYPTION_PWD
   
   signing_configs_cleanup: &signing_configs_cleanup
     run: 
       name: Cleanup Signing Configs
-      command: |
-        release/signing-cleanup.sh
-        rm ~/.gradle/gradle.properties
+      command: release/signing-cleanup.sh
       when: always
 
 jobs:

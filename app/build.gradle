@@ -51,9 +51,9 @@ android {
     signingConfigs {
         release {
             storeFile rootProject.file("release/detectivedroid-release.keystore")
-            storePassword SIGNING_CONFIG_RELEASE_KEYSTORE_PWD
+            storePassword System.getenv("SIGNING_CONFIG_RELEASE_KEYSTORE_PWD")
             keyAlias "detective_droid"
-            keyPassword SIGNING_CONFIG_RELEASE_KEY_PWD
+            keyPassword System.getenv("SIGNING_CONFIG_RELEASE_KEY_PWD")
         }
     }
 
