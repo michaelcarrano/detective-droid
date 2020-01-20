@@ -1,0 +1,2 @@
+json_key_file("release/play-account.json")
+package_name("com.michaelcarrano.detectivedroid")

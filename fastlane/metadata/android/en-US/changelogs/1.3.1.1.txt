@@ -1,0 +1,2 @@
+- Now you can click on a library/SDK to view information about it.
+- New application icon!

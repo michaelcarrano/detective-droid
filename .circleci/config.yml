@@ -29,16 +29,47 @@ references:
       paths:
         - ~/.gradle
 
+  gems_key: &gems_key
+    gems-{{ checksum "Gemfile.lock" }}
+
+  restore_gems_cache: &restore_gems_cache
+    restore_cache:
+      key: *gems_key
+
+  save_gems_cache: &save_gems_cache
+    save_cache:
+      key: *gems_key
+      paths:
+        - vendor/bundle
+
+  ruby_dependencies: &ruby_dependencies
+    run:
+      name: Download Ruby Dependencies
+      command: bundle check || bundle install --path vendor/bundle
+
+  signing_configs_setup: &signing_configs_setup
+    run: 
+      name: Setup Signing Configs
+      command: release/signing-setup.sh $KEYSTORE_DECRYPTION_PWD
+  
+  signing_configs_cleanup: &signing_configs_cleanup
+    run: 
+      name: Cleanup Signing Configs
+      command: release/signing-cleanup.sh
+      when: always
+
 jobs:
   build:
     executor: android-executor
     steps:
       - checkout
       - *restore_gradle_cache
+      - *signing_configs_setup
       - *android_dependencies
       - run:
           name: Run JVM Tests & Lint, assemble app and test APKs for debug and release
           command: ./gradlew check assemble assembleAndroidTest --stacktrace
+      - *signing_configs_cleanup
       # Persist build directory for all modules
       - persist_to_workspace:
           root: .
@@ -54,6 +85,7 @@ jobs:
       - attach_workspace:
           at: .
       - *restore_gradle_cache
+      - *signing_configs_setup
       - *android_dependencies
       - run:
           name: Setup Code Climate test-reporter
@@ -84,7 +116,29 @@ jobs:
             JACOCO_SOURCE_PATH=app/src/main/java \
             ./cc-test-reporter format-coverage -d -t jacoco app/build/reports/jacoco/testReleaseUnitTestCoverage/testReleaseUnitTestCoverage.xml
             ./cc-test-reporter upload-coverage -d
+      - *signing_configs_cleanup
       - *save_gradle_cache
+
+  release:
+    executor: android-executor
+    steps:
+      - run:
+          name: Verify PR owner
+          command: |
+            if [ "$CIRCLE_USERNAME" != "michaelcarrano" ]; then
+              circleci-agent step halt
+            fi
+      - checkout
+      - *restore_gems_cache
+      - *ruby_dependencies
+      - *save_gems_cache
+      - *restore_gradle_cache
+      - *signing_configs_setup
+      - *android_dependencies
+      - run:
+          name: Build Release App and Upload to Google Play
+          command: bundle exec fastlane release
+      - *signing_configs_cleanup
 
 workflows:
   version: 2
@@ -94,3 +148,10 @@ workflows:
       - test:
           requires:
             - build
+
+  release_to_google:
+    jobs:
+      - release:
+          filters:
+            branches:
+              only: release/*
