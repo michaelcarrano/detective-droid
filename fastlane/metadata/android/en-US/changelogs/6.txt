@@ -1,0 +1,12 @@
+Been a while!
+This is a major update for the app, where everything has been re-developed from the ground up... And still does not need any permissions!
+
+- No longer scans all the apps up front, jump straight to the list of apps installed on your device.
+- Scan for known libraries once you click on an app you are interested in learning about. Really fast!
+- Support for dark mode!
+- New app icon.
+
+Now go do some detective work!
+
+Source code is available:
+https://github.com/michaelcarrano/detective-droid
