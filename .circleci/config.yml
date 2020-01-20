@@ -144,7 +144,6 @@ jobs:
           name: Build Release App and Upload to Google Play
           command: bundle exec fastlane release
       - *signing_configs_cleanup
-        when: always
 
 workflows:
   version: 2
