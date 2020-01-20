@@ -69,8 +69,8 @@ jobs:
     steps:
       - checkout
       - *restore_gradle_cache
-      - *android_dependencies
       - *signing_configs_setup
+      - *android_dependencies
       - run:
           name: Run JVM Tests & Lint, assemble app and test APKs for debug and release
           command: ./gradlew check assemble assembleAndroidTest --stacktrace
@@ -90,8 +90,8 @@ jobs:
       - attach_workspace:
           at: .
       - *restore_gradle_cache
-      - *android_dependencies
       - *signing_configs_setup
+      - *android_dependencies
       - run:
           name: Setup Code Climate test-reporter
           command: |
@@ -138,8 +138,8 @@ jobs:
       - *ruby_dependencies
       - *save_gems_cache
       - *restore_gradle_cache
-      - *android_dependencies
       - *signing_configs_setup
+      - *android_dependencies
       - run:
           name: Build Release App and Upload to Google Play
           command: bundle exec fastlane release
