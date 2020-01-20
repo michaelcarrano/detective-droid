@@ -48,18 +48,20 @@ references:
       command: bundle check || bundle install --path vendor/bundle
 
   signing_configs_setup: &signing_configs_setup
-    run: Setup Signing Configs
-    command: |
-      release/signing-setup.sh $KEYSTORE_DECRYPTION_PWD
-      echo "SIGNING_CONFIG_RELEASE_KEYSTORE_PWD=$SIGNING_CONFIG_RELEASE_KEYSTORE_PWD" >> ~/.gradle/gradle.properties
-      echo "SIGNING_CONFIG_RELEASE_KEY_PWD=$SIGNING_CONFIG_RELEASE_KEY_PWD" >> ~/.gradle/gradle.properties
+    run: 
+      name: Setup Signing Configs
+      command: |
+        release/signing-setup.sh $KEYSTORE_DECRYPTION_PWD
+        echo "SIGNING_CONFIG_RELEASE_KEYSTORE_PWD=$SIGNING_CONFIG_RELEASE_KEYSTORE_PWD" >> ~/.gradle/gradle.properties
+        echo "SIGNING_CONFIG_RELEASE_KEY_PWD=$SIGNING_CONFIG_RELEASE_KEY_PWD" >> ~/.gradle/gradle.properties
   
   signing_configs_cleanup: &signing_configs_cleanup
-    run: Cleanup Signing Configs
-    command: |
-      release/signing-cleanup.sh
-      rm ~/.gradle/gradle.properties
-    when: always
+    run: 
+      name: Cleanup Signing Configs
+      command: |
+        release/signing-cleanup.sh
+        rm ~/.gradle/gradle.properties
+      when: always
 
 jobs:
   build:
@@ -142,6 +144,7 @@ jobs:
           name: Build Release App and Upload to Google Play
           command: bundle exec fastlane release
       - *signing_configs_cleanup
+        when: always
 
 workflows:
   version: 2
