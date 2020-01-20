@@ -47,6 +47,20 @@ references:
       name: Download Ruby Dependencies
       command: bundle check || bundle install --path vendor/bundle
 
+  signing_configs_setup: &signing_configs_setup
+    run: Setup Signing Configs
+    command: |
+      release/signing-setup.sh $KEYSTORE_DECRYPTION_PWD
+      echo "SIGNING_CONFIG_RELEASE_KEYSTORE_PWD=$SIGNING_CONFIG_RELEASE_KEYSTORE_PWD" >> ~/.gradle/gradle.properties
+      echo "SIGNING_CONFIG_RELEASE_KEY_PWD=$SIGNING_CONFIG_RELEASE_KEY_PWD" >> ~/.gradle/gradle.properties
+  
+  signing_configs_cleanup: &signing_configs_cleanup
+    run: Cleanup Signing Configs
+    command: |
+      release/signing-cleanup.sh
+      rm ~/.gradle/gradle.properties
+    when: always
+
 jobs:
   build:
     executor: android-executor
@@ -54,9 +68,11 @@ jobs:
       - checkout
       - *restore_gradle_cache
       - *android_dependencies
+      - *signing_configs_setup
       - run:
           name: Run JVM Tests & Lint, assemble app and test APKs for debug and release
           command: ./gradlew check assemble assembleAndroidTest --stacktrace
+      - *signing_configs_cleanup
       # Persist build directory for all modules
       - persist_to_workspace:
           root: .
@@ -73,6 +89,7 @@ jobs:
           at: .
       - *restore_gradle_cache
       - *android_dependencies
+      - *signing_configs_setup
       - run:
           name: Setup Code Climate test-reporter
           command: |
@@ -102,6 +119,7 @@ jobs:
             JACOCO_SOURCE_PATH=app/src/main/java \
             ./cc-test-reporter format-coverage -d -t jacoco app/build/reports/jacoco/testReleaseUnitTestCoverage/testReleaseUnitTestCoverage.xml
             ./cc-test-reporter upload-coverage -d
+      - *signing_configs_cleanup
       - *save_gradle_cache
 
   release:
@@ -119,16 +137,11 @@ jobs:
       - *save_gems_cache
       - *restore_gradle_cache
       - *android_dependencies
-      - run:
-          name: Decrypt signing secrets
-          command: release/signing-setup.sh $KEYSTORE_DECRYPTION_PWD
+      - *signing_configs_setup
       - run:
           name: Build Release App and Upload to Google Play
           command: bundle exec fastlane release
-      - run:
-          name: Delete signing secrets
-          command: release/signing-cleanup.sh
-          when: always
+      - *signing_configs_cleanup
 
 workflows:
   version: 2
