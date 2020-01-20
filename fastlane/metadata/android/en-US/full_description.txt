@@ -1,9 +1,10 @@
-Detective Droid is here to help you investigate what libraries are being used inside applications that are installed on your device.
+Have you ever wondered, "how is this app made?", wonder no more!
 
-This makes it really easy to see what other developers/companies are using to develop their applications.
+Detective Droid is here to help you detect which libraries are used inside applications that are installed on your device.
 
-Detective Droid requires no permissions and works on Android version 2.2 and beyond.
+This makes it really easy to see what companies and developers are using to develop their applications.
+
+Detective Droid requires no permissions and works on Android version 5.0 (Lollipop) and newer.
 
 Detective Droid is available on Github:
 https://github.com/michaelcarrano/detective-droid
-Please help out, if you know how.
