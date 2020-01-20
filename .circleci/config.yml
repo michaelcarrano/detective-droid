@@ -151,7 +151,10 @@ workflows:
 
   release_to_google:
     jobs:
+      - build
       - release:
+          requires:
+            - build
           filters:
             branches:
-              only: release/*
+              only: /release-.*/
