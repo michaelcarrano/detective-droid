@@ -6,7 +6,6 @@ This is a major update for the app, where everything has been re-developed from 
 - Support for dark mode!
 - New app icon.
 
-Now go do some detective work!
+Go do some detective work!
 
-Source code is available:
 https://github.com/michaelcarrano/detective-droid
