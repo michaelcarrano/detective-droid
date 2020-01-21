@@ -3,10 +3,12 @@ package com.michaelcarrano.detectivedroid.presentation.applist
 import com.michaelcarrano.detectivedroid.domain.GetAppListUseCase
 import com.ww.roxie.BaseViewModel
 import com.ww.roxie.Reducer
+import io.reactivex.Observable
 import io.reactivex.android.schedulers.AndroidSchedulers
 import io.reactivex.rxkotlin.ofType
 import io.reactivex.rxkotlin.plusAssign
 import io.reactivex.schedulers.Schedulers
+import java.util.concurrent.TimeUnit
 import timber.log.Timber
 
 class AppListViewModel(
@@ -51,10 +53,20 @@ class AppListViewModel(
                     .startWith(Change.Loading)
             }
 
-        // to handle multiple Changes, use Observable.merge to merge them into a single stream:
-        // val allChanges = Observable.merge(loadNotesChange, ...)
+        val searchAppsChange = actions.ofType<Action.Search>()
+            .switchMap { it ->
+                appListUseCase.searchApps(it.query!!, it.showSystemApp)
+                    .delay(500, TimeUnit.MILLISECONDS)
+                    .subscribeOn(Schedulers.io())
+                    .toObservable()
+                    .map<Change> { Change.Apps(it) }
+                    .defaultIfEmpty(Change.Apps(emptyList()))
+                    .onErrorReturn { Change.Error(it) }
+            }
 
-        disposables += loadAppsChange
+        val allChanges = Observable.merge(loadAppsChange, searchAppsChange)
+
+        disposables += allChanges
             .scan(initialState, reducer)
             .filter { !it.isIdle }
             .distinctUntilChanged()

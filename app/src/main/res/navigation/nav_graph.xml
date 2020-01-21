@@ -13,7 +13,7 @@
             app:destination="@id/appDetailFragment" />
         <action
             android:id="@+id/action_appListFragment_to_settingsFragment2"
-            app:destination="@id/settingsFragment" />
+            app:destination="@id/action_settings" />
     </fragment>
     <fragment
         android:id="@+id/appDetailFragment"
@@ -27,7 +27,7 @@
             app:argType="com.michaelcarrano.detectivedroid.presentation.model.AppUiModel" />
     </fragment>
     <fragment
-        android:id="@+id/settingsFragment"
+        android:id="@+id/action_settings"
         android:name="com.michaelcarrano.detectivedroid.presentation.settings.SettingsFragment"
         android:label="@string/settings" />
 </navigation>
