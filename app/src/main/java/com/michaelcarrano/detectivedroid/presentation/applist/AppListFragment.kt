@@ -9,6 +9,7 @@ import android.view.MenuInflater
 import android.view.MenuItem
 import android.view.View
 import android.view.ViewGroup
+import androidx.appcompat.widget.SearchView
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.Observer
 import androidx.navigation.fragment.NavHostFragment.findNavController
@@ -38,6 +39,9 @@ class AppListFragment : DaggerFragment() {
         AppAdapter(packageManager, clickListener)
     }
 
+    private val showSystemApps
+        get() = sharedPreferences.getBoolean("pref_system_apps", false)
+
     private var _binding: FragmentAppListBinding? = null
     // This property is only valid between onCreateView and onDestroyView.
     private val binding get() = _binding!!
@@ -61,7 +65,7 @@ class AppListFragment : DaggerFragment() {
             state?.let { renderState(state) }
         })
 
-        viewModel.dispatch(Action.LoadApps(sharedPreferences.getBoolean("pref_system_apps", false)))
+        viewModel.dispatch(Action.LoadApps(showSystemApps))
     }
 
     override fun onDestroyView() {
@@ -72,6 +76,7 @@ class AppListFragment : DaggerFragment() {
 
     override fun onCreateOptionsMenu(menu: Menu, inflater: MenuInflater) {
         inflater.inflate(R.menu.menu, menu)
+        setupSearch(menu)
         super.onCreateOptionsMenu(menu, inflater)
     }
 
@@ -116,5 +121,51 @@ class AppListFragment : DaggerFragment() {
             R.id.appDetailFragment,
             AppDetailFragmentArgs(app.name, app).toBundle()
         )
+    }
+
+    private fun setupSearch(menu: Menu) {
+        val searchItem = handleSearchExpand(menu)
+        handleSearchQuery(searchItem)
+    }
+
+    private fun handleSearchQuery(searchItem: MenuItem?) {
+        val searchView = searchItem?.actionView as SearchView
+        searchView.setOnQueryTextListener(object : SearchView.OnQueryTextListener {
+            override fun onQueryTextSubmit(query: String?): Boolean {
+                doSearch(query)
+                return true
+            }
+
+            override fun onQueryTextChange(newText: String?): Boolean {
+                doSearch(newText)
+                return true
+            }
+        })
+    }
+
+    private fun handleSearchExpand(menu: Menu): MenuItem? {
+        val settingsItem = menu.findItem(R.id.action_settings)
+        val searchItem = menu.findItem(R.id.action_search)
+
+        val expandListener = object : MenuItem.OnActionExpandListener {
+            override fun onMenuItemActionCollapse(item: MenuItem): Boolean {
+                settingsItem.isVisible = true
+                return true // Return true to collapse action view
+            }
+
+            override fun onMenuItemActionExpand(item: MenuItem): Boolean {
+                settingsItem.isVisible = false
+                return true // Return true to expand action view
+            }
+        }
+
+        searchItem.setOnActionExpandListener(expandListener)
+        return searchItem
+    }
+
+    private fun doSearch(query: String?) {
+        query?.let {
+            viewModel.dispatch(Action.Search(it, showSystemApps))
+        }
     }
 }

@@ -1,7 +1,7 @@
 package com.michaelcarrano.detectivedroid.data
 
 import android.content.res.Resources
-import com.nhaarman.mockito_kotlin.mock
+import com.nhaarman.mockitokotlin2.mock
 import org.junit.Before
 
 class LibraryRepositoryImplTest {

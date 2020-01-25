@@ -2,17 +2,11 @@ package com.michaelcarrano.detectivedroid.presentation.model
 
 import com.michaelcarrano.detectivedroid.data.model.AppEntity
 import org.junit.Assert.assertEquals
-import org.junit.Before
 import org.junit.Test
 
 class AppMapperTest {
 
-    private lateinit var testSubject: AppMapper
-
-    @Before
-    fun setUp() {
-        testSubject = AppMapper()
-    }
+    private val testSubject = AppMapper()
 
     @Test
     fun `Given AppEntity, When mapping to AppUiModel, Then return valid AppUiModel`() {
@@ -34,6 +28,8 @@ class AppMapperTest {
             AppEntity("foo2", "bar2", "baz2", true)
         )
         val appUiModels = testSubject.mapToUiModels(appEntitys)
+
+        assertEquals(appEntitys.size, appUiModels.size)
 
         for (i in 0 until appEntitys.count()) {
             assertEquals(appEntitys[i].name, appUiModels[i].name)

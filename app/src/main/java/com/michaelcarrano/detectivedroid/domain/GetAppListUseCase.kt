@@ -18,4 +18,10 @@ class GetAppListUseCase @Inject constructor(
             .map { apps ->
                 apps.map { mapper.mapToUiModel(it) }
             }
+
+    fun searchApps(query: String, showSystemApp: Boolean): Single<List<AppUiModel>> =
+        loadApps(showSystemApp)
+            .map { apps ->
+                apps.filter { it.name.contains(query, true) }
+            }
 }

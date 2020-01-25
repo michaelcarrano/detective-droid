@@ -3,11 +3,15 @@ package com.michaelcarrano.detectivedroid.presentation.applist
 import com.michaelcarrano.detectivedroid.domain.GetAppListUseCase
 import com.ww.roxie.BaseViewModel
 import com.ww.roxie.Reducer
+import io.reactivex.Observable
 import io.reactivex.android.schedulers.AndroidSchedulers
 import io.reactivex.rxkotlin.ofType
 import io.reactivex.rxkotlin.plusAssign
 import io.reactivex.schedulers.Schedulers
+import java.util.concurrent.TimeUnit
 import timber.log.Timber
+
+const val SEARCH_DELAY_TIME = 500L
 
 class AppListViewModel(
     initialState: State?,
@@ -16,22 +20,11 @@ class AppListViewModel(
 
     override val initialState = initialState ?: State(isIdle = true)
 
-    private val reducer: Reducer<State, Change> = { state, change ->
+    private val reducer: Reducer<State, Change> = { _, change ->
         when (change) {
-            is Change.Loading -> state.copy(
-                isIdle = false,
-                isLoading = true,
-                apps = emptyList(),
-                isError = false
-            )
-            is Change.Apps -> state.copy(
-                isLoading = false,
-                apps = change.apps
-            )
-            is Change.Error -> state.copy(
-                isLoading = false,
-                isError = true
-            )
+            is Change.Loading -> State(isLoading = true)
+            is Change.Apps -> State(change.apps)
+            is Change.Error -> State(isError = true)
         }
     }
 
@@ -51,10 +44,20 @@ class AppListViewModel(
                     .startWith(Change.Loading)
             }
 
-        // to handle multiple Changes, use Observable.merge to merge them into a single stream:
-        // val allChanges = Observable.merge(loadNotesChange, ...)
+        val searchAppsChange = actions.ofType<Action.Search>()
+            .switchMap { it ->
+                appListUseCase.searchApps(it.query!!, it.showSystemApp)
+                    .delay(SEARCH_DELAY_TIME, TimeUnit.MILLISECONDS)
+                    .subscribeOn(Schedulers.io())
+                    .toObservable()
+                    .map<Change> { Change.Apps(it) }
+                    .defaultIfEmpty(Change.Apps(emptyList()))
+                    .onErrorReturn { Change.Error(it) }
+            }
 
-        disposables += loadAppsChange
+        val allChanges = Observable.merge(loadAppsChange, searchAppsChange)
+
+        disposables += allChanges
             .scan(initialState, reducer)
             .filter { !it.isIdle }
             .distinctUntilChanged()

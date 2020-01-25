@@ -5,6 +5,7 @@ import io.reactivex.android.plugins.RxAndroidPlugins
 import io.reactivex.plugins.RxJavaPlugins
 import io.reactivex.schedulers.Schedulers
 import io.reactivex.schedulers.TestScheduler
+import java.util.concurrent.TimeUnit
 import org.junit.rules.TestRule
 import org.junit.runner.Description
 import org.junit.runners.model.Statement
@@ -24,6 +25,9 @@ class RxTestSchedulerRule(private val testScheduler: TestScheduler = TestSchedul
     }
 
     override fun createWorker() = testScheduler.createWorker()
+
+    fun advanceTimeBy(delayTime: Long, unit: TimeUnit) =
+        testScheduler.advanceTimeBy(delayTime, unit)
 
     fun triggerActions() = testScheduler.triggerActions()
 }
