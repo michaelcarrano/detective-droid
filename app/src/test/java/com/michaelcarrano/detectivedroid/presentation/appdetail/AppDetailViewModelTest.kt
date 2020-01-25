@@ -8,10 +8,10 @@ import com.michaelcarrano.detectivedroid.data.LibraryRepository
 import com.michaelcarrano.detectivedroid.data.model.LibraryEntity
 import com.michaelcarrano.detectivedroid.domain.ScanAppUseCase
 import com.michaelcarrano.detectivedroid.presentation.model.LibraryMapper
-import com.nhaarman.mockito_kotlin.inOrder
-import com.nhaarman.mockito_kotlin.mock
-import com.nhaarman.mockito_kotlin.verifyNoMoreInteractions
-import com.nhaarman.mockito_kotlin.whenever
+import com.nhaarman.mockitokotlin2.inOrder
+import com.nhaarman.mockitokotlin2.mock
+import com.nhaarman.mockitokotlin2.verifyNoMoreInteractions
+import com.nhaarman.mockitokotlin2.whenever
 import io.reactivex.Single
 import java.util.UUID
 import org.junit.Before
@@ -50,7 +50,7 @@ class AppDetailViewModelTest {
         // GIVEN
         val packageName = "foo"
         val entitys = listOf(
-            LibraryEntity(UUID.randomUUID(), "name", "source", "classPath", 1000L, 1000L)
+            LibraryEntity(UUID.randomUUID(), "name", "source", "classPath")
         )
         val uiModels = mapper.mapToUiModels(entitys)
 

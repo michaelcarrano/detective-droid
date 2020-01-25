@@ -11,6 +11,8 @@ import io.reactivex.schedulers.Schedulers
 import java.util.concurrent.TimeUnit
 import timber.log.Timber
 
+const val SEARCH_DELAY_TIME = 500L
+
 class AppListViewModel(
     initialState: State?,
     private val appListUseCase: GetAppListUseCase
@@ -18,22 +20,11 @@ class AppListViewModel(
 
     override val initialState = initialState ?: State(isIdle = true)
 
-    private val reducer: Reducer<State, Change> = { state, change ->
+    private val reducer: Reducer<State, Change> = { _, change ->
         when (change) {
-            is Change.Loading -> state.copy(
-                isIdle = false,
-                isLoading = true,
-                apps = emptyList(),
-                isError = false
-            )
-            is Change.Apps -> state.copy(
-                isLoading = false,
-                apps = change.apps
-            )
-            is Change.Error -> state.copy(
-                isLoading = false,
-                isError = true
-            )
+            is Change.Loading -> State(isLoading = true)
+            is Change.Apps -> State(change.apps)
+            is Change.Error -> State(isError = true)
         }
     }
 
@@ -56,7 +47,7 @@ class AppListViewModel(
         val searchAppsChange = actions.ofType<Action.Search>()
             .switchMap { it ->
                 appListUseCase.searchApps(it.query!!, it.showSystemApp)
-                    .delay(500, TimeUnit.MILLISECONDS)
+                    .delay(SEARCH_DELAY_TIME, TimeUnit.MILLISECONDS)
                     .subscribeOn(Schedulers.io())
                     .toObservable()
                     .map<Change> { Change.Apps(it) }

@@ -124,6 +124,26 @@ class AppListFragment : DaggerFragment() {
     }
 
     private fun setupSearch(menu: Menu) {
+        val searchItem = handleSearchExpand(menu)
+        handleSearchQuery(searchItem)
+    }
+
+    private fun handleSearchQuery(searchItem: MenuItem?) {
+        val searchView = searchItem?.actionView as SearchView
+        searchView.setOnQueryTextListener(object : SearchView.OnQueryTextListener {
+            override fun onQueryTextSubmit(query: String?): Boolean {
+                doSearch(query)
+                return true
+            }
+
+            override fun onQueryTextChange(newText: String?): Boolean {
+                doSearch(newText)
+                return true
+            }
+        })
+    }
+
+    private fun handleSearchExpand(menu: Menu): MenuItem? {
         val settingsItem = menu.findItem(R.id.action_settings)
         val searchItem = menu.findItem(R.id.action_search)
 
@@ -140,22 +160,12 @@ class AppListFragment : DaggerFragment() {
         }
 
         searchItem.setOnActionExpandListener(expandListener)
+        return searchItem
+    }
 
-        val searchView = searchItem?.actionView as SearchView
-        searchView.setOnQueryTextListener(object : SearchView.OnQueryTextListener {
-            override fun onQueryTextSubmit(query: String?): Boolean {
-                query?.let {
-                    viewModel.dispatch(Action.Search(query, showSystemApps))
-                }
-                return true
-            }
-
-            override fun onQueryTextChange(newText: String?): Boolean {
-                newText?.let {
-                    viewModel.dispatch(Action.Search(newText, showSystemApps))
-                }
-                return true
-            }
-        })
+    private fun doSearch(query: String?) {
+        query?.let {
+            viewModel.dispatch(Action.Search(it, showSystemApps))
+        }
     }
 }

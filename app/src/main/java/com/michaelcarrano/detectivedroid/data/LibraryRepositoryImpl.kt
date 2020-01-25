@@ -40,16 +40,12 @@ class LibraryRepositoryImpl @Inject constructor(
             val name = jsonObject.getString("name")
             val source = jsonObject.getString("source")
             val classPath = jsonObject.getString("classPath")
-            val createdAt = jsonObject.getLong("createdAt")
-            val updatedAt = jsonObject.getLong("updatedAt")
             libraries.add(
                 LibraryEntity(
                     id = UUID.fromString(id),
                     name = name,
                     source = source,
-                    classPath = classPath,
-                    createdAt = createdAt,
-                    updatedAt = updatedAt
+                    classPath = classPath
                 )
             )
         }

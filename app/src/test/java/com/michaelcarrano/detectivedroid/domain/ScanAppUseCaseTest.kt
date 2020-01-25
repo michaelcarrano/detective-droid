@@ -4,8 +4,8 @@ import android.content.Context
 import com.michaelcarrano.detectivedroid.data.LibraryRepository
 import com.michaelcarrano.detectivedroid.data.model.LibraryNotFoundEntity
 import com.michaelcarrano.detectivedroid.presentation.model.LibraryMapper
-import com.nhaarman.mockito_kotlin.mock
-import com.nhaarman.mockito_kotlin.whenever
+import com.nhaarman.mockitokotlin2.mock
+import com.nhaarman.mockitokotlin2.whenever
 import io.reactivex.Single
 import org.junit.Before
 import org.junit.Test
