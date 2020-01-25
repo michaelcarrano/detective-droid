@@ -4,17 +4,11 @@ import com.michaelcarrano.detectivedroid.data.model.LibraryEntity
 import java.util.Date
 import java.util.UUID
 import org.junit.Assert.assertEquals
-import org.junit.Before
 import org.junit.Test
 
 class LibraryMapperTest {
 
-    private lateinit var testSubject: LibraryMapper
-
-    @Before
-    fun setUp() {
-        testSubject = LibraryMapper()
-    }
+    private val testSubject = LibraryMapper()
 
     @Test
     fun `Given LibraryEntity, When mapping to LibraryUiModel, Then return valid LibraryUiModel`() {
@@ -43,6 +37,8 @@ class LibraryMapperTest {
             LibraryEntity(UUID.randomUUID(), "foo2", "bar2", "baz2", Date().time, Date().time)
         )
         val libraryUiModels = testSubject.mapToUiModels(libraryEntitys)
+
+        assertEquals(libraryEntitys.size, libraryUiModels.size)
 
         for (i in 0 until libraryEntitys.count()) {
             assertEquals(libraryEntitys[i].name, libraryUiModels[i].name)
