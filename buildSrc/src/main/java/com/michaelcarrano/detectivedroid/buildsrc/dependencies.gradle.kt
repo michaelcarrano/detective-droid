@@ -5,7 +5,7 @@ object Versions {
 }
 
 object Libs {
-    const val androidGradlePlugin = "com.android.tools.build:gradle:4.0.0-alpha08"
+    const val androidGradlePlugin = "com.android.tools.build:gradle:4.0.0-alpha09"
     const val playPublisherPlugin = "com.github.triplet.gradle:play-publisher:2.6.1"
     const val jacoco = "org.jacoco:org.jacoco.core:0.8.5"
 
@@ -17,7 +17,7 @@ object Libs {
     const val junit = "junit:junit:4.12"
     const val robolectric = "org.robolectric:robolectric:4.3.1"
     const val mockK = "io.mockk:mockk:1.9.3"
-    const val mockitoKtx = "com.nhaarman:mockito-kotlin:1.6.0"
+    const val mockitoKtx = "com.nhaarman.mockitokotlin2:mockito-kotlin:2.2.0"
 
     const val leakCanary = "com.squareup.leakcanary:leakcanary-android:2.1"
 
