@@ -1,7 +1,6 @@
 package com.michaelcarrano.detectivedroid.data
 
 import android.content.res.Resources
-import androidx.annotation.VisibleForTesting
 import com.michaelcarrano.detectivedroid.R
 import com.michaelcarrano.detectivedroid.data.model.LibraryEntity
 import io.reactivex.Single
@@ -30,8 +29,7 @@ class LibraryRepositoryImpl @Inject constructor(
         return Single.just(librariesCache)
     }
 
-    @VisibleForTesting(otherwise = VisibleForTesting.PRIVATE)
-    fun parseLibrariesJson(json: JSONArray): MutableList<LibraryEntity> {
+    private fun parseLibrariesJson(json: JSONArray): MutableList<LibraryEntity> {
         val libraries = mutableListOf<LibraryEntity>()
 
         for (i in 0 until json.length()) {
