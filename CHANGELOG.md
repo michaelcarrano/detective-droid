@@ -1,5 +1,9 @@
 Change Log
 ==========
+## 2.1.0
+* Implement search functionality. https://github.com/michaelcarrano/detective-droid/pull/26
+* Add additional test coverage and other minor refactoring
+
 
 ## 2.0.0
 * Complete re-write of detective droid app with modern approach to Android development.
