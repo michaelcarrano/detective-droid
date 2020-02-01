@@ -20,7 +20,12 @@ or alternatively using `brew cask install fastlane`
 ```
 fastlane android release
 ```
-Release a new version to the Google Play
+Release a new version to Google Play
+### android release_library_updates
+```
+fastlane android release_library_updates
+```
+Creates a release that only has libraries.json changes. Automatically increments versionCode and versionName
 
 ----
 
