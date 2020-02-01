@@ -140,6 +140,17 @@ jobs:
           command: bundle exec fastlane release
       - *signing_configs_cleanup
 
+  libraries:
+    executor: android-executor
+    steps:
+      - checkout
+      - *restore_gems_cache
+      - *ruby_dependencies
+      - *save_gems_cache
+      - run:
+          name: Updating libraries
+          command: bundle exec fastlane release_library_updates
+
 workflows:
   version: 2
   build_and_test:
@@ -161,3 +172,14 @@ workflows:
           filters:
             branches:
               only: /release-.*/
+
+  update_libraries:
+    triggers:
+      - schedule:
+          cron: "0 0 * * 0" # Every week on Sunday
+          filters:
+            branches:
+              only:
+                - master
+    jobs:
+      - libraries
