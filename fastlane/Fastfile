@@ -17,6 +17,8 @@ platform :android do
     has_changes = sh("git status -s | egrep \"libraries.json\" | wc -l")
 
     if has_changes.to_i > 0
+      sh("git config --global user.email \"#{ENV["GIT_USER_EMAIL"]}\"")
+      sh("git config --global user.name \"#{ENV["GIT_USER_NAME"]}\"")
       sh("git checkout -b release-#{increment_version}")
       git_commit(path: "*/libraries.json", message: "Update libraries.json with up-to-date libraries to scan.")
       git_commit(path: "*/build.gradle", message: "Update versionCode and versionName")
