@@ -14,7 +14,7 @@ object Libs {
     const val timber = "com.jakewharton.timber:timber:4.7.1"
 
     const val json = "org.json:json:20180813"
-    const val junit = "junit:junit:4.12"
+    const val junit = "junit:junit:4.13"
     const val robolectric = "org.robolectric:robolectric:4.3.1"
     const val mockK = "io.mockk:mockk:1.9.3"
     const val mockitoKtx = "com.nhaarman.mockitokotlin2:mockito-kotlin:2.2.0"
@@ -24,14 +24,14 @@ object Libs {
     const val roxie = "com.ww:roxie:0.4.0"
 
     object Google {
-        const val material = "com.google.android.material:material:1.2.0-alpha03"
+        const val material = "com.google.android.material:material:1.2.0-alpha04"
         const val openSourceLicensesPlugin = "com.google.android.gms:oss-licenses-plugin:0.10.1"
         const val openSourceLicensesLibrary =
             "com.google.android.gms:play-services-oss-licenses:17.0.0"
     }
 
     object Kotlin {
-        private const val version = "1.3.70-eap-42"
+        private const val version = "1.3.70-eap-184"
         const val stdlib = "org.jetbrains.kotlin:kotlin-stdlib-jdk8:$version"
         const val reflect = "org.jetbrains.kotlin:kotlin-reflect:$version"
         const val gradlePlugin = "org.jetbrains.kotlin:kotlin-gradle-plugin:$version"
@@ -47,13 +47,13 @@ object Libs {
     }
 
     object AndroidX {
-        const val coreKtx = "androidx.core:core-ktx:1.2.0-rc01"
+        const val coreKtx = "androidx.core:core-ktx:1.3.0-alpha01"
         const val constraintlayout = "androidx.constraintlayout:constraintlayout:2.0.0-beta4"
         const val preference = "androidx.preference:preference:1.1.0"
         const val recyclerview = "androidx.recyclerview:recyclerview:1.2.0-alpha01"
 
         object Navigation {
-            private const val version = "2.2.0-rc04"
+            private const val version = "2.2.0"
             const val fragment = "androidx.navigation:navigation-fragment-ktx:$version"
             const val ui = "androidx.navigation:navigation-ui-ktx:$version"
             const val safeArgs = "androidx.navigation:navigation-safe-args-gradle-plugin:$version"
@@ -84,7 +84,7 @@ object Libs {
         }
 
         object Lifecycle {
-            private const val version = "2.2.0-rc03"
+            private const val version = "2.2.0"
             const val extensions = "androidx.lifecycle:lifecycle-extensions:$version"
             const val viewmodelKtx = "androidx.lifecycle:lifecycle-viewmodel-ktx:$version"
         }
@@ -106,7 +106,7 @@ object Libs {
     }
 
     object Dagger {
-        private const val version = "2.25.4"
+        private const val version = "2.26"
         const val dagger = "com.google.dagger:dagger:$version"
         const val androidSupport = "com.google.dagger:dagger-android-support:$version"
         const val compiler = "com.google.dagger:dagger-compiler:$version"
@@ -114,7 +114,7 @@ object Libs {
     }
 
     object Facebook {
-        const val flipper = "com.facebook.flipper:flipper:0.30.1"
-        const val soloader = "com.facebook.soloader:soloader:0.8.0"
+        const val flipper = "com.facebook.flipper:flipper:0.30.2"
+        const val soloader = "com.facebook.soloader:soloader:0.8.1"
     }
 }
