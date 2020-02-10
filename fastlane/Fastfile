@@ -19,7 +19,8 @@ platform :android do
     if has_changes.to_i > 0
       sh("git config --global user.email \"#{ENV["GIT_USER_EMAIL"]}\"")
       sh("git config --global user.name \"#{ENV["GIT_USER_NAME"]}\"")
-      sh("git checkout -b release-#{increment_version}")
+      branch_name = "release-#{increment_version}"
+      sh("git checkout -b #{branch_name}")
       git_commit(path: "*/libraries.json", message: "Update libraries.json with up-to-date libraries to scan.")
       git_commit(path: "*/build.gradle", message: "Update versionCode and versionName")
       create_pull_request(
