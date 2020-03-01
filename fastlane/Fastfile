@@ -28,7 +28,7 @@ platform :android do
         title: "Library Update Release",
         body: "Automatic PR from CircleCI to update list of libraries to scan for in Detective Droid and create a new release to Google Play beta.",
         base: "master",
-        head: #{branch_name}
+        head: "#{branch_name}"
       )
     end
   end
