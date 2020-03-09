@@ -24,6 +24,7 @@ platform :android do
       git_commit(path: "*/libraries.json", message: "Update libraries.json with up-to-date libraries to scan.")
       git_commit(path: "*/build.gradle", message: "Update versionCode and versionName")
       create_pull_request(
+        api_token: "#{ENV["GITHUB_PR_TOKEN"]}",
         repo: "#{ENV["CIRCLE_PROJECT_USERNAME"]}/#{ENV["CIRCLE_PROJECT_REPONAME"]}",
         title: "Library Update Release",
         body: "Automatic PR from CircleCI to update list of libraries to scan for in Detective Droid and create a new release to Google Play beta.",
