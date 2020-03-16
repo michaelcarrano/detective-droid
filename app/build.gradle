@@ -22,7 +22,7 @@ android {
         targetSdkVersion buildConfig.targetSdk
 
         versionCode 10
-        versionName "2.1.1"
+        versionName "2.1.2"
 
         resConfig "en"
 
