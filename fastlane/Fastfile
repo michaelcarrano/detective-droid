@@ -12,7 +12,7 @@ platform :android do
   desc "Creates a release that only has libraries.json changes. Automatically increments versionCode and versionName"
   lane :release_library_updates do
     libraries = download(url: "#{ENV["LIBRARIES_ENDPOINT"]}")
-    File.open("../app/src/main/res/raw/libraries.json", "w") { |file| file.puts libraries }
+    File.open("../app/src/main/res/raw/libraries.json", "w") { |file| file.puts libraries.to_json }
 
     has_changes = sh("git status -s | egrep \"libraries.json\" | wc -l")
 
