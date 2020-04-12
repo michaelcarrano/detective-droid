@@ -18,7 +18,7 @@ class LibraryAdapter(
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
         val binding = LibraryItemBinding.inflate(LayoutInflater.from(parent.context), parent, false)
         val viewHolder = ViewHolder(binding)
-        binding.root.setOnClickListener { clickListener(libraries[viewHolder.adapterPosition]) }
+        binding.root.setOnClickListener { clickListener(libraries[viewHolder.bindingAdapterPosition]) }
         return viewHolder
     }
 
