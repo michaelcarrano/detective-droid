@@ -119,6 +119,8 @@ dependencies {
     testImplementation Libs.json
     testImplementation Libs.junit
     testImplementation Libs.mockitoKtx
+    testImplementation Libs.mockK
+    testImplementation Libs.robolectric
     testImplementation Libs.AndroidX.Test.archCoreTesting
     testImplementation Libs.AndroidX.Test.core
     testImplementation Libs.AndroidX.Test.runner

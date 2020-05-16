@@ -23,7 +23,7 @@ class AppAdapter(
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
         val binding = AppItemBinding.inflate(LayoutInflater.from(parent.context), parent, false)
         val viewHolder = ViewHolder(binding)
-        binding.root.setOnClickListener { clickListener(apps[viewHolder.adapterPosition]) }
+        binding.root.setOnClickListener { clickListener(apps[viewHolder.bindingAdapterPosition]) }
         return viewHolder
     }
 
