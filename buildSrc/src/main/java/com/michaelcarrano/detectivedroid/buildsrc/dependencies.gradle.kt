@@ -16,7 +16,7 @@ object Libs {
     const val json = "org.json:json:20180813"
     const val junit = "junit:junit:4.13"
     const val robolectric = "org.robolectric:robolectric:4.3.1"
-    const val mockK = "io.mockk:mockk:1.9.3"
+    const val mockK = "io.mockk:mockk:1.10.0"
     const val mockitoKtx = "com.nhaarman.mockitokotlin2:mockito-kotlin:2.2.0"
 
     const val leakCanary = "com.squareup.leakcanary:leakcanary-android:2.3"
@@ -31,7 +31,7 @@ object Libs {
     }
 
     object Kotlin {
-        private const val version = "1.4-M1"
+        private const val version = "1.3.71"
         const val stdlib = "org.jetbrains.kotlin:kotlin-stdlib-jdk8:$version"
         const val reflect = "org.jetbrains.kotlin:kotlin-reflect:$version"
         const val gradlePlugin = "org.jetbrains.kotlin:kotlin-gradle-plugin:$version"
