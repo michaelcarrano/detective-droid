@@ -115,6 +115,7 @@ dependencies {
     debugImplementation Libs.Facebook.soloader
 
     debugImplementation Libs.leakCanary
+    implementation Libs.plumber
 
     testImplementation Libs.json
     testImplementation Libs.junit
