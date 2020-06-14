@@ -30,7 +30,7 @@ platform :android do
         repo: "#{ENV["CIRCLE_PROJECT_USERNAME"]}/#{ENV["CIRCLE_PROJECT_REPONAME"]}",
         title: "Library Update Release",
         body: "Automatic PR from CircleCI to update list of libraries to scan for in Detective Droid and create a new release to Google Play beta.",
-        base: "master",
+        base: "main",
         head: "#{branch_name}"
       )
     end
