@@ -7,6 +7,8 @@ This makes it really easy to see what other developers/companies are using to de
 
 Detective Droid requires no permissions and works on Android API 21 (Android 5.0 Lollipop) and newer.
 
+- **Andriod 11**: Changes in Android 11 require a permission in order to get the list of apps installed on the user's device. You can read more about this change: [https://developer.android.com/preview/privacy/package-visibility](https://developer.android.com/preview/privacy/package-visibility)
+
 
 ## Limitations
 Detective Droid is unable to detect libraries that are obfuscated with Proguard/R8. Additionally, unable to detect libraries that are dynamically created. For instance, [LeadBolt](http://leadbolt.com) creates their SDK on the fly for each developer which means a unique Classpath.

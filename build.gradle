@@ -3,9 +3,9 @@ import com.michaelcarrano.detectivedroid.buildsrc.Versions
 
 buildscript {
     ext.buildConfig = [
-            'compileSdk': 29,
+            'compileSdk': 30,
             'minSdk'    : 21,
-            'targetSdk' : 29,
+            'targetSdk' : 30,
     ]
 
     repositories {

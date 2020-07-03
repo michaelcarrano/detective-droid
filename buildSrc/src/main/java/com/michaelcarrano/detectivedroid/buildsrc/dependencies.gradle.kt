@@ -5,7 +5,7 @@ object Versions {
 }
 
 object Libs {
-    const val androidGradlePlugin = "com.android.tools.build:gradle:4.2.0-alpha01"
+    const val androidGradlePlugin = "com.android.tools.build:gradle:4.2.0-alpha02"
     const val playPublisherPlugin = "com.github.triplet.gradle:play-publisher:2.6.1"
     const val jacoco = "org.jacoco:org.jacoco.core:0.8.5"
 
