@@ -15,7 +15,7 @@ object Libs {
 
     const val json = "org.json:json:20180813"
     const val junit = "junit:junit:4.13"
-    const val robolectric = "org.robolectric:robolectric:4.4-alpha-2"
+    const val robolectric = "org.robolectric:robolectric:4.4-beta-1"
     const val mockK = "io.mockk:mockk:1.10.0"
     const val mockitoKtx = "com.nhaarman.mockitokotlin2:mockito-kotlin:2.2.0"
 
@@ -32,7 +32,7 @@ object Libs {
     }
 
     object Kotlin {
-        private const val version = "1.3.72"
+        private const val version = "1.4.0"
         const val stdlib = "org.jetbrains.kotlin:kotlin-stdlib-jdk8:$version"
         const val reflect = "org.jetbrains.kotlin:kotlin-reflect:$version"
         const val gradlePlugin = "org.jetbrains.kotlin:kotlin-gradle-plugin:$version"
@@ -48,8 +48,8 @@ object Libs {
     }
 
     object AndroidX {
-        const val coreKtx = "androidx.core:core-ktx:1.5.0-alpha01"
-        const val constraintlayout = "androidx.constraintlayout:constraintlayout:2.0.0-rc1"
+        const val coreKtx = "androidx.core:core-ktx:1.5.0-alpha02"
+        const val constraintlayout = "androidx.constraintlayout:constraintlayout:2.0.1"
         const val preference = "androidx.preference:preference:1.1.1"
         const val recyclerview = "androidx.recyclerview:recyclerview:1.2.0-alpha05"
 
@@ -67,15 +67,15 @@ object Libs {
         }
 
         object Test {
-            private const val version = "1.3.0-rc03"
+            private const val version = "1.3.0"
             const val core = "androidx.test:core:$version"
             const val runner = "androidx.test:runner:$version"
             const val rules = "androidx.test:rules:$version"
 
-            const val junit = "androidx.test.ext:junit:1.1.2-rc03"
+            const val junit = "androidx.test.ext:junit:1.1.2"
             const val archCoreTesting = "androidx.arch.core:core-testing:2.1.0"
 
-            const val espressoCore = "androidx.test.espresso:espresso-core:3.3.0-rc03"
+            const val espressoCore = "androidx.test.espresso:espresso-core:3.3.0"
         }
 
         object Paging {
