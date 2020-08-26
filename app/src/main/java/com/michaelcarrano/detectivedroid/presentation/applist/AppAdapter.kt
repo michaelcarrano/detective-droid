@@ -30,6 +30,7 @@ class AppAdapter(
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
         val app = apps[position]
         holder.icon.setImageDrawable(packageManager.getApplicationIcon(app.packageName))
+        holder.icon.contentDescription.toString().format(app.name)
         holder.name.text = app.name
         holder.version.text = app.versionName
     }
