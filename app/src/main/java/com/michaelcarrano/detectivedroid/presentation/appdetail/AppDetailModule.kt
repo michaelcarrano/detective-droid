@@ -13,9 +13,7 @@ abstract class AppDetailModule {
     @Binds
     abstract fun libraryRepository(libraryRepositoryImpl: LibraryRepositoryImpl): LibraryRepository
 
-    @Module
     companion object {
-        @JvmStatic
         @Provides
         fun provideAppListViewModelFactory(scanAppUseCase: ScanAppUseCase) =
             AppDetailViewModelFactory(null, scanAppUseCase)

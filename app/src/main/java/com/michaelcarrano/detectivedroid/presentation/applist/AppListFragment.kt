@@ -101,7 +101,7 @@ class AppListFragment : DaggerFragment() {
 
     private fun renderErrorState() {
         binding.loadingIndicator.visibility = View.GONE
-        Snackbar.make(requireView(), R.string.error_loading_apps, Snackbar.LENGTH_LONG)
+        Snackbar.make(requireView(), R.string.error_loading_apps, Snackbar.LENGTH_LONG).show()
     }
 
     private fun renderAppsState(apps: List<AppUiModel>) {

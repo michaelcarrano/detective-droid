@@ -1,5 +1,5 @@
-<resources xmlns:tools="http://schemas.android.com/tools">
-    <string-array name="theme_list_array" tools:ignore="InconsistentArrays">
+<resources>
+    <string-array name="theme_list_array">
         <item>Light</item>
         <item>Dark</item>
         <item>System default</item>

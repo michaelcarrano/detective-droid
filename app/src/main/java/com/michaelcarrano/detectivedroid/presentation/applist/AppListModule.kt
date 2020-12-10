@@ -13,9 +13,7 @@ abstract class AppListModule {
     @Binds
     abstract fun appRespository(appRepositoryImpl: AppRepositoryImpl): AppRepository
 
-    @Module
     companion object {
-        @JvmStatic
         @Provides
         fun provideAppListViewModelFactory(getAppListUseCase: GetAppListUseCase) =
             AppListViewModelFactory(null, getAppListUseCase)
