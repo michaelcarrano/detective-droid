@@ -4,7 +4,9 @@ Detective Droid is here to help you detect which libraries are used inside appli
 
 This makes it really easy to see what companies and developers are using to develop their applications.
 
-Detective Droid requires no permissions and works on Android version 5.0 (Lollipop) and newer.
+Detective Droid requires no permissions and works on Android API 21 (Android 5.0 Lollipop) and newer.
+
+- Andriod 11: Changes in Android 11 require a permission in order to get the list of apps installed on the user's device. You can read more about this change: https://developer.android.com/preview/privacy/package-visibility
 
 Detective Droid is available on Github:
 https://github.com/michaelcarrano/detective-droid
