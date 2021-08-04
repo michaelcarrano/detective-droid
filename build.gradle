@@ -3,9 +3,9 @@ import com.michaelcarrano.detectivedroid.buildsrc.Versions
 
 buildscript {
     ext.buildConfig = [
-            'compileSdk': 30,
+            'compileSdk': 31,
             'minSdk'    : 21,
-            'targetSdk' : 30,
+            'targetSdk' : 31,
     ]
 
     repositories {
@@ -27,15 +27,15 @@ buildscript {
 }
 
 plugins {
-    id 'com.diffplug.spotless' version '5.9.0'
-    id 'com.github.ben-manes.versions' version '0.36.0'
+    id 'com.diffplug.spotless' version '5.14.2'
+    id 'com.github.ben-manes.versions' version '0.39.0'
 }
 
 allprojects {
     repositories {
         google()
+        mavenCentral()
         jcenter()
-        maven { url 'https://dl.bintray.com/kotlin/kotlin-eap' }
     }
 }
 
