@@ -3,13 +3,14 @@ import com.michaelcarrano.detectivedroid.buildsrc.Versions
 
 buildscript {
     ext.buildConfig = [
-            'compileSdk': 30,
+            'compileSdk': 31,
             'minSdk'    : 21,
-            'targetSdk' : 30,
+            'targetSdk' : 31,
     ]
 
     repositories {
         google()
+        mavenCentral()
     }
 
     dependencies {
@@ -27,15 +28,14 @@ buildscript {
 }
 
 plugins {
-    id 'com.diffplug.spotless' version '5.9.0'
-    id 'com.github.ben-manes.versions' version '0.36.0'
+    id 'com.diffplug.spotless' version '5.15.0'
+    id 'com.github.ben-manes.versions' version '0.39.0'
 }
 
 allprojects {
     repositories {
         google()
-        jcenter()
-        maven { url 'https://dl.bintray.com/kotlin/kotlin-eap' }
+        mavenCentral()
     }
 }
 
@@ -52,10 +52,6 @@ subprojects {
         kotlinOptions {
             // Treat all Kotlin warnings as errors
             allWarningsAsErrors = true
-
-            // Enable experimental coroutines APIs, including Flow
-            freeCompilerArgs += "-Xuse-experimental=kotlinx.coroutines.ExperimentalCoroutinesApi"
-            freeCompilerArgs += "-Xuse-experimental=kotlinx.coroutines.FlowPreview"
 
             // Set JVM target to 1.8
             jvmTarget = "1.8"

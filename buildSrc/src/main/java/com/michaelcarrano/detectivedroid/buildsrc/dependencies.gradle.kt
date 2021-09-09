@@ -5,34 +5,34 @@ object Versions {
 }
 
 object Libs {
-    const val androidGradlePlugin = "com.android.tools.build:gradle:7.0.0-alpha06"
+    const val androidGradlePlugin = "com.android.tools.build:gradle:7.1.0-alpha11"
 
-    const val jacoco = "org.jacoco:org.jacoco.core:0.8.6"
+    const val jacoco = "org.jacoco:org.jacoco.core:0.8.7"
 
-    const val desugar = "com.android.tools:desugar_jdk_libs:1.0.9"
+    const val desugar = "com.android.tools:desugar_jdk_libs:1.1.5"
 
-    const val timber = "com.jakewharton.timber:timber:4.7.1"
+    const val timber = "com.jakewharton.timber:timber:5.0.1"
 
     const val json = "org.json:json:20180813"
-    const val junit = "junit:junit:4.13.1"
-    const val robolectric = "org.robolectric:robolectric:4.5.1"
-    const val mockK = "io.mockk:mockk:1.10.5"
+    const val junit = "junit:junit:4.13.2"
+    const val robolectric = "org.robolectric:robolectric:4.6.1"
+    const val mockK = "io.mockk:mockk:1.12.0"
     const val mockitoKtx = "com.nhaarman.mockitokotlin2:mockito-kotlin:2.2.0"
 
-    const val leakCanary = "com.squareup.leakcanary:leakcanary-android:2.6"
-    const val plumber = "com.squareup.leakcanary:plumber-android:2.6"
+    const val leakCanary = "com.squareup.leakcanary:leakcanary-android:2.7"
+    const val plumber = "com.squareup.leakcanary:plumber-android:2.7"
 
-    const val roxie = "com.ww:roxie:0.4.0"
+    const val roxie = "com.ww:roxie:0.5.0"
 
     object Google {
-        const val material = "com.google.android.material:material:1.3.0"
-        const val openSourceLicensesPlugin = "com.google.android.gms:oss-licenses-plugin:0.10.2"
+        const val material = "com.google.android.material:material:1.5.0-alpha03"
+        const val openSourceLicensesPlugin = "com.google.android.gms:oss-licenses-plugin:0.10.4"
         const val openSourceLicensesLibrary =
             "com.google.android.gms:play-services-oss-licenses:17.0.0"
     }
 
     object Kotlin {
-        private const val version = "1.4.30"
+        private const val version = "1.5.30"
         const val stdlib = "org.jetbrains.kotlin:kotlin-stdlib-jdk8:$version"
         const val reflect = "org.jetbrains.kotlin:kotlin-reflect:$version"
         const val gradlePlugin = "org.jetbrains.kotlin:kotlin-gradle-plugin:$version"
@@ -48,13 +48,13 @@ object Libs {
     }
 
     object AndroidX {
-        const val coreKtx = "androidx.core:core-ktx:1.5.0-beta01"
-        const val constraintlayout = "androidx.constraintlayout:constraintlayout:2.1.0-alpha2"
+        const val coreKtx = "androidx.core:core-ktx:1.7.0-alpha02"
+        const val constraintlayout = "androidx.constraintlayout:constraintlayout:2.1.0"
         const val preference = "androidx.preference:preference:1.1.1"
-        const val recyclerview = "androidx.recyclerview:recyclerview:1.2.0-beta01"
+        const val recyclerview = "androidx.recyclerview:recyclerview:1.2.1"
 
         object Navigation {
-            private const val version = "2.3.3"
+            private const val version = "2.4.0-alpha08"
             const val fragment = "androidx.navigation:navigation-fragment-ktx:$version"
             const val ui = "androidx.navigation:navigation-ui-ktx:$version"
             const val safeArgs = "androidx.navigation:navigation-safe-args-gradle-plugin:$version"
@@ -67,15 +67,15 @@ object Libs {
         }
 
         object Test {
-            private const val version = "1.3.1-alpha03"
+            private const val version = "1.4.1-alpha01"
             const val core = "androidx.test:core:$version"
             const val runner = "androidx.test:runner:$version"
             const val rules = "androidx.test:rules:$version"
 
-            const val junit = "androidx.test.ext:junit:1.1.3-alpha03"
+            const val junit = "androidx.test.ext:junit:1.1.4-alpha01"
             const val archCoreTesting = "androidx.arch.core:core-testing:2.1.0"
 
-            const val espressoCore = "androidx.test.espresso:espresso-core:3.4.0-alpha03"
+            const val espressoCore = "androidx.test.espresso:espresso-core:3.5.0-alpha01"
         }
 
         object Paging {
@@ -101,13 +101,13 @@ object Libs {
     }
 
     object RxJava {
-        const val rxJava = "io.reactivex.rxjava2:rxjava:2.2.20"
+        const val rxJava = "io.reactivex.rxjava2:rxjava:2.2.21"
         const val rxAndroid = "io.reactivex.rxjava2:rxandroid:2.1.1"
         const val rxKotlin = "io.reactivex.rxjava2:rxkotlin:2.4.0"
     }
 
     object Dagger {
-        private const val version = "2.31.2"
+        private const val version = "2.38.1"
         const val dagger = "com.google.dagger:dagger:$version"
         const val androidSupport = "com.google.dagger:dagger-android-support:$version"
         const val compiler = "com.google.dagger:dagger-compiler:$version"
@@ -115,7 +115,7 @@ object Libs {
     }
 
     object Facebook {
-        const val flipper = "com.facebook.flipper:flipper:0.74.0"
+        const val flipper = "com.facebook.flipper:flipper:0.105.0"
         const val soloader = "com.facebook.soloader:soloader:0.10.1"
     }
 }
