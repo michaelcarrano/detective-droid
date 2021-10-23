@@ -21,8 +21,8 @@ android {
         minSdkVersion buildConfig.minSdk
         targetSdkVersion buildConfig.targetSdk
 
-        versionCode 13
-        versionName "2.1.6"
+        versionCode 15
+        versionName "2.1.7"
 
         resConfig "en"
 

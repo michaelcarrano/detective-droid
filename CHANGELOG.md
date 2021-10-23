@@ -1,5 +1,9 @@
 Change Log
 ==========
+## 2.1.7
+* Handle null values from PackageManager. Thanks @alinnert for bringing this issue to my attention. https://github.com/michaelcarrano/detective-droid/pull/57
+* Update various libraries used in the app - https://github.com/michaelcarrano/detective-droid/pull/56
+
 ## 2.1.0
 * Implement search functionality. https://github.com/michaelcarrano/detective-droid/pull/26
 * Add additional test coverage and other minor refactoring
