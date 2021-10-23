@@ -1,12 +1,21 @@
 package com.michaelcarrano.detectivedroid.presentation.model
 
+import android.content.res.Resources
+import com.michaelcarrano.detectivedroid.R
 import com.michaelcarrano.detectivedroid.data.model.AppEntity
+import com.nhaarman.mockitokotlin2.doReturn
+import com.nhaarman.mockitokotlin2.mock
 import org.junit.Assert.assertEquals
 import org.junit.Test
+import org.mockito.Mockito
 
 class AppMapperTest {
 
-    private val testSubject = AppMapper()
+    private val resources = mock<Resources>(defaultAnswer = Mockito.RETURNS_DEEP_STUBS) {
+        on { getString(android.R.string.unknownName) } doReturn "Unknown"
+    }
+
+    private val testSubject = AppMapper(resources)
 
     @Test
     fun `Given AppEntity, When mapping to AppUiModel, Then return valid AppUiModel`() {
@@ -36,5 +45,16 @@ class AppMapperTest {
             assertEquals(appEntitys[i].packageName, appUiModels[i].packageName)
             assertEquals(appEntitys[i].versionName, appUiModels[i].versionName)
         }
+    }
+
+    @Test
+    fun `Given AppEntitys with null values, When mapping to AppUiModels, then return valid AppUiModels with Unknown set as value`() {
+        val appEntity = AppEntity(null, null, null, true)
+        val appUiModel = testSubject.mapToUiModel(appEntity)
+
+        val UNKNOWN = "Unknown"
+        assertEquals(UNKNOWN, appUiModel.name)
+        assertEquals(UNKNOWN, appUiModel.packageName)
+        assertEquals(UNKNOWN, appUiModel.versionName)
     }
 }
