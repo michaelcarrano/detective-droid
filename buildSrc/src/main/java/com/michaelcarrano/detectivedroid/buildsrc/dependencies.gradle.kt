@@ -5,7 +5,7 @@ object Versions {
 }
 
 object Libs {
-    const val androidGradlePlugin = "com.android.tools.build:gradle:7.1.0-alpha11"
+    const val androidGradlePlugin = "com.android.tools.build:gradle:7.2.0-alpha02"
 
     const val jacoco = "org.jacoco:org.jacoco.core:0.8.7"
 
@@ -25,7 +25,7 @@ object Libs {
     const val roxie = "com.ww:roxie:0.5.0"
 
     object Google {
-        const val material = "com.google.android.material:material:1.5.0-alpha03"
+        const val material = "com.google.android.material:material:1.5.0-alpha04"
         const val openSourceLicensesPlugin = "com.google.android.gms:oss-licenses-plugin:0.10.4"
         const val openSourceLicensesLibrary =
             "com.google.android.gms:play-services-oss-licenses:17.0.0"
@@ -48,13 +48,13 @@ object Libs {
     }
 
     object AndroidX {
-        const val coreKtx = "androidx.core:core-ktx:1.7.0-alpha02"
-        const val constraintlayout = "androidx.constraintlayout:constraintlayout:2.1.0"
+        const val coreKtx = "androidx.core:core-ktx:1.7.0-rc01"
+        const val constraintlayout = "androidx.constraintlayout:constraintlayout:2.1.1"
         const val preference = "androidx.preference:preference:1.1.1"
         const val recyclerview = "androidx.recyclerview:recyclerview:1.2.1"
 
         object Navigation {
-            private const val version = "2.4.0-alpha08"
+            private const val version = "2.4.0-alpha10"
             const val fragment = "androidx.navigation:navigation-fragment-ktx:$version"
             const val ui = "androidx.navigation:navigation-ui-ktx:$version"
             const val safeArgs = "androidx.navigation:navigation-safe-args-gradle-plugin:$version"
@@ -67,15 +67,15 @@ object Libs {
         }
 
         object Test {
-            private const val version = "1.4.1-alpha01"
+            private const val version = "1.4.1-alpha03"
             const val core = "androidx.test:core:$version"
             const val runner = "androidx.test:runner:$version"
             const val rules = "androidx.test:rules:$version"
 
-            const val junit = "androidx.test.ext:junit:1.1.4-alpha01"
+            const val junit = "androidx.test.ext:junit:1.1.4-alpha03"
             const val archCoreTesting = "androidx.arch.core:core-testing:2.1.0"
 
-            const val espressoCore = "androidx.test.espresso:espresso-core:3.5.0-alpha01"
+            const val espressoCore = "androidx.test.espresso:espresso-core:3.5.0-alpha03"
         }
 
         object Paging {
@@ -107,7 +107,7 @@ object Libs {
     }
 
     object Dagger {
-        private const val version = "2.38.1"
+        private const val version = "2.39.1"
         const val dagger = "com.google.dagger:dagger:$version"
         const val androidSupport = "com.google.dagger:dagger-android-support:$version"
         const val compiler = "com.google.dagger:dagger-compiler:$version"
@@ -115,7 +115,7 @@ object Libs {
     }
 
     object Facebook {
-        const val flipper = "com.facebook.flipper:flipper:0.105.0"
+        const val flipper = "com.facebook.flipper:flipper:0.116.0"
         const val soloader = "com.facebook.soloader:soloader:0.10.1"
     }
 }
