@@ -1,5 +1,3 @@
-import com.michaelcarrano.detectivedroid.buildsrc.Libs
-
 apply plugin: 'com.android.application'
 apply plugin: 'kotlin-android'
 apply plugin: 'kotlin-kapt'
@@ -81,51 +79,35 @@ android {
 }
 
 dependencies {
-    coreLibraryDesugaring Libs.desugar
+    coreLibraryDesugaring libs.desugar
 
-    implementation Libs.Kotlin.stdlib
-    implementation Libs.Kotlin.reflect
+    implementation libs.bundles.kotlin
 
-    implementation Libs.AndroidX.coreKtx
-    implementation Libs.AndroidX.constraintlayout
-    implementation Libs.AndroidX.preference
-    implementation Libs.AndroidX.recyclerview
-    implementation Libs.AndroidX.Lifecycle.extensions
-    implementation Libs.AndroidX.Navigation.fragment
-    implementation Libs.AndroidX.Navigation.ui
+    implementation libs.coreKtx
+    implementation libs.constraintLayout
+    implementation libs.preference
+    implementation libs.recyclerview
+    implementation libs.bundles.lifecycle
+    implementation libs.bundles.navigation
 
-    implementation Libs.Google.material
-    implementation Libs.Google.openSourceLicensesLibrary
+    implementation libs.material
+    implementation libs.openSourceLicenses
 
-    implementation Libs.roxie
+    implementation libs.roxie
 
-    implementation Libs.Dagger.dagger
-    kapt Libs.Dagger.compiler
+    implementation libs.bundles.dagger
+    kapt libs.dagger.compiler
+    kapt libs.dagger.processor
 
-    implementation Libs.Dagger.androidSupport
-    kapt Libs.Dagger.androidProcessor
+    implementation libs.bundles.rx
 
-    implementation Libs.RxJava.rxJava
-    implementation Libs.RxJava.rxKotlin
-    implementation Libs.RxJava.rxAndroid
+    implementation libs.timber
 
-    implementation Libs.timber
+    debugImplementation libs.bundles.facebook
 
-    debugImplementation Libs.Facebook.flipper
-    debugImplementation Libs.Facebook.soloader
+    debugImplementation libs.leakCanary
+    implementation libs.plumber
 
-    debugImplementation Libs.leakCanary
-    implementation Libs.plumber
-
-    testImplementation Libs.json
-    testImplementation Libs.junit
-    testImplementation Libs.mockitoKtx
-    testImplementation Libs.mockK
-    testImplementation Libs.robolectric
-    testImplementation Libs.AndroidX.Test.archCoreTesting
-    testImplementation Libs.AndroidX.Test.core
-    testImplementation Libs.AndroidX.Test.runner
-    testImplementation Libs.AndroidX.Test.rules
-    androidTestImplementation Libs.AndroidX.Test.espressoCore
-    androidTestImplementation Libs.AndroidX.Test.junit
+    testImplementation libs.bundles.unitTests
+    androidTestImplementation libs.bundles.androidTests
 }
