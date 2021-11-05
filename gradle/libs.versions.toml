@@ -59,7 +59,7 @@ kotlin = ["kotlinStdlib", "kotlinReflect"]
 lifecycle = ["lifecycleExtensions", "lifecycleViewModel"]
 navigation = ["navigationFragment", "navigationUi"]
 rx = ["rxAndroid", "rxJava", "rxKotlin"]
-unitTests = ["json", "junit", "mockito", "mockK", "robolectric", "testCore", "testRules", "testRunner"]
+unitTests = ["archCoreTesting", "json", "junit", "mockito", "mockK", "robolectric", "testCore", "testRules", "testRunner"]
 
 [plugins]
 spotless = { id = "com.diffplug.spotless", version = "5.17.0" }
