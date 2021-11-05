@@ -35,32 +35,32 @@ platform :android do
       )
     end
   end
-end
 
-desc "Incremements versionCode by 1 and versionName patch version by 1"
-private_lane :increment_version do
-  # Get current version information
-  build_gradle_file = "../app/build.gradle"
-  version_name_grep = "egrep '^[[:blank:]]+versionName[[:blank:]]'  #{build_gradle_file}"
-  version_code_grep = "egrep '^[[:blank:]]+versionCode[[:blank:]]'  #{build_gradle_file}"
+  desc "Incremements versionCode by 1 and versionName patch version by 1"
+  private_lane :increment_version do
+    # Get current version information
+    build_gradle_file = "../app/build.gradle"
+    version_name_grep = "egrep '^[[:blank:]]+versionName[[:blank:]]'  #{build_gradle_file}"
+    version_code_grep = "egrep '^[[:blank:]]+versionCode[[:blank:]]'  #{build_gradle_file}"
 
-  version_name = `#{version_name_grep} | awk '{print $2}'`
-  version_code = `#{version_code_grep} | awk '{print $2}'`
+    version_name = `#{version_name_grep} | awk '{print $2}'`
+    version_code = `#{version_code_grep} | awk '{print $2}'`
 
-  # Update to next patch version since this is a library update release
-  version_split = version_name.split('.')
-  new_patch_version = version_split.last.to_i + 1
-  version_split[2] = new_patch_version
-  
-  new_version_name = version_split.join('.') + "\""
-  new_version_code = version_code.to_i + 1
+    # Update to next patch version since this is a library update release
+    version_split = version_name.split('.')
+    new_patch_version = version_split.last.to_i + 1
+    version_split[2] = new_patch_version
 
-  # Write next version information to file
-  build_gradle = File.read("#{build_gradle_file}")
-  new_build_gradle = build_gradle.gsub("versionCode #{version_code}", "versionCode #{new_version_code}\n")
-  new_build_gradle = new_build_gradle.gsub("versionName #{version_name}", "versionName #{new_version_name}\n")
+    new_version_name = version_split.join('.') + "\""
+    new_version_code = version_code.to_i + 1
 
-  File.open("#{build_gradle_file}", "w") {|file| file.puts new_build_gradle }
+    # Write next version information to file
+    build_gradle = File.read("#{build_gradle_file}")
+    new_build_gradle = build_gradle.gsub("versionCode #{version_code}", "versionCode #{new_version_code}\n")
+    new_build_gradle = new_build_gradle.gsub("versionName #{version_name}", "versionName #{new_version_name}\n")
 
-  new_version_name.delete('"')
+    File.open("#{build_gradle_file}", "w") {|file| file.puts new_build_gradle }
+
+    new_version_name.delete('"')
+  end
 end
