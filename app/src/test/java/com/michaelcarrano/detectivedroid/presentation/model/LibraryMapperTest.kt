@@ -1,7 +1,7 @@
 package com.michaelcarrano.detectivedroid.presentation.model
 
 import com.michaelcarrano.detectivedroid.data.model.LibraryEntity
-import java.util.UUID
+import kotlin.random.Random
 import org.junit.Assert.assertEquals
 import org.junit.Test
 
@@ -12,7 +12,7 @@ class LibraryMapperTest {
     @Test
     fun `Given LibraryEntity, When mapping to LibraryUiModel, Then return valid LibraryUiModel`() {
         val libraryEntity = LibraryEntity(
-            UUID.randomUUID(),
+            Random.nextInt(),
             "foo",
             "bar",
             "baz"
@@ -30,8 +30,8 @@ class LibraryMapperTest {
     @Test
     fun `Given LibraryEntitys, When mapping to LibraryUiModels, Then return valid LibraryUiModels`() {
         val libraryEntitys = listOf(
-            LibraryEntity(UUID.randomUUID(), "foo1", "bar1", "baz1"),
-            LibraryEntity(UUID.randomUUID(), "foo2", "bar2", "baz2")
+            LibraryEntity(Random.nextInt(), "foo1", "bar1", "baz1"),
+            LibraryEntity(Random.nextInt(), "foo2", "bar2", "baz2")
         )
         val libraryUiModels = testSubject.mapToUiModels(libraryEntitys)
 
