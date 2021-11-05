@@ -3,7 +3,7 @@ version: 2.1
 executors:
   android-executor:
     docker:
-      - image: circleci/android:api-29
+      - image: circleci/android:api-30
     working_directory: ~/detective
     environment:
       JAVA_TOOL_OPTIONS: "-Xmx2048m"
@@ -17,7 +17,7 @@ references:
       command: ./gradlew androidDependencies
 
   gradle_key: &gradle_key
-    gradle-{{ checksum "gradle/wrapper/gradle-wrapper.properties" }}-{{ checksum "buildSrc/src/main/java/com/michaelcarrano/detectivedroid/buildsrc/dependencies.gradle.kt" }}
+    gradle-{{ checksum "gradle/wrapper/gradle-wrapper.properties" }}-{{ checksum "gradle/libs.versions.toml" }}
 
   restore_gradle_cache: &restore_gradle_cache
     restore_cache:
