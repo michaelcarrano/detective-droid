@@ -1,0 +1,66 @@
+[versions]
+dagger = "2.39.1"
+kotlin = "1.5.30"
+ktlint = "0.36.0"
+leakCanary = "2.7"
+lifecycle = "2.2.0"
+navigation = "2.4.0-alpha10"
+test = "1.4.1-alpha03"
+
+[libraries]
+androidGradlePlugin = { module = "com.android.tools.build:gradle", version = "7.2.0-alpha03" }
+androidJunit = { module = "androidx.test.ext:junit", version = "1.1.4-alpha03" }
+archCoreTesting = { module = "androidx.arch.core:core-testing", version = "2.1.0" }
+coreKtx = { module = "androidx.core:core-ktx", version = "1.7.0-rc01" }
+constraintLayout = { module = "androidx.constraintlayout:constraintlayout", version = "2.1.1" }
+dagger = { module = "com.google.dagger:dagger", version.ref = "dagger" }
+dagger-android = { module = "com.google.dagger:dagger-android-support", version.ref = "dagger" }
+dagger-compiler = { module = "com.google.dagger:dagger-compiler", version.ref = "dagger" }
+dagger-processor = { module = "com.google.dagger:dagger-android-processor", version.ref = "dagger" }
+desugar = { module = "com.android.tools:desugar_jdk_libs", version = "1.1.5" }
+espressoCoreTesting = { module = "androidx.test.espresso:espresso-core", version = "3.5.0-alpha03" }
+flipper = { module = "com.facebook.flipper:flipper", version = "0.116.0" }
+jacoco = { module = "org.jacoco:org.jacoco.core", version = "0.8.7" }
+json = { module = "org.json:json", version = "20180813" }
+junit = { module = "junit:junit", version = "4.13.2" }
+kotlinGradlePlugin = { module = "org.jetbrains.kotlin:kotlin-gradle-plugin", version.ref = "kotlin" }
+kotlinStdlib = { module = "org.jetbrains.kotlin:kotlin-stdlib-jdk8", version.ref = "kotlin" }
+kotlinReflect = { module = "org.jetbrains.kotlin:kotlin-reflect", version.ref = "kotlin" }
+leakCanary = { module = "com.squareup.leakcanary:leakcanary-android", version.ref = "leakCanary" }
+lifecycleExtensions = {module = "androidx.lifecycle:lifecycle-extensions", version.ref = "lifecycle"}
+lifecycleViewModel = {module = "androidx.lifecycle:lifecycle-viewmodel-ktx", version.ref = "lifecycle"}
+material = { module = "com.google.android.material:material", version = "1.5.0-alpha04" }
+mockito = { module = "com.nhaarman.mockitokotlin2:mockito-kotlin", version = "2.2.0" }
+mockK = { module = "io.mockk:mockk", version = "1.12.0" }
+navigationFragment = { module = "androidx.navigation:navigation-fragment-ktx", version.ref = "navigation" }
+navigationSafeArgsGradlePlugin = { module = "androidx.navigation:navigation-safe-args-gradle-plugin", version.ref = "navigation" }
+navigationUi = { module = "androidx.navigation:navigation-ui-ktx", version.ref = "navigation" }
+openSourceLicenses = { module = "com.google.android.gms:play-services-oss-licenses", version = "17.0.0" }
+openSourceLicensesGradlePlugin = { module = "com.google.android.gms:oss-licenses-plugin", version = "0.10.4" }
+plumber = { module = "com.squareup.leakcanary:plumber-android", version.ref = "leakCanary" }
+preference = { module = "androidx.preference:preference", version = "1.1.1" }
+recyclerview = { module = "androidx.recyclerview:recyclerview", version = "1.2.1" }
+robolectric = { module = "org.robolectric:robolectric", version = "4.6.1" }
+roxie = { module = "com.ww:roxie", version = "0.5.0" }
+rxAndroid = { module = "io.reactivex.rxjava2:rxandroid", version = "2.1.1" }
+rxJava = { module = "io.reactivex.rxjava2:rxjava", version = "2.2.21" }
+rxKotlin = { module = "io.reactivex.rxjava2:rxkotlin", version = "2.4.0" }
+soloader = { module = "com.facebook.soloader:soloader", version = "0.10.1" }
+testCore = { module = "androidx.test:core", version.ref = "test" }
+testRules = { module = "androidx.test:rules", version.ref = "test" }
+testRunner = { module = "androidx.test:runner", version.ref = "test" }
+timber = { module = "com.jakewharton.timber:timber", version = "5.0.1" }
+
+[bundles]
+androidTests = ["androidJunit", "espressoCoreTesting"]
+dagger = ["dagger", "dagger-android"]
+facebook = ["flipper", "soloader"]
+kotlin = ["kotlinStdlib", "kotlinReflect"]
+lifecycle = ["lifecycleExtensions", "lifecycleViewModel"]
+navigation = ["navigationFragment", "navigationUi"]
+rx = ["rxAndroid", "rxJava", "rxKotlin"]
+unitTests = ["archCoreTesting", "json", "junit", "mockito", "mockK", "robolectric", "testCore", "testRules", "testRunner"]
+
+[plugins]
+spotless = { id = "com.diffplug.spotless", version = "5.17.0" }
+versions = { id = "com.github.ben-manes.versions", version = "0.39.0" }
