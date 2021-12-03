@@ -1,9 +1,9 @@
 package com.michaelcarrano.detectivedroid.data.model
 
-import java.util.UUID
+import kotlin.random.Random
 
 data class LibraryEntity(
-    val id: UUID,
+    val id: Int,
     val name: String,
     val source: String,
     val classPath: String
@@ -11,7 +11,7 @@ data class LibraryEntity(
 
 val LibraryNotFoundEntity =
     LibraryEntity(
-        UUID.randomUUID(),
+        Random.nextInt(),
         "NA",
         "NA",
         "NA"
