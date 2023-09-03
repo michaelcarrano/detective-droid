@@ -15,7 +15,7 @@ typealias ClickListener = (AppUiModel) -> Unit
 
 class AppAdapter(
     private val packageManager: PackageManager,
-    private val clickListener: ClickListener
+    private val clickListener: ClickListener,
 ) : Adapter<AppAdapter.ViewHolder>() {
 
     private var apps = emptyList<AppUiModel>()

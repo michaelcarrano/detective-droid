@@ -6,7 +6,7 @@ data class LibraryEntity(
     val id: Int,
     val name: String,
     val source: String,
-    val classPath: String
+    val classPath: String,
 )
 
 val LibraryNotFoundEntity =
@@ -14,5 +14,5 @@ val LibraryNotFoundEntity =
         Random.nextInt(),
         "NA",
         "NA",
-        "NA"
+        "NA",
     )

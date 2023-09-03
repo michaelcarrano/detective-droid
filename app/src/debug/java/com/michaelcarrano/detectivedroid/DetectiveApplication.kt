@@ -7,8 +7,10 @@ import com.facebook.flipper.plugins.inspector.DescriptorMapping
 import com.facebook.flipper.plugins.inspector.InspectorFlipperPlugin
 import com.facebook.flipper.plugins.sharedpreferences.SharedPreferencesFlipperPlugin
 import com.facebook.soloader.SoLoader
+import dagger.hilt.android.HiltAndroidApp
 import timber.log.Timber
 
+@HiltAndroidApp
 class DetectiveApplication : BaseApplication() {
 
     override fun onCreate() {
@@ -22,8 +24,8 @@ class DetectiveApplication : BaseApplication() {
             client.addPlugin(
                 SharedPreferencesFlipperPlugin(
                     this,
-                    "${packageName}_preferences" // Same as PreferenceManager.getDefaultSharedPreferencesName(context) which is a private method
-                )
+                    "${packageName}_preferences", // Same as PreferenceManager.getDefaultSharedPreferencesName(context) which is a private method
+                ),
             )
             client.addPlugin(CrashReporterPlugin.getInstance())
             client.start()

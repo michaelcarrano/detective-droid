@@ -8,14 +8,14 @@ import io.reactivex.android.schedulers.AndroidSchedulers
 import io.reactivex.rxkotlin.ofType
 import io.reactivex.rxkotlin.plusAssign
 import io.reactivex.schedulers.Schedulers
-import java.util.concurrent.TimeUnit
 import timber.log.Timber
+import java.util.concurrent.TimeUnit
 
 const val SEARCH_DELAY_TIME = 500L
 
 class AppListViewModel(
     initialState: State?,
-    private val appListUseCase: GetAppListUseCase
+    private val appListUseCase: GetAppListUseCase,
 ) : BaseViewModel<Action, State>() {
 
     override val initialState = initialState ?: State(isIdle = true)

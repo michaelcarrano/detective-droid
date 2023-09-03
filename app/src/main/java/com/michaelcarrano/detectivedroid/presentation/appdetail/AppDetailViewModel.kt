@@ -11,7 +11,7 @@ import timber.log.Timber
 
 class AppDetailViewModel(
     initialState: State?,
-    private val scanAppUseCase: ScanAppUseCase
+    private val scanAppUseCase: ScanAppUseCase,
 ) : BaseViewModel<Action, State>() {
 
     override val initialState = initialState ?: State(isIdle = true)
@@ -22,20 +22,20 @@ class AppDetailViewModel(
                 isIdle = false,
                 isScanning = true,
                 libraries = emptyList(),
-                isError = false
+                isError = false,
             )
             is Change.NoLibrariesFound -> state.copy(
                 isScanning = false,
                 libraries = emptyList(),
-                isError = false
+                isError = false,
             )
             is Change.Libraries -> state.copy(
                 isScanning = false,
-                libraries = change.libraries
+                libraries = change.libraries,
             )
             is Change.Error -> state.copy(
                 isScanning = false,
-                isError = true
+                isError = true,
             )
         }
     }

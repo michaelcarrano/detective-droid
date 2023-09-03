@@ -1,7 +1,9 @@
 package com.michaelcarrano.detectivedroid
 
-class DetectiveApplication : BaseApplication() {
+import dagger.hilt.android.HiltAndroidApp
 
+@HiltAndroidApp
+class DetectiveApplication : BaseApplication() {
     override fun onCreate() {
         super.onCreate()
     }

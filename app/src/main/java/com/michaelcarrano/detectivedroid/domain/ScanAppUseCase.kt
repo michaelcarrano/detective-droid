@@ -7,15 +7,16 @@ import com.michaelcarrano.detectivedroid.data.model.LibraryEntity
 import com.michaelcarrano.detectivedroid.data.model.LibraryNotFoundEntity
 import com.michaelcarrano.detectivedroid.presentation.model.LibraryMapper
 import com.michaelcarrano.detectivedroid.presentation.model.LibraryUiModel
+import dagger.hilt.android.qualifiers.ApplicationContext
 import io.reactivex.Observable.fromIterable
 import io.reactivex.Single
 import javax.inject.Inject
 
 // TODO: Cache scan results
 class ScanAppUseCase @Inject constructor(
-    private val context: Context,
+    @ApplicationContext private val context: Context,
     private val repo: LibraryRepository,
-    private val mapper: LibraryMapper
+    private val mapper: LibraryMapper,
 ) {
 
     fun scanApp(packageName: String): Single<List<LibraryUiModel>> =
@@ -31,11 +32,11 @@ class ScanAppUseCase @Inject constructor(
     @VisibleForTesting(otherwise = VisibleForTesting.PRIVATE)
     fun detectLibrary(
         packageName: String,
-        library: LibraryEntity
+        library: LibraryEntity,
     ): LibraryEntity {
         val packageContext = context.createPackageContext(
             packageName,
-            Context.CONTEXT_INCLUDE_CODE or Context.CONTEXT_IGNORE_SECURITY
+            Context.CONTEXT_INCLUDE_CODE or Context.CONTEXT_IGNORE_SECURITY,
         )
 
         var doesLibraryExist: Class<*>? = null
@@ -43,7 +44,7 @@ class ScanAppUseCase @Inject constructor(
             doesLibraryExist = Class.forName(
                 library.classPath,
                 false,
-                packageContext.classLoader
+                packageContext.classLoader,
             )
         } catch (e: Exception) {
             // Library not found in the app. No need to log exception to Timber.

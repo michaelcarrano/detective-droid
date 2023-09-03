@@ -33,8 +33,8 @@ class AppRepositoryImplTest {
         whenever(
             packageManager.getPackageInfo(
                 ArgumentMatchers.anyString(),
-                ArgumentMatchers.anyInt()
-            )
+                ArgumentMatchers.anyInt(),
+            ),
         ).thenReturn(pkgInfo)
         whenever(packageManager.getApplicationLabel(appInfo)).thenReturn(installedApp.name)
 

@@ -5,7 +5,7 @@ import com.michaelcarrano.detectivedroid.data.model.AppEntity
 import javax.inject.Inject
 
 class AppMapper @Inject constructor(
-    private val resources: Resources
+    private val resources: Resources,
 ) : Mapper<AppUiModel, AppEntity> {
 
     override fun mapToUiModel(type: AppEntity) =

@@ -4,5 +4,5 @@ data class AppEntity(
     val name: String?,
     val packageName: String?,
     val versionName: String?,
-    val userApp: Boolean
+    val userApp: Boolean,
 )

@@ -10,10 +10,10 @@ import com.nhaarman.mockitokotlin2.mock
 import com.nhaarman.mockitokotlin2.verifyNoMoreInteractions
 import com.nhaarman.mockitokotlin2.whenever
 import io.reactivex.Single
-import java.util.concurrent.TimeUnit
 import org.junit.Before
 import org.junit.Rule
 import org.junit.Test
+import java.util.concurrent.TimeUnit
 
 class AppListViewModelTest {
 
@@ -45,7 +45,7 @@ class AppListViewModelTest {
         val systemApps = false
         val uiModels = listOf(
             AppUiModel("foo1", "bar1", "baz1"),
-            AppUiModel("foo2", "bar2", "baz2")
+            AppUiModel("foo2", "bar2", "baz2"),
         )
 
         val successState = State(uiModels)
@@ -90,7 +90,7 @@ class AppListViewModelTest {
         val query = "foo"
         val uiModels = listOf(
             AppUiModel("foo1", "bar1", "baz1"),
-            AppUiModel("foo2", "bar2", "baz2")
+            AppUiModel("foo2", "bar2", "baz2"),
         )
 
         val successState = State(uiModels)
@@ -117,8 +117,8 @@ class AppListViewModelTest {
         val errorState = State(isError = true)
         whenever(getAppListUseCase.searchApps(query, systemApps)).thenReturn(
             Single.error(
-                RuntimeException()
-            )
+                RuntimeException(),
+            ),
         )
 
         // WHEN

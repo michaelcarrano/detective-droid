@@ -6,21 +6,24 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.Observer
 import androidx.navigation.fragment.navArgs
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.google.android.material.snackbar.BaseTransientBottomBar.LENGTH_LONG
 import com.google.android.material.snackbar.Snackbar
-import com.michaelcarrano.detectivedroid.BaseFragment
 import com.michaelcarrano.detectivedroid.R
 import com.michaelcarrano.detectivedroid.databinding.FragmentAppDetailBinding
 import com.michaelcarrano.detectivedroid.presentation.model.LibraryUiModel
+import dagger.hilt.android.AndroidEntryPoint
 import javax.inject.Inject
 
-class AppDetailFragment : BaseFragment() {
+@AndroidEntryPoint
+class AppDetailFragment : Fragment() {
 
-    @Inject protected lateinit var viewModelFactory: AppDetailViewModelFactory
+    @Inject
+    protected lateinit var viewModelFactory: AppDetailViewModelFactory
 
     private val viewModel by viewModels<AppDetailViewModel> { viewModelFactory }
 
@@ -33,13 +36,14 @@ class AppDetailFragment : BaseFragment() {
     private val args: AppDetailFragmentArgs by navArgs()
 
     private var _binding: FragmentAppDetailBinding? = null
+
     // This property is only valid between onCreateView and onDestroyView.
     private val binding get() = _binding!!
 
     override fun onCreateView(
         inflater: LayoutInflater,
         container: ViewGroup?,
-        savedInstanceState: Bundle?
+        savedInstanceState: Bundle?,
     ): View {
         _binding = FragmentAppDetailBinding.inflate(layoutInflater, container, false)
         return binding.root
@@ -50,9 +54,12 @@ class AppDetailFragment : BaseFragment() {
 
         setupRecyclerView()
 
-        viewModel.observableState.observe(viewLifecycleOwner, Observer { state ->
-            state?.let { renderState(state) }
-        })
+        viewModel.observableState.observe(
+            viewLifecycleOwner,
+            Observer { state ->
+                state?.let { renderState(state) }
+            },
+        )
 
         viewModel.dispatch(Action.ScanApp(args.app.packageName))
     }

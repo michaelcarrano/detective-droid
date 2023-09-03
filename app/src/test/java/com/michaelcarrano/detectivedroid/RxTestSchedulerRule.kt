@@ -5,15 +5,16 @@ import io.reactivex.android.plugins.RxAndroidPlugins
 import io.reactivex.plugins.RxJavaPlugins
 import io.reactivex.schedulers.Schedulers
 import io.reactivex.schedulers.TestScheduler
-import java.util.concurrent.TimeUnit
 import org.junit.rules.TestRule
 import org.junit.runner.Description
 import org.junit.runners.model.Statement
+import java.util.concurrent.TimeUnit
 
 /**
  * Overrides all Schedulers with a custom TestScheduler.
  */
-class RxTestSchedulerRule(private val testScheduler: TestScheduler = TestScheduler()) : Scheduler(),
+class RxTestSchedulerRule(private val testScheduler: TestScheduler = TestScheduler()) :
+    Scheduler(),
     TestRule {
     override fun apply(base: Statement, description: Description?): Statement {
         RxJavaPlugins.setIoSchedulerHandler { _ -> testScheduler }

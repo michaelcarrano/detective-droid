@@ -6,11 +6,11 @@ import com.michaelcarrano.detectivedroid.domain.ScanAppUseCase
 
 class AppDetailViewModelFactory(
     private val initialState: State?,
-    private val scanAppUseCase: ScanAppUseCase
+    private val scanAppUseCase: ScanAppUseCase,
 ) : ViewModelProvider.NewInstanceFactory() {
 
     @Suppress("unchecked_cast")
-    override fun <T : ViewModel?> create(modelClass: Class<T>): T {
+    override fun <T : ViewModel> create(modelClass: Class<T>): T {
         return AppDetailViewModel(initialState, scanAppUseCase) as T
     }
 }

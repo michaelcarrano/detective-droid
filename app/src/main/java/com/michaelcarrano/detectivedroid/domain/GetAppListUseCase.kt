@@ -8,7 +8,7 @@ import javax.inject.Inject
 
 class GetAppListUseCase @Inject constructor(
     private val repo: AppRepository,
-    private val mapper: AppMapper
+    private val mapper: AppMapper,
 ) {
     fun loadApps(showSystemApp: Boolean): Single<List<AppUiModel>> =
         repo.getApplications()

@@ -34,7 +34,7 @@ class AppMapperTest {
     fun `Given AppEntitys, When mapping to AppUiModels, Then return valid AppUiModels`() {
         val appEntitys = listOf(
             AppEntity("foo1", "bar1", "baz1", true),
-            AppEntity("foo2", "bar2", "baz2", true)
+            AppEntity("foo2", "bar2", "baz2", true),
         )
         val appUiModels = testSubject.mapToUiModels(appEntitys)
 

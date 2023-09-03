@@ -2,23 +2,22 @@ package com.michaelcarrano.detectivedroid.di
 
 import android.content.Context
 import androidx.preference.PreferenceManager
-import com.michaelcarrano.detectivedroid.BaseApplication
 import dagger.Module
 import dagger.Provides
+import dagger.hilt.InstallIn
+import dagger.hilt.android.qualifiers.ApplicationContext
+import dagger.hilt.components.SingletonComponent
 
 @Module
+@InstallIn(SingletonComponent::class)
 class AppModule {
+    @Provides
+    fun providePackageManager(@ApplicationContext context: Context) = context.packageManager
 
     @Provides
-    fun provideContext(application: BaseApplication): Context = application.applicationContext
+    fun provideResources(@ApplicationContext context: Context) = context.resources
 
     @Provides
-    fun providePackageManager(context: Context) = context.packageManager
-
-    @Provides
-    fun provideResources(context: Context) = context.resources
-
-    @Provides
-    fun providePreferences(context: Context) =
+    fun providePreferences(@ApplicationContext context: Context) =
         PreferenceManager.getDefaultSharedPreferences(context)
 }

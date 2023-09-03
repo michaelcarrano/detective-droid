@@ -13,10 +13,10 @@ import com.nhaarman.mockitokotlin2.mock
 import com.nhaarman.mockitokotlin2.verifyNoMoreInteractions
 import com.nhaarman.mockitokotlin2.whenever
 import io.reactivex.Single
-import kotlin.random.Random
 import org.junit.Before
 import org.junit.Rule
 import org.junit.Test
+import kotlin.random.Random
 
 class AppDetailViewModelTest {
 
@@ -50,7 +50,7 @@ class AppDetailViewModelTest {
         // GIVEN
         val packageName = "foo"
         val entitys = listOf(
-            LibraryEntity(Random.nextInt(), "name", "source", "classPath")
+            LibraryEntity(Random.nextInt(), "name", "source", "classPath"),
         )
         val uiModels = mapper.mapToUiModels(entitys)
 
