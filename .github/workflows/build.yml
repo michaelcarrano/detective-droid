@@ -44,7 +44,7 @@ jobs:
         run: ./gradlew spotlessCheck --no-configuration-cache
 
       - name: Check lint
-        run: ./gradlew :app:lintProdRelease :lint:lint
+        run: ./gradlew :app:lintRelease
 
       - name: Build all build type and flavor permutations
         run: ./gradlew assemble
