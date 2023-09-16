@@ -1,3 +1,5 @@
+import org.jetbrains.kotlin.gradle.tasks.KotlinCompile
+
 buildscript {
     dependencies {
         classpath(libs.androidGradlePlugin)
@@ -31,30 +33,29 @@ plugins {
 }
 
 subprojects {
-        apply(plugin = "com.diffplug.spotless")
-        configure<com.diffplug.gradle.spotless.SpotlessExtension> {
-            kotlin {
-                target("**/*.kt")
-                targetExclude("$buildDir/**/*.kt")
+    apply(plugin = "com.diffplug.spotless")
+    configure<com.diffplug.gradle.spotless.SpotlessExtension> {
+        kotlin {
+            target("**/*.kt")
+            targetExclude("$buildDir/**/*.kt")
 
-                ktlint()
-                trimTrailingWhitespace()
-                endWithNewline()
-            }
-
-            kotlinGradle {
-                target("*.gradle.kts")
-                ktlint()
-            }
+            ktlint()
+            trimTrailingWhitespace()
+            endWithNewline()
         }
 
-//    tasks.withType(org.jetbrains.kotlin.gradle.tasks.KotlinCompile).all {
-//        kotlinOptions {
-//            // Treat all Kotlin warnings as errors
-//            allWarningsAsErrors = true
-//
-//            // Set JVM target to 1.8
-//            jvmTarget = JavaVersion.VERSION_17
-//        }
-//    }
+        kotlinGradle {
+            target("*.gradle.kts")
+            ktlint()
+        }
+    }
+
+    tasks.withType<KotlinCompile>().configureEach {
+        kotlinOptions {
+            allWarningsAsErrors = true
+
+            // Set JVM target to 17
+            jvmTarget = JavaVersion.VERSION_17.toString()
+        }
+    }
 }

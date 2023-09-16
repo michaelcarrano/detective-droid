@@ -10,9 +10,9 @@ import android.view.MenuItem
 import android.view.View
 import android.view.ViewGroup
 import androidx.appcompat.widget.SearchView
+import androidx.core.view.MenuProvider
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
-import androidx.lifecycle.Observer
 import androidx.navigation.fragment.NavHostFragment.Companion.findNavController
 import androidx.navigation.ui.onNavDestinationSelected
 import androidx.recyclerview.widget.LinearLayoutManager
@@ -57,7 +57,6 @@ class AppListFragment : Fragment() {
         container: ViewGroup?,
         savedInstanceState: Bundle?,
     ): View {
-        setHasOptionsMenu(true)
         _binding = FragmentAppListBinding.inflate(layoutInflater, container, false)
         return binding.root
     }
@@ -65,14 +64,14 @@ class AppListFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
+        setupMenu()
         setupRecyclerView()
 
         viewModel.observableState.observe(
             viewLifecycleOwner,
-            Observer { state ->
-                state?.let { renderState(state) }
-            },
-        )
+        ) { state ->
+            state?.let { renderState(state) }
+        }
 
         viewModel.dispatch(Action.LoadApps(showSystemApps))
     }
@@ -81,17 +80,6 @@ class AppListFragment : Fragment() {
         binding.appsRecyclerView.adapter = null
         _binding = null
         super.onDestroyView()
-    }
-
-    override fun onCreateOptionsMenu(menu: Menu, inflater: MenuInflater) {
-        inflater.inflate(R.menu.menu, menu)
-        setupSearch(menu)
-        super.onCreateOptionsMenu(menu, inflater)
-    }
-
-    override fun onOptionsItemSelected(item: MenuItem): Boolean {
-        val navController = findNavController(this)
-        return item.onNavDestinationSelected(navController) || super.onOptionsItemSelected(item)
     }
 
     private fun renderState(state: State) {
@@ -117,6 +105,22 @@ class AppListFragment : Fragment() {
         binding.loadingIndicator.visibility = View.GONE
         recyclerViewAdapter.updateApps(apps)
         binding.appsRecyclerView.visibility = View.VISIBLE
+    }
+
+    private fun setupMenu() {
+        requireActivity().addMenuProvider(
+            object : MenuProvider {
+                override fun onCreateMenu(menu: Menu, menuInflater: MenuInflater) {
+                    menuInflater.inflate(R.menu.menu, menu)
+                    setupSearch(menu)
+                }
+                override fun onMenuItemSelected(menuItem: MenuItem): Boolean {
+                    val navController = findNavController(requireParentFragment())
+                    return menuItem.onNavDestinationSelected(navController)
+                }
+            },
+            viewLifecycleOwner,
+        )
     }
 
     private fun setupRecyclerView() {

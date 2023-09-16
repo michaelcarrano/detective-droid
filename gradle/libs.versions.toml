@@ -14,8 +14,6 @@ androidJunit = { module = "androidx.test.ext:junit", version = "1.1.5" }
 archCoreTesting = { module = "androidx.arch.core:core-testing", version = "2.2.0" }
 coreKtx = { module = "androidx.core:core-ktx", version = "1.10.1" }
 constraintLayout = { module = "androidx.constraintlayout:constraintlayout", version = "2.1.4" }
-dagger = { module = "com.google.dagger:dagger", version.ref = "dagger" }
-daggerCompiler = { module = "com.google.dagger:dagger-compiler", version.ref = "dagger" }
 daggerHilt = { module = "com.google.dagger:hilt-android", version.ref = "dagger" }
 daggerHiltCompiler = { module = "com.google.dagger:hilt-compiler", version.ref = "dagger" }
 daggerHiltGradlePlugin = { module = "com.google.dagger:hilt-android-gradle-plugin", version.ref = "dagger" }
