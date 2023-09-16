@@ -26,20 +26,20 @@ platform :android do
       sh("git push origin #{branch_name}")
 
       create_pull_request(
-        api_token: "#{ENV["GITHUB_PR_TOKEN"]}",
-        repo: "#{ENV["CIRCLE_PROJECT_USERNAME"]}/#{ENV["CIRCLE_PROJECT_REPONAME"]}",
+        api_token: "#{ENV["GH_PR_TOKEN"]}",
+        repo: "#{ENV["GITHUB_REPOSITORY"]}",
         title: "Library Update Release",
-        body: "Automatic PR from CircleCI to update list of libraries to scan for in Detective Droid and create a new release to Google Play beta.",
+        body: "Automatic PR to update list of libraries to scan for in Detective Droid and create a new release to Google Play beta.",
         base: "main",
         head: "#{branch_name}"
       )
     end
   end
 
-  desc "Incremements versionCode by 1 and versionName patch version by 1"
+  desc "Increments versionCode by 1 and versionName patch version by 1"
   private_lane :increment_version do
     # Get current version information
-    build_gradle_file = "../app/build.gradle"
+    build_gradle_file = "../app/build.gradle.kts"
     version_name_grep = "egrep '^[[:blank:]]+versionName[[:blank:]]'  #{build_gradle_file}"
     version_code_grep = "egrep '^[[:blank:]]+versionCode[[:blank:]]'  #{build_gradle_file}"
 

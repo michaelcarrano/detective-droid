@@ -1,13 +1,12 @@
 package com.michaelcarrano.detectivedroid.presentation.model
 
 import android.content.res.Resources
-import com.michaelcarrano.detectivedroid.R
 import com.michaelcarrano.detectivedroid.data.model.AppEntity
-import com.nhaarman.mockitokotlin2.doReturn
-import com.nhaarman.mockitokotlin2.mock
 import org.junit.Assert.assertEquals
 import org.junit.Test
 import org.mockito.Mockito
+import org.mockito.kotlin.doReturn
+import org.mockito.kotlin.mock
 
 class AppMapperTest {
 
@@ -34,7 +33,7 @@ class AppMapperTest {
     fun `Given AppEntitys, When mapping to AppUiModels, Then return valid AppUiModels`() {
         val appEntitys = listOf(
             AppEntity("foo1", "bar1", "baz1", true),
-            AppEntity("foo2", "bar2", "baz2", true)
+            AppEntity("foo2", "bar2", "baz2", true),
         )
         val appUiModels = testSubject.mapToUiModels(appEntitys)
 

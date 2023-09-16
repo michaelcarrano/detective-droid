@@ -20,8 +20,8 @@ class SettingsFragment : PreferenceFragmentCompat() {
         themePreference?.onPreferenceChangeListener =
             Preference.OnPreferenceChangeListener { _, newValue ->
                 ThemeHelper.applyTheme(newValue as String)
-                preferenceManager.sharedPreferences.edit()
-                    .putString(PREF_APP_THEME, newValue).apply()
+                preferenceManager.sharedPreferences?.edit()
+                    ?.putString(PREF_APP_THEME, newValue)?.apply()
                 true
             }
 

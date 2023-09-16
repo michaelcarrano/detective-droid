@@ -7,7 +7,7 @@ data class State(
     val libraries: List<LibraryUiModel> = listOf(),
     val isIdle: Boolean = false,
     val isScanning: Boolean = false,
-    val isError: Boolean = false
+    val isError: Boolean = false,
 ) : BaseState {
     val isEmpty: Boolean
         get() = libraries.isEmpty()

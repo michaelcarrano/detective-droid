@@ -4,15 +4,15 @@ import android.content.res.Resources
 import com.michaelcarrano.detectivedroid.R
 import com.michaelcarrano.detectivedroid.data.model.LibraryEntity
 import io.reactivex.Single
+import org.json.JSONArray
 import java.io.BufferedReader
 import java.io.IOException
 import java.io.InputStream
 import java.io.InputStreamReader
 import javax.inject.Inject
-import org.json.JSONArray
 
 class LibraryRepositoryImpl @Inject constructor(
-    private val resources: Resources
+    private val resources: Resources,
 ) : LibraryRepository {
 
     private var librariesCache = listOf<LibraryEntity>()
@@ -42,8 +42,8 @@ class LibraryRepositoryImpl @Inject constructor(
                     id = id,
                     name = name,
                     source = source,
-                    classPath = classPath
-                )
+                    classPath = classPath,
+                ),
             )
         }
         return libraries

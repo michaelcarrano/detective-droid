@@ -12,7 +12,7 @@ typealias ClickListener = (LibraryUiModel) -> Unit
 
 class LibraryAdapter(
     private var libraries: List<LibraryUiModel>,
-    private val clickListener: ClickListener
+    private val clickListener: ClickListener,
 ) : RecyclerView.Adapter<LibraryAdapter.ViewHolder>() {
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {

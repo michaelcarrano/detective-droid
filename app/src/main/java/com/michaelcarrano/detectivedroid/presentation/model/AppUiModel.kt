@@ -9,5 +9,5 @@ import kotlinx.parcelize.Parcelize
 data class AppUiModel(
     val name: String,
     val packageName: String,
-    val versionName: String
+    val versionName: String,
 ) : Parcelable

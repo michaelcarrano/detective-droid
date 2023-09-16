@@ -9,5 +9,5 @@ import kotlinx.parcelize.Parcelize
 data class LibraryUiModel(
     val name: String,
     val source: String,
-    val classPath: String
+    val classPath: String,
 ) : Parcelable

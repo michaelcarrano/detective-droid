@@ -1,0 +1,24 @@
+name: Update to latest libraries
+
+on:
+  schedule:
+    # * is a special character in YAML so you have to quote this string
+    - cron:  '0 0 1 * *' # On the first day of every month
+
+jobs:
+  libraries:
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+
+    steps:
+      - name: Setup Ruby for Fastlane
+        uses: ruby/setup-ruby@v1
+        with:
+          ruby-version: '3.0'
+          bundler-cache: true
+
+      - name: Update bundled libraries
+        uses: maierj/fastlane-action@v3.0.0
+        with:
+          lane: 'release_library_updates'
+          verbose: true

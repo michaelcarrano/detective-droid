@@ -5,7 +5,7 @@ import com.michaelcarrano.detectivedroid.presentation.model.LibraryUiModel
 
 class ItemDiffCallback(
     private val old: List<LibraryUiModel>,
-    private val new: List<LibraryUiModel>
+    private val new: List<LibraryUiModel>,
 ) : DiffUtil.Callback() {
     override fun getOldListSize() = old.size
 

@@ -5,7 +5,7 @@ import com.michaelcarrano.detectivedroid.presentation.model.AppUiModel
 
 class ItemDiffCallback(
     private val old: List<AppUiModel>,
-    private val new: List<AppUiModel>
+    private val new: List<AppUiModel>,
 ) : DiffUtil.Callback() {
     override fun getOldListSize() = old.size
 

@@ -7,5 +7,5 @@ data class State(
     val apps: List<AppUiModel> = listOf(),
     val isIdle: Boolean = false,
     val isLoading: Boolean = false,
-    val isError: Boolean = false
+    val isError: Boolean = false,
 ) : BaseState
