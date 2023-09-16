@@ -19,10 +19,13 @@ platform :android do
     if has_changes.to_i > 0
       sh("git config --global user.email \"#{ENV["GIT_USER_EMAIL"]}\"")
       sh("git config --global user.name \"#{ENV["GIT_USER_NAME"]}\"")
+
       branch_name = "release-#{increment_version}"
+      puts branch_name
+
       sh("git checkout -b #{branch_name}")
       git_commit(path: "*/libraries.json", message: "Update libraries.json with up-to-date libraries to scan.")
-      git_commit(path: "*/build.gradle", message: "Update versionCode and versionName")
+      git_commit(path: "*/build.gradle.kts", message: "Update versionCode and versionName")
       sh("git push origin #{branch_name}")
 
       create_pull_request(
@@ -52,7 +55,10 @@ platform :android do
     version_split[2] = new_patch_version
 
     new_version_name = version_split.join('.') + "\""
+    puts new_version_name
+
     new_version_code = version_code.to_i + 1
+    puts new_version_code
 
     # Write next version information to file
     build_gradle = File.read("#{build_gradle_file}")
