@@ -8,14 +8,14 @@ import com.michaelcarrano.detectivedroid.data.LibraryRepository
 import com.michaelcarrano.detectivedroid.data.model.LibraryEntity
 import com.michaelcarrano.detectivedroid.domain.ScanAppUseCase
 import com.michaelcarrano.detectivedroid.presentation.model.LibraryMapper
-import com.nhaarman.mockitokotlin2.inOrder
-import com.nhaarman.mockitokotlin2.mock
-import com.nhaarman.mockitokotlin2.verifyNoMoreInteractions
-import com.nhaarman.mockitokotlin2.whenever
 import io.reactivex.Single
 import org.junit.Before
 import org.junit.Rule
 import org.junit.Test
+import org.mockito.kotlin.inOrder
+import org.mockito.kotlin.mock
+import org.mockito.kotlin.verifyNoMoreInteractions
+import org.mockito.kotlin.whenever
 import kotlin.random.Random
 
 class AppDetailViewModelTest {

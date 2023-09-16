@@ -1,13 +1,12 @@
 package com.michaelcarrano.detectivedroid.presentation.model
 
 import android.content.res.Resources
-import com.michaelcarrano.detectivedroid.R
 import com.michaelcarrano.detectivedroid.data.model.AppEntity
-import com.nhaarman.mockitokotlin2.doReturn
-import com.nhaarman.mockitokotlin2.mock
 import org.junit.Assert.assertEquals
 import org.junit.Test
 import org.mockito.Mockito
+import org.mockito.kotlin.doReturn
+import org.mockito.kotlin.mock
 
 class AppMapperTest {
 

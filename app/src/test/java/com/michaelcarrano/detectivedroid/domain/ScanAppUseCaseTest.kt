@@ -4,11 +4,11 @@ import android.content.Context
 import com.michaelcarrano.detectivedroid.data.LibraryRepository
 import com.michaelcarrano.detectivedroid.data.model.LibraryNotFoundEntity
 import com.michaelcarrano.detectivedroid.presentation.model.LibraryMapper
-import com.nhaarman.mockitokotlin2.mock
-import com.nhaarman.mockitokotlin2.whenever
 import io.reactivex.Single
 import org.junit.Before
 import org.junit.Test
+import org.mockito.kotlin.mock
+import org.mockito.kotlin.whenever
 
 class ScanAppUseCaseTest {
 

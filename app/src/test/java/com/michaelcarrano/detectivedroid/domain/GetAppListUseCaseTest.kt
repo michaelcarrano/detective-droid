@@ -4,15 +4,15 @@ import android.content.res.Resources
 import com.michaelcarrano.detectivedroid.data.AppRepository
 import com.michaelcarrano.detectivedroid.data.model.AppEntity
 import com.michaelcarrano.detectivedroid.presentation.model.AppMapper
-import com.nhaarman.mockitokotlin2.doReturn
-import com.nhaarman.mockitokotlin2.mock
-import com.nhaarman.mockitokotlin2.times
-import com.nhaarman.mockitokotlin2.verify
-import com.nhaarman.mockitokotlin2.whenever
 import io.reactivex.Single
 import org.junit.Before
 import org.junit.Test
 import org.mockito.Mockito
+import org.mockito.kotlin.doReturn
+import org.mockito.kotlin.mock
+import org.mockito.kotlin.times
+import org.mockito.kotlin.verify
+import org.mockito.kotlin.whenever
 
 class GetAppListUseCaseTest {
 

@@ -3,11 +3,11 @@ package com.michaelcarrano.detectivedroid.data
 import android.content.res.Resources
 import com.michaelcarrano.detectivedroid.R
 import com.michaelcarrano.detectivedroid.data.model.LibraryEntity
-import com.nhaarman.mockitokotlin2.doReturn
-import com.nhaarman.mockitokotlin2.mock
 import org.junit.Before
 import org.junit.Test
 import org.mockito.Mockito.RETURNS_DEEP_STUBS
+import org.mockito.kotlin.doReturn
+import org.mockito.kotlin.mock
 import kotlin.random.Random
 
 class LibraryRepositoryImplTest {

@@ -32,8 +32,8 @@ leakCanary = { module = "com.squareup.leakcanary:leakcanary-android", version.re
 lifecycleExtensions = { module = "androidx.lifecycle:lifecycle-extensions", version = "2.2.0" }
 lifecycleViewModel = { module = "androidx.lifecycle:lifecycle-viewmodel-ktx", version.ref = "lifecycle" }
 material = { module = "com.google.android.material:material", version = "1.9.0" }
-mockito = { module = "com.nhaarman.mockitokotlin2:mockito-kotlin", version = "2.2.0" }
-mockK = { module = "io.mockk:mockk", version = "1.12.0" }
+mockito = { module = "org.mockito.kotlin:mockito-kotlin", version = "5.1.0" }
+mockK = { module = "io.mockk:mockk", version = "1.13.7" }
 navigationFragment = { module = "androidx.navigation:navigation-fragment-ktx", version.ref = "navigation" }
 navigationSafeArgsGradlePlugin = { module = "androidx.navigation:navigation-safe-args-gradle-plugin", version.ref = "navigation" }
 navigationUi = { module = "androidx.navigation:navigation-ui-ktx", version.ref = "navigation" }

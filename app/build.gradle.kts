@@ -102,6 +102,7 @@ dependencies {
 
     implementation(libs.daggerHilt)
     ksp(libs.daggerHiltCompiler)
+    testImplementation(libs.daggerHiltTesting)
 
     implementation(libs.bundles.rx)
 
