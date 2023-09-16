@@ -10,6 +10,14 @@ jobs:
   libraries:
     runs-on: ubuntu-latest
     timeout-minutes: 15
+    env:
+      TERM: dumb
+      LIBRARIES_ENDPOINT: ${{ secrets.LIBRARIES_ENDPOINT }}
+      GIT_USER_EMAIL: ${{ secrets.GIT_USER_EMAIL }}
+      GIT_USER_NAME: ${{ secrets.GIT_USER_NAME }}
+      GH_PR_TOKEN: ${{ secrets.GH_PR_TOKEN }}
+      GH_REPOSITORY: ${{ github.repository }}
+
 
     steps:
       - name: Checkout

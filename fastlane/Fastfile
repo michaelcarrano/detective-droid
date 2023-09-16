@@ -27,7 +27,7 @@ platform :android do
 
       create_pull_request(
         api_token: "#{ENV["GH_PR_TOKEN"]}",
-        repo: "#{ENV["GITHUB_REPOSITORY"]}",
+        repo: "#{ENV["GH_REPOSITORY"]}",
         title: "Library Update Release",
         body: "Automatic PR to update list of libraries to scan for in Detective Droid and create a new release to Google Play beta.",
         base: "main",
