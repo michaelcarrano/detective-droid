@@ -1,9 +1,7 @@
 name: Release to Play Store
 
 on:
-  push:
-    branches:
-      - release-*
+  workflow_dispatch:
 
 jobs:
   release:
