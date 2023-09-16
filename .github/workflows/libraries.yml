@@ -4,7 +4,7 @@ on:
   workflow_dispatch:
   schedule:
     # * is a special character in YAML so you have to quote this string
-    - cron:  '0 0 1 * *' # On the first day of every month
+    - cron: '0 0 1 * *' # On the first day of every month
 
 jobs:
   libraries:
@@ -12,6 +12,9 @@ jobs:
     timeout-minutes: 15
 
     steps:
+      - name: Checkout
+        uses: actions/checkout@v3
+
       - name: Setup Ruby for Fastlane
         uses: ruby/setup-ruby@v1
         with:
