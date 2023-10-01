@@ -58,7 +58,7 @@ jobs:
         with:
           releaseFiles: ${{ steps.sign_app.outputs.signedReleaseFile }}
           serviceAccountJsonPlainText: ${{ secrets.GOOGLE_PLAY_SERVICE_ACCOUNT_JSON }}
-          packageName: com.michaelcarrano.detective_droid
+          packageName: com.michaelcarrano.detectivedroid
           track: internal
           mappingFile: app/build/outputs/mapping/release/mapping.txt
           status: completed
