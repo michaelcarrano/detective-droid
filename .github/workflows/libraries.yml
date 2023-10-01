@@ -1,4 +1,4 @@
-name: Update libraries database
+name: Update libraries.json file
 
 on:
   workflow_dispatch:
@@ -10,27 +10,18 @@ jobs:
   libraries:
     runs-on: ubuntu-latest
     timeout-minutes: 15
-    env:
-      TERM: dumb
-      LIBRARIES_ENDPOINT: ${{ secrets.LIBRARIES_ENDPOINT }}
-      GIT_USER_EMAIL: ${{ secrets.GIT_USER_EMAIL }}
-      GIT_USER_NAME: ${{ secrets.GIT_USER_NAME }}
-      GH_PR_TOKEN: ${{ secrets.GH_PR_TOKEN }}
-      GH_REPOSITORY: ${{ github.repository }}
-
 
     steps:
       - name: Checkout
         uses: actions/checkout@v3
 
-      - name: Setup Ruby for Fastlane
-        uses: ruby/setup-ruby@v1
-        with:
-          ruby-version: '3.0'
-          bundler-cache: true
+      - name: Download libraries json file
+        run: wget ${{ secrets.LIBRARIES_ENDPOINT }} -q -O app/src/main/res/raw/libraries.json
 
-      - name: Update bundled libraries
-        uses: maierj/fastlane-action@v3.0.0
+      - name: Create PR
+        uses: peter-evans/create-pull-request@v5
         with:
-          lane: 'release_library_updates'
-          verbose: true
+          token: ${{ secrets.GH_PR_TOKEN }}
+          branch: "auto_pr/update-libraries"
+          title: "Auto PR: Update libraries.json"
+          body: "Automatic PR to update list of libraries to scan for in Detective Droid."
