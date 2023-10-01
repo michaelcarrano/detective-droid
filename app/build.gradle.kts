@@ -47,15 +47,6 @@ android {
         }
     }
 
-    signingConfigs {
-        create("release") {
-            storeFile = rootProject.file("release/detectivedroid-release.keystore")
-            storePassword = System.getenv("SIGNING_CONFIG_RELEASE_KEYSTORE_PWD")
-            keyAlias = "detective_droid"
-            keyPassword = System.getenv("SIGNING_CONFIG_RELEASE_KEY_PWD")
-        }
-    }
-
     buildTypes {
         release {
             isMinifyEnabled = true
@@ -64,7 +55,6 @@ android {
                 getDefaultProguardFile("proguard-android-optimize.txt"),
                 "proguard-rules.pro",
             )
-            signingConfig = signingConfigs["release"]
         }
     }
 
@@ -79,7 +69,7 @@ android {
     }
 
     kotlinOptions {
-        jvmTarget = "1.8"
+        jvmTarget = JavaVersion.VERSION_17.toString()
     }
 }
 

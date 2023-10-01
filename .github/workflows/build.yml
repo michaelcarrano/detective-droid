@@ -1,6 +1,7 @@
 name: Build
 
 on:
+  workflow_dispatch:
   push:
     branches:
       - main
@@ -14,10 +15,6 @@ jobs:
   build:
     runs-on: ubuntu-latest
     timeout-minutes: 15
-    env:
-      TERM: dumb
-      SIGNING_CONFIG_RELEASE_KEYSTORE_PWD: ${{ secrets.SIGNING_CONFIG_RELEASE_KEYSTORE_PWD }}
-      SIGNING_CONFIG_RELEASE_KEY_PWD: ${{ secrets.SIGNING_CONFIG_RELEASE_KEY_PWD }}
 
     steps:
       - name: Checkout
@@ -34,11 +31,10 @@ jobs:
 
       - name: Setup Gradle
         uses: gradle/gradle-build-action@v2
-
-      - name: Decrypt secrets
-        run: release/signing-setup.sh $ENCRYPT_KEY
-        env:
-          ENCRYPT_KEY: ${{ secrets.ENCRYPT_KEY }}
+        with:
+          # Only write to the cache for builds on the 'main' branch
+          cache-read-only: ${{ github.ref != 'refs/heads/main' }}
+          gradle-home-cache-cleanup: true
 
       - name: Check spotless
         run: ./gradlew spotlessCheck --no-configuration-cache
@@ -51,7 +47,3 @@ jobs:
 
       - name: Run local tests
         run: ./gradlew test
-
-      - name: Clean secrets
-        if: always()
-        run: release/signing-cleanup.sh

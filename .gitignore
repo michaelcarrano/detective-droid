@@ -21,6 +21,3 @@ out
 prebuilts
 local.properties
 ktlint
-release/play-account.json
-release/detectivedroid-release.keystore
-fastlane/report.xml

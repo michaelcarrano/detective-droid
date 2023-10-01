@@ -1,0 +1,64 @@
+name: Build and Publish to Play Store
+
+on:
+  workflow_dispatch:
+
+jobs:
+  release:
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v3
+
+      - name: Validate Gradle Wrapper
+        uses: gradle/wrapper-validation-action@v1
+
+      - name: Set up JDK 17
+        uses: actions/setup-java@v3
+        with:
+          distribution: 'zulu'
+          java-version: 17
+
+      - name: Setup Gradle
+        uses: gradle/gradle-build-action@v2
+        with:
+          # Only write to the cache for builds on the 'main' branch
+          cache-read-only: ${{ github.ref != 'refs/heads/main' }}
+          gradle-home-cache-cleanup: true
+
+      - run: echo VERSION_CODE=$(date +%s) >> $GITHUB_ENV
+      - run: echo VERSION_NAME=$(date +%F) >> $GITHUB_ENV
+
+      - name: Update versionCode + versionName
+        uses: chkfung/android-version-actions@v1
+        with:
+          gradlePath: app/build.gradle.kts
+          versionCode: ${{ env.VERSION_CODE }}
+          versionName: ${{ env.VERSION_NAME }}
+
+      - name: Build release AAB
+        run: ./gradlew bundleRelease
+
+      - uses: r0adkll/sign-android-release@v1
+        name: Sign app APK
+        id: sign_app
+        with:
+          releaseDirectory: app/build/outputs/bundle/release
+          signingKeyBase64: ${{ secrets.SIGNING_KEYSTORE_CONTENT }}
+          alias: ${{ secrets.SIGNING_ALIAS }}
+          keyStorePassword: ${{ secrets.SIGNING_CONFIG_RELEASE_KEYSTORE_PWD }}
+          keyPassword: ${{ secrets.SIGNING_CONFIG_RELEASE_KEY_PWD }}
+        env:
+          BUILD_TOOLS_VERSION: "34.0.0"
+
+      - name: Deploy to Play Store Internal-track
+        uses: r0adkll/upload-google-play@v1
+        with:
+          releaseFiles: ${{ steps.sign_app.outputs.signedReleaseFile }}
+          serviceAccountJsonPlainText: ${{ secrets.GOOGLE_PLAY_SERVICE_ACCOUNT_JSON }}
+          packageName: com.michaelcarrano.detective_droid
+          track: internal
+          mappingFile: app/build/outputs/mapping/release/mapping.txt
+          status: completed
