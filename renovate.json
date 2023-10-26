@@ -1,0 +1,31 @@
+{
+  "$schema": "https://docs.renovatebot.com/renovate-schema.json",
+  "extends": [
+    "config:base"
+  ],
+  "packageRules": [
+    {
+      "groupName": "Kotlin, KSP and Compose Compiler",
+      "groupSlug": "kotlin",
+      "matchPackageNames": [
+        "com.google.devtools.ksp",
+        "androidx.compose.compiler",
+        "org.jetbrains.kotlin"
+      ]
+    },
+    {
+      "groupName": "Spotless/ktlint",
+      "matchPackagePrefixes": [
+        "com.diffplug.spotless",
+        "com.pinterest:ktlint"
+      ]
+    },
+    {
+      "description": "Disable updates to SNAPSHOTS",
+      "matchDatasources": [
+        "maven"
+      ],
+      "allowedVersions": "!/SNAPSHOT$/"
+    }
+  ]
+}
