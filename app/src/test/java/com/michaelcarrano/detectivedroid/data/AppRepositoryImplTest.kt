@@ -11,7 +11,6 @@ import org.mockito.kotlin.mock
 import org.mockito.kotlin.whenever
 
 class AppRepositoryImplTest {
-
     private lateinit var testSubject: AppRepositoryImpl
     private val packageManager = mock<PackageManager>()
 

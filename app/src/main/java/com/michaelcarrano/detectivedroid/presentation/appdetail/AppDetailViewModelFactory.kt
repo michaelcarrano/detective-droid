@@ -8,9 +8,6 @@ class AppDetailViewModelFactory(
     private val initialState: State?,
     private val scanAppUseCase: ScanAppUseCase,
 ) : ViewModelProvider.NewInstanceFactory() {
-
     @Suppress("unchecked_cast")
-    override fun <T : ViewModel> create(modelClass: Class<T>): T {
-        return AppDetailViewModel(initialState, scanAppUseCase) as T
-    }
+    override fun <T : ViewModel> create(modelClass: Class<T>): T = AppDetailViewModel(initialState, scanAppUseCase) as T
 }

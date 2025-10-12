@@ -1,5 +1,6 @@
 package com.michaelcarrano.detectivedroid.presentation.applist
 
+import android.annotation.SuppressLint
 import android.content.SharedPreferences
 import android.content.pm.PackageManager
 import android.os.Bundle
@@ -26,15 +27,14 @@ import javax.inject.Inject
 
 @AndroidEntryPoint
 class AppListFragment : Fragment() {
+    @Inject
+    lateinit var viewModelFactory: AppListViewModelFactory
 
     @Inject
-    protected lateinit var viewModelFactory: AppListViewModelFactory
+    lateinit var packageManager: PackageManager
 
     @Inject
-    protected lateinit var packageManager: PackageManager
-
-    @Inject
-    protected lateinit var sharedPreferences: SharedPreferences
+    lateinit var sharedPreferences: SharedPreferences
 
     private val viewModel by viewModels<AppListViewModel> { viewModelFactory }
 
@@ -47,6 +47,7 @@ class AppListFragment : Fragment() {
     private val showSystemApps
         get() = sharedPreferences.getBoolean("pref_system_apps", false)
 
+    @Suppress("ktlint:standard:backing-property-naming")
     private var _binding: FragmentAppListBinding? = null
 
     // This property is only valid between onCreateView and onDestroyView.
@@ -61,7 +62,10 @@ class AppListFragment : Fragment() {
         return binding.root
     }
 
-    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+    override fun onViewCreated(
+        view: View,
+        savedInstanceState: Bundle?,
+    ) {
         super.onViewCreated(view, savedInstanceState)
 
         setupMenu()
@@ -110,10 +114,14 @@ class AppListFragment : Fragment() {
     private fun setupMenu() {
         requireActivity().addMenuProvider(
             object : MenuProvider {
-                override fun onCreateMenu(menu: Menu, menuInflater: MenuInflater) {
+                override fun onCreateMenu(
+                    menu: Menu,
+                    menuInflater: MenuInflater,
+                ) {
                     menuInflater.inflate(R.menu.menu, menu)
                     setupSearch(menu)
                 }
+
                 override fun onMenuItemSelected(menuItem: MenuItem): Boolean {
                     val navController = findNavController(requireParentFragment())
                     return menuItem.onNavDestinationSelected(navController)
@@ -143,34 +151,37 @@ class AppListFragment : Fragment() {
 
     private fun handleSearchQuery(searchItem: MenuItem?) {
         val searchView = searchItem?.actionView as SearchView
-        searchView.setOnQueryTextListener(object : SearchView.OnQueryTextListener {
-            override fun onQueryTextSubmit(query: String?): Boolean {
-                doSearch(query)
-                return true
-            }
+        searchView.setOnQueryTextListener(
+            object : SearchView.OnQueryTextListener {
+                override fun onQueryTextSubmit(query: String?): Boolean {
+                    doSearch(query)
+                    return true
+                }
 
-            override fun onQueryTextChange(newText: String?): Boolean {
-                doSearch(newText)
-                return true
-            }
-        })
+                override fun onQueryTextChange(newText: String?): Boolean {
+                    doSearch(newText)
+                    return true
+                }
+            },
+        )
     }
 
     private fun handleSearchExpand(menu: Menu): MenuItem? {
         val settingsItem = menu.findItem(R.id.action_settings)
         val searchItem = menu.findItem(R.id.action_search)
 
-        val expandListener = object : MenuItem.OnActionExpandListener {
-            override fun onMenuItemActionCollapse(item: MenuItem): Boolean {
-                settingsItem.isVisible = true
-                return true // Return true to collapse action view
-            }
+        val expandListener =
+            object : MenuItem.OnActionExpandListener {
+                override fun onMenuItemActionCollapse(item: MenuItem): Boolean {
+                    settingsItem.isVisible = true
+                    return true // Return true to collapse action view
+                }
 
-            override fun onMenuItemActionExpand(item: MenuItem): Boolean {
-                settingsItem.isVisible = false
-                return true // Return true to expand action view
+                override fun onMenuItemActionExpand(item: MenuItem): Boolean {
+                    settingsItem.isVisible = false
+                    return true // Return true to expand action view
+                }
             }
-        }
 
         searchItem.setOnActionExpandListener(expandListener)
         return searchItem

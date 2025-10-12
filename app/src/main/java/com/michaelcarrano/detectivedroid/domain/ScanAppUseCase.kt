@@ -10,46 +10,50 @@ import com.michaelcarrano.detectivedroid.presentation.model.LibraryUiModel
 import dagger.hilt.android.qualifiers.ApplicationContext
 import io.reactivex.Observable.fromIterable
 import io.reactivex.Single
+import timber.log.Timber
 import javax.inject.Inject
 
 // TODO: Cache scan results
-class ScanAppUseCase @Inject constructor(
-    @ApplicationContext private val context: Context,
-    private val repo: LibraryRepository,
-    private val mapper: LibraryMapper,
-) {
+class ScanAppUseCase
+    @Inject
+    constructor(
+        @ApplicationContext private val context: Context,
+        private val repo: LibraryRepository,
+        private val mapper: LibraryMapper,
+    ) {
+        fun scanApp(packageName: String): Single<List<LibraryUiModel>> =
+            repo
+                .getLibraries()
+                .flatMapObservable { fromIterable(it) }
+                .map { library ->
+                    detectLibrary(packageName, library)
+                }.filter { it != LibraryNotFoundEntity }
+                .map { mapper.mapToUiModel(it) }
+                .toList()
 
-    fun scanApp(packageName: String): Single<List<LibraryUiModel>> =
-        repo.getLibraries()
-            .flatMapObservable { fromIterable(it) }
-            .map { library ->
-                detectLibrary(packageName, library)
+        @VisibleForTesting(otherwise = VisibleForTesting.PRIVATE)
+        fun detectLibrary(
+            packageName: String,
+            library: LibraryEntity,
+        ): LibraryEntity {
+            val packageContext =
+                context.createPackageContext(
+                    packageName,
+                    Context.CONTEXT_INCLUDE_CODE or Context.CONTEXT_IGNORE_SECURITY,
+                )
+
+            var doesLibraryExist: Class<*>? = null
+            try {
+                doesLibraryExist =
+                    Class.forName(
+                        library.classPath,
+                        false,
+                        packageContext.classLoader,
+                    )
+            } catch (e: Exception) {
+                // Library not found in the app. No need to log exception to Timber.
             }
-            .filter { it != LibraryNotFoundEntity }
-            .map { mapper.mapToUiModel(it) }
-            .toList()
 
-    @VisibleForTesting(otherwise = VisibleForTesting.PRIVATE)
-    fun detectLibrary(
-        packageName: String,
-        library: LibraryEntity,
-    ): LibraryEntity {
-        val packageContext = context.createPackageContext(
-            packageName,
-            Context.CONTEXT_INCLUDE_CODE or Context.CONTEXT_IGNORE_SECURITY,
-        )
-
-        var doesLibraryExist: Class<*>? = null
-        try {
-            doesLibraryExist = Class.forName(
-                library.classPath,
-                false,
-                packageContext.classLoader,
-            )
-        } catch (e: Exception) {
-            // Library not found in the app. No need to log exception to Timber.
+            return doesLibraryExist?.let { library } ?: run { LibraryNotFoundEntity }
         }
-
-        return doesLibraryExist?.let { library } ?: run { LibraryNotFoundEntity }
     }
-}

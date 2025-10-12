@@ -17,7 +17,6 @@ class AppListViewModel(
     initialState: State?,
     private val appListUseCase: GetAppListUseCase,
 ) : BaseViewModel<Action, State>() {
-
     override val initialState = initialState ?: State(isIdle = true)
 
     private val reducer: Reducer<State, Change> = { _, change ->
@@ -33,35 +32,42 @@ class AppListViewModel(
     }
 
     private fun bindActions() {
-        val loadAppsChange = actions.ofType<Action.LoadApps>()
-            .switchMap { it ->
-                appListUseCase.loadApps(it.showSystemApp)
-                    .subscribeOn(Schedulers.io())
-                    .toObservable()
-                    .map<Change> { Change.Apps(it) }
-                    .defaultIfEmpty(Change.Apps(emptyList()))
-                    .onErrorReturn { Change.Error(it) }
-                    .startWith(Change.Loading)
-            }
+        val loadAppsChange =
+            actions
+                .ofType<Action.LoadApps>()
+                .switchMap { it ->
+                    appListUseCase
+                        .loadApps(it.showSystemApp)
+                        .subscribeOn(Schedulers.io())
+                        .toObservable()
+                        .map<Change> { Change.Apps(it) }
+                        .defaultIfEmpty(Change.Apps(emptyList()))
+                        .onErrorReturn { Change.Error(it) }
+                        .startWith(Change.Loading)
+                }
 
-        val searchAppsChange = actions.ofType<Action.Search>()
-            .switchMap { it ->
-                appListUseCase.searchApps(it.query!!, it.showSystemApp)
-                    .delay(SEARCH_DELAY_TIME, TimeUnit.MILLISECONDS)
-                    .subscribeOn(Schedulers.io())
-                    .toObservable()
-                    .map<Change> { Change.Apps(it) }
-                    .defaultIfEmpty(Change.Apps(emptyList()))
-                    .onErrorReturn { Change.Error(it) }
-            }
+        val searchAppsChange =
+            actions
+                .ofType<Action.Search>()
+                .switchMap { it ->
+                    appListUseCase
+                        .searchApps(it.query!!, it.showSystemApp)
+                        .delay(SEARCH_DELAY_TIME, TimeUnit.MILLISECONDS)
+                        .subscribeOn(Schedulers.io())
+                        .toObservable()
+                        .map<Change> { Change.Apps(it) }
+                        .defaultIfEmpty(Change.Apps(emptyList()))
+                        .onErrorReturn { Change.Error(it) }
+                }
 
         val allChanges = Observable.merge(loadAppsChange, searchAppsChange)
 
-        disposables += allChanges
-            .scan(initialState, reducer)
-            .filter { !it.isIdle }
-            .distinctUntilChanged()
-            .observeOn(AndroidSchedulers.mainThread())
-            .subscribe(state::setValue, Timber::e)
+        disposables +=
+            allChanges
+                .scan(initialState, reducer)
+                .filter { !it.isIdle }
+                .distinctUntilChanged()
+                .observeOn(AndroidSchedulers.mainThread())
+                .subscribe(state::setValue, Timber::e)
     }
 }

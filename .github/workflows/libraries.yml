@@ -13,13 +13,13 @@ jobs:
 
     steps:
       - name: Checkout
-        uses: actions/checkout@v3
+        uses: actions/checkout@v4
 
       - name: Download libraries json file
         run: wget ${{ secrets.LIBRARIES_ENDPOINT }} -q -O app/src/main/res/raw/libraries.json
 
       - name: Create PR
-        uses: peter-evans/create-pull-request@v5
+        uses: peter-evans/create-pull-request@v7
         with:
           token: ${{ secrets.GH_PR_TOKEN }}
           branch: "auto_pr/update-libraries"

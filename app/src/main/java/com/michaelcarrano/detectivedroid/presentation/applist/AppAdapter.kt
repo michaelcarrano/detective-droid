@@ -17,20 +17,27 @@ class AppAdapter(
     private val packageManager: PackageManager,
     private val clickListener: ClickListener,
 ) : Adapter<AppAdapter.ViewHolder>() {
-
     private var apps = emptyList<AppUiModel>()
 
-    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
+    override fun onCreateViewHolder(
+        parent: ViewGroup,
+        viewType: Int,
+    ): ViewHolder {
         val binding = AppItemBinding.inflate(LayoutInflater.from(parent.context), parent, false)
         val viewHolder = ViewHolder(binding)
         binding.root.setOnClickListener { clickListener(apps[viewHolder.bindingAdapterPosition]) }
         return viewHolder
     }
 
-    override fun onBindViewHolder(holder: ViewHolder, position: Int) {
+    override fun onBindViewHolder(
+        holder: ViewHolder,
+        position: Int,
+    ) {
         val app = apps[position]
         holder.icon.setImageDrawable(packageManager.getApplicationIcon(app.packageName))
-        holder.icon.contentDescription.toString().format(app.name)
+        holder.icon.contentDescription
+            .toString()
+            .format(app.name)
         holder.name.text = app.name
         holder.version.text = app.versionName
     }
@@ -43,7 +50,9 @@ class AppAdapter(
         diffResult.dispatchUpdatesTo(this)
     }
 
-    class ViewHolder(binding: AppItemBinding) : RecyclerView.ViewHolder(binding.root) {
+    class ViewHolder(
+        binding: AppItemBinding,
+    ) : RecyclerView.ViewHolder(binding.root) {
         val icon: ImageView = binding.icon
         val name: TextView = binding.name
         val version: TextView = binding.version

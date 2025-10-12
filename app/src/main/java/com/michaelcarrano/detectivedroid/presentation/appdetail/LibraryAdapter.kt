@@ -14,15 +14,20 @@ class LibraryAdapter(
     private var libraries: List<LibraryUiModel>,
     private val clickListener: ClickListener,
 ) : RecyclerView.Adapter<LibraryAdapter.ViewHolder>() {
-
-    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
+    override fun onCreateViewHolder(
+        parent: ViewGroup,
+        viewType: Int,
+    ): ViewHolder {
         val binding = LibraryItemBinding.inflate(LayoutInflater.from(parent.context), parent, false)
         val viewHolder = ViewHolder(binding)
         binding.root.setOnClickListener { clickListener(libraries[viewHolder.bindingAdapterPosition]) }
         return viewHolder
     }
 
-    override fun onBindViewHolder(holder: ViewHolder, position: Int) {
+    override fun onBindViewHolder(
+        holder: ViewHolder,
+        position: Int,
+    ) {
         val library = libraries[position]
         holder.name.text = library.name
     }
@@ -35,7 +40,9 @@ class LibraryAdapter(
         diffResult.dispatchUpdatesTo(this)
     }
 
-    class ViewHolder(binding: LibraryItemBinding) : RecyclerView.ViewHolder(binding.root) {
+    class ViewHolder(
+        binding: LibraryItemBinding,
+    ) : RecyclerView.ViewHolder(binding.root) {
         val name: TextView = binding.name
     }
 }

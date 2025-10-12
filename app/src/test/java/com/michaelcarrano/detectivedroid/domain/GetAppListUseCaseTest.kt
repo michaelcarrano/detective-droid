@@ -14,11 +14,12 @@ import org.mockito.kotlin.times
 import org.mockito.kotlin.verify
 import org.mockito.kotlin.whenever
 
+@Suppress("ktlint:standard:max-line-length")
 class GetAppListUseCaseTest {
-
-    private val resources = mock<Resources>(defaultAnswer = Mockito.RETURNS_DEEP_STUBS) {
-        on { getString(android.R.string.unknownName) } doReturn "Unknown"
-    }
+    private val resources =
+        mock<Resources>(defaultAnswer = Mockito.RETURNS_DEEP_STUBS) {
+            on { getString(android.R.string.unknownName) } doReturn "Unknown"
+        }
 
     private lateinit var testSubject: GetAppListUseCase
 
@@ -34,15 +35,17 @@ class GetAppListUseCaseTest {
     fun `Given apps are installed, when loadApps is called with showSystemApp as false, then return list of userApps and no systemApps`() {
         // GIVEN
         val showSystemApp = false
-        val systemApps = listOf(
-            AppEntity("foo1", "bar1", "baz1", false),
-            AppEntity("foo2", "bar2", "baz2", false),
-        )
+        val systemApps =
+            listOf(
+                AppEntity("foo1", "bar1", "baz1", false),
+                AppEntity("foo2", "bar2", "baz2", false),
+            )
 
-        val userApps = listOf(
-            AppEntity("foo3", "bar3", "baz3", true),
-            AppEntity("foo4", "bar4", "baz4", true),
-        )
+        val userApps =
+            listOf(
+                AppEntity("foo3", "bar3", "baz3", true),
+                AppEntity("foo4", "bar4", "baz4", true),
+            )
 
         val allApps = listOf(userApps, systemApps).flatten()
         whenever(repo.getApplications()).thenReturn(Single.just(allApps))
@@ -61,15 +64,17 @@ class GetAppListUseCaseTest {
     fun `Given apps are installed, when loadApps is called with showSystemApp as true, then return list of userApps and systemApps`() {
         // GIVEN
         val showSystemApp = true
-        val systemApps = listOf(
-            AppEntity("foo1", "bar1", "baz1", false),
-            AppEntity("foo2", "bar2", "baz2", false),
-        )
+        val systemApps =
+            listOf(
+                AppEntity("foo1", "bar1", "baz1", false),
+                AppEntity("foo2", "bar2", "baz2", false),
+            )
 
-        val userApps = listOf(
-            AppEntity("foo3", "bar3", "baz3", true),
-            AppEntity("foo4", "bar4", "baz4", true),
-        )
+        val userApps =
+            listOf(
+                AppEntity("foo3", "bar3", "baz3", true),
+                AppEntity("foo4", "bar4", "baz4", true),
+            )
 
         val allApps = listOf(userApps, systemApps).flatten()
         whenever(repo.getApplications()).thenReturn(Single.just(allApps))
@@ -89,15 +94,17 @@ class GetAppListUseCaseTest {
         // GIVEN
         val showSystemApp = false
         val query = "foo3"
-        val systemApps = listOf(
-            AppEntity("foo1", "bar1", "baz1", false),
-            AppEntity("foo2", "bar2", "baz2", false),
-        )
+        val systemApps =
+            listOf(
+                AppEntity("foo1", "bar1", "baz1", false),
+                AppEntity("foo2", "bar2", "baz2", false),
+            )
 
-        val userApps = listOf(
-            AppEntity("foo3", "bar3", "baz3", true),
-            AppEntity("foo4", "bar4", "baz4", true),
-        )
+        val userApps =
+            listOf(
+                AppEntity("foo3", "bar3", "baz3", true),
+                AppEntity("foo4", "bar4", "baz4", true),
+            )
 
         val allApps = listOf(userApps, systemApps).flatten()
         whenever(repo.getApplications()).thenReturn(Single.just(allApps))
@@ -117,15 +124,17 @@ class GetAppListUseCaseTest {
         // GIVEN
         val showSystemApp = true
         val query = "foo"
-        val systemApps = listOf(
-            AppEntity("foo1", "bar1", "baz1", false),
-            AppEntity("foo2", "bar2", "baz2", false),
-        )
+        val systemApps =
+            listOf(
+                AppEntity("foo1", "bar1", "baz1", false),
+                AppEntity("foo2", "bar2", "baz2", false),
+            )
 
-        val userApps = listOf(
-            AppEntity("foo3", "bar3", "baz3", true),
-            AppEntity("foo4", "bar4", "baz4", true),
-        )
+        val userApps =
+            listOf(
+                AppEntity("foo3", "bar3", "baz3", true),
+                AppEntity("foo4", "bar4", "baz4", true),
+            )
 
         val allApps = listOf(userApps, systemApps).flatten()
         whenever(repo.getApplications()).thenReturn(Single.just(allApps))
@@ -144,19 +153,21 @@ class GetAppListUseCaseTest {
     fun `Given apps are installed, when loadApps is called with PackageManager returning null, then return list of apps`() {
         // GIVEN
         val showSystemApp = false
-        val systemApps = listOf(
-            AppEntity(null, null, null, false),
-            AppEntity(null, "bar2", "baz2", false),
-            AppEntity("foo3", null, "baz3", false),
-            AppEntity("foo4", "bar4", null, false),
-        )
+        val systemApps =
+            listOf(
+                AppEntity(null, null, null, false),
+                AppEntity(null, "bar2", "baz2", false),
+                AppEntity("foo3", null, "baz3", false),
+                AppEntity("foo4", "bar4", null, false),
+            )
 
-        val userApps = listOf(
-            AppEntity(null, null, null, true),
-            AppEntity(null, "bar6", "baz6", true),
-            AppEntity("foo7", null, "baz7", true),
-            AppEntity("foo8", "bar8", null, true),
-        )
+        val userApps =
+            listOf(
+                AppEntity(null, null, null, true),
+                AppEntity(null, "bar6", "baz6", true),
+                AppEntity("foo7", null, "baz7", true),
+                AppEntity("foo8", "bar8", null, true),
+            )
 
         val allApps = listOf(userApps, systemApps).flatten()
         whenever(repo.getApplications()).thenReturn(Single.just(allApps))

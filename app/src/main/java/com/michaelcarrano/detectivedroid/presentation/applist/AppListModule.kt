@@ -12,13 +12,11 @@ import dagger.hilt.android.components.FragmentComponent
 @Module
 @InstallIn(FragmentComponent::class)
 abstract class AppListModule {
-
     @Binds
     abstract fun appRespository(appRepositoryImpl: AppRepositoryImpl): AppRepository
 
     companion object {
         @Provides
-        fun provideAppListViewModelFactory(getAppListUseCase: GetAppListUseCase) =
-            AppListViewModelFactory(null, getAppListUseCase)
+        fun provideAppListViewModelFactory(getAppListUseCase: GetAppListUseCase) = AppListViewModelFactory(null, getAppListUseCase)
     }
 }

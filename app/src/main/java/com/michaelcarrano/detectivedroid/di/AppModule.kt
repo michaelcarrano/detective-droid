@@ -12,12 +12,17 @@ import dagger.hilt.components.SingletonComponent
 @InstallIn(SingletonComponent::class)
 class AppModule {
     @Provides
-    fun providePackageManager(@ApplicationContext context: Context) = context.packageManager
+    fun providePackageManager(
+        @ApplicationContext context: Context,
+    ) = context.packageManager
 
     @Provides
-    fun provideResources(@ApplicationContext context: Context) = context.resources
+    fun provideResources(
+        @ApplicationContext context: Context,
+    ) = context.resources
 
     @Provides
-    fun providePreferences(@ApplicationContext context: Context) =
-        PreferenceManager.getDefaultSharedPreferences(context)
+    fun providePreferences(
+        @ApplicationContext context: Context,
+    ) = PreferenceManager.getDefaultSharedPreferences(context)
 }

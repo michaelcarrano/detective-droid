@@ -9,10 +9,10 @@ import org.mockito.kotlin.doReturn
 import org.mockito.kotlin.mock
 
 class AppMapperTest {
-
-    private val resources = mock<Resources>(defaultAnswer = Mockito.RETURNS_DEEP_STUBS) {
-        on { getString(android.R.string.unknownName) } doReturn "Unknown"
-    }
+    private val resources =
+        mock<Resources>(defaultAnswer = Mockito.RETURNS_DEEP_STUBS) {
+            on { getString(android.R.string.unknownName) } doReturn "Unknown"
+        }
 
     private val testSubject = AppMapper(resources)
 
@@ -31,10 +31,11 @@ class AppMapperTest {
 
     @Test
     fun `Given AppEntitys, When mapping to AppUiModels, Then return valid AppUiModels`() {
-        val appEntitys = listOf(
-            AppEntity("foo1", "bar1", "baz1", true),
-            AppEntity("foo2", "bar2", "baz2", true),
-        )
+        val appEntitys =
+            listOf(
+                AppEntity("foo1", "bar1", "baz1", true),
+                AppEntity("foo2", "bar2", "baz2", true),
+            )
         val appUiModels = testSubject.mapToUiModels(appEntitys)
 
         assertEquals(appEntitys.size, appUiModels.size)
@@ -51,9 +52,9 @@ class AppMapperTest {
         val appEntity = AppEntity(null, null, null, true)
         val appUiModel = testSubject.mapToUiModel(appEntity)
 
-        val UNKNOWN = "Unknown"
-        assertEquals(UNKNOWN, appUiModel.name)
-        assertEquals(UNKNOWN, appUiModel.packageName)
-        assertEquals(UNKNOWN, appUiModel.versionName)
+        val unknown = "Unknown"
+        assertEquals(unknown, appUiModel.name)
+        assertEquals(unknown, appUiModel.packageName)
+        assertEquals(unknown, appUiModel.versionName)
     }
 }

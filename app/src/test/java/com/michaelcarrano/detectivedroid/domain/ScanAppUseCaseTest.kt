@@ -11,7 +11,6 @@ import org.mockito.kotlin.mock
 import org.mockito.kotlin.whenever
 
 class ScanAppUseCaseTest {
-
     private lateinit var testSubject: ScanAppUseCase
 
     private val context = mock<Context>()
