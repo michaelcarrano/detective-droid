@@ -42,8 +42,6 @@ class ScanAppUseCase
                     Context.CONTEXT_INCLUDE_CODE or Context.CONTEXT_IGNORE_SECURITY,
                 )
 
-            Timber.i("Classes: ${packageContext.classLoader}")
-
             var doesLibraryExist: Class<*>? = null
             try {
                 doesLibraryExist =
