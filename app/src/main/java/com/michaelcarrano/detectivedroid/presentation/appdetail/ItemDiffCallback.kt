@@ -11,11 +11,13 @@ class ItemDiffCallback(
 
     override fun getNewListSize() = new.size
 
-    override fun areItemsTheSame(oldIndex: Int, newIndex: Int): Boolean {
-        return old[oldIndex].classPath == new[newIndex].classPath
-    }
+    override fun areItemsTheSame(
+        oldIndex: Int,
+        newIndex: Int,
+    ): Boolean = old[oldIndex].classPath == new[newIndex].classPath
 
-    override fun areContentsTheSame(oldIndex: Int, newIndex: Int): Boolean {
-        return old[oldIndex] == new[newIndex]
-    }
+    override fun areContentsTheSame(
+        oldIndex: Int,
+        newIndex: Int,
+    ): Boolean = old[oldIndex] == new[newIndex]
 }

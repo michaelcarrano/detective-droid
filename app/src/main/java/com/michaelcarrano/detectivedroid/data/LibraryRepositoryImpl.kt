@@ -11,61 +11,62 @@ import java.io.InputStream
 import java.io.InputStreamReader
 import javax.inject.Inject
 
-class LibraryRepositoryImpl @Inject constructor(
-    private val resources: Resources,
-) : LibraryRepository {
+class LibraryRepositoryImpl
+    @Inject
+    constructor(
+        private val resources: Resources,
+    ) : LibraryRepository {
+        private var librariesCache = listOf<LibraryEntity>()
 
-    private var librariesCache = listOf<LibraryEntity>()
-
-    private val jsonString: String by lazy {
-        convertStreamToString(resources.openRawResource(R.raw.libraries))
-    }
-
-    override fun getLibraries(): Single<List<LibraryEntity>> {
-        if (librariesCache.isEmpty()) {
-            librariesCache = parseLibrariesJson(JSONArray(jsonString))
+        private val jsonString: String by lazy {
+            convertStreamToString(resources.openRawResource(R.raw.libraries))
         }
-        return Single.just(librariesCache)
-    }
 
-    private fun parseLibrariesJson(json: JSONArray): MutableList<LibraryEntity> {
-        val libraries = mutableListOf<LibraryEntity>()
-
-        for (i in 0 until json.length()) {
-            val jsonObject = json.getJSONObject(i)
-            val id = jsonObject.getInt("id")
-            val name = jsonObject.getString("name")
-            val source = jsonObject.getString("source")
-            val classPath = jsonObject.getString("classPath")
-            libraries.add(
-                LibraryEntity(
-                    id = id,
-                    name = name,
-                    source = source,
-                    classPath = classPath,
-                ),
-            )
-        }
-        return libraries
-    }
-
-    private fun convertStreamToString(input: InputStream): String {
-        val reader = BufferedReader(InputStreamReader(input))
-        val sb = StringBuilder()
-        var line: String?
-        try {
-            while (reader.readLine().also { line = it } != null) {
-                sb.append(line + "\n")
+        override fun getLibraries(): Single<List<LibraryEntity>> {
+            if (librariesCache.isEmpty()) {
+                librariesCache = parseLibrariesJson(JSONArray(jsonString))
             }
-        } catch (e: IOException) {
-            e.printStackTrace()
-        } finally {
+            return Single.just(librariesCache)
+        }
+
+        private fun parseLibrariesJson(json: JSONArray): MutableList<LibraryEntity> {
+            val libraries = mutableListOf<LibraryEntity>()
+
+            for (i in 0 until json.length()) {
+                val jsonObject = json.getJSONObject(i)
+                val id = jsonObject.getInt("id")
+                val name = jsonObject.getString("name")
+                val source = jsonObject.getString("source")
+                val classPath = jsonObject.getString("classPath")
+                libraries.add(
+                    LibraryEntity(
+                        id = id,
+                        name = name,
+                        source = source,
+                        classPath = classPath,
+                    ),
+                )
+            }
+            return libraries
+        }
+
+        private fun convertStreamToString(input: InputStream): String {
+            val reader = BufferedReader(InputStreamReader(input))
+            val sb = StringBuilder()
+            var line: String?
             try {
-                input.close()
+                while (reader.readLine().also { line = it } != null) {
+                    sb.append(line + "\n")
+                }
             } catch (e: IOException) {
                 e.printStackTrace()
+            } finally {
+                try {
+                    input.close()
+                } catch (e: IOException) {
+                    e.printStackTrace()
+                }
             }
+            return sb.toString()
         }
-        return sb.toString()
     }
-}

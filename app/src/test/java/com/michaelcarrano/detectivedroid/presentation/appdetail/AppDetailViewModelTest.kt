@@ -18,8 +18,8 @@ import org.mockito.kotlin.verifyNoMoreInteractions
 import org.mockito.kotlin.whenever
 import kotlin.random.Random
 
+@Suppress("ktlint:standard:max-line-length")
 class AppDetailViewModelTest {
-
     @get:Rule
     val instantExecutorRule = InstantTaskExecutorRule()
 
@@ -49,9 +49,10 @@ class AppDetailViewModelTest {
     fun `Given libraries successfully scanned, when action ScanApps is received, then State contains libraries`() {
         // GIVEN
         val packageName = "foo"
-        val entitys = listOf(
-            LibraryEntity(Random.nextInt(), "name", "source", "classPath"),
-        )
+        val entitys =
+            listOf(
+                LibraryEntity(Random.nextInt(), "name", "source", "classPath"),
+            )
         val uiModels = mapper.mapToUiModels(entitys)
 
         val successState = State(uiModels)

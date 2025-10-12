@@ -21,3 +21,4 @@ out
 prebuilts
 local.properties
 ktlint
+.kotlin

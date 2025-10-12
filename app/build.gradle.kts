@@ -1,3 +1,5 @@
+import org.jetbrains.kotlin.gradle.dsl.JvmTarget
+
 plugins {
     id("com.android.application")
     id("org.jetbrains.kotlin.android")
@@ -14,16 +16,18 @@ apply(from = "../gradle/scripts/jacoco.gradle")
 android {
     namespace = "com.michaelcarrano.detectivedroid"
 
-    compileSdk = 34
+    compileSdk = 36
     defaultConfig {
         applicationId = "com.michaelcarrano.detectivedroid"
         minSdk = 24
-        targetSdk = 34
+        targetSdk = 35
 
         versionCode = 18
         versionName = "2.1.9"
 
-        resourceConfigurations += setOf("en")
+        androidResources {
+            localeFilters += setOf("en")
+        }
 
         testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
 
@@ -68,8 +72,10 @@ android {
         targetCompatibility = JavaVersion.VERSION_17
     }
 
-    kotlinOptions {
-        jvmTarget = JavaVersion.VERSION_17.toString()
+    kotlin {
+        compilerOptions {
+            jvmTarget = JvmTarget.JVM_17
+        }
     }
 }
 
@@ -97,8 +103,6 @@ dependencies {
     implementation(libs.bundles.rx)
 
     implementation(libs.timber)
-
-    debugImplementation(libs.bundles.facebook)
 
     debugImplementation(libs.leakCanary)
     implementation(libs.plumber)

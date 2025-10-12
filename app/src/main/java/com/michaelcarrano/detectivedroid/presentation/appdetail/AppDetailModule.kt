@@ -12,13 +12,11 @@ import dagger.hilt.android.components.FragmentComponent
 @Module
 @InstallIn(FragmentComponent::class)
 abstract class AppDetailModule {
-
     @Binds
     abstract fun libraryRepository(libraryRepositoryImpl: LibraryRepositoryImpl): LibraryRepository
 
     companion object {
         @Provides
-        fun provideAppListViewModelFactory(scanAppUseCase: ScanAppUseCase) =
-            AppDetailViewModelFactory(null, scanAppUseCase)
+        fun provideAppListViewModelFactory(scanAppUseCase: ScanAppUseCase) = AppDetailViewModelFactory(null, scanAppUseCase)
     }
 }

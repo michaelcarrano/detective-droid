@@ -13,10 +13,14 @@ import java.util.concurrent.TimeUnit
 /**
  * Overrides all Schedulers with a custom TestScheduler.
  */
-class RxTestSchedulerRule(private val testScheduler: TestScheduler = TestScheduler()) :
-    Scheduler(),
+class RxTestSchedulerRule(
+    private val testScheduler: TestScheduler = TestScheduler(),
+) : Scheduler(),
     TestRule {
-    override fun apply(base: Statement, description: Description?): Statement {
+    override fun apply(
+        base: Statement,
+        description: Description?,
+    ): Statement {
         RxJavaPlugins.setIoSchedulerHandler { _ -> testScheduler }
         RxJavaPlugins.setComputationSchedulerHandler { testScheduler }
         RxJavaPlugins.setNewThreadSchedulerHandler { testScheduler }
@@ -27,8 +31,10 @@ class RxTestSchedulerRule(private val testScheduler: TestScheduler = TestSchedul
 
     override fun createWorker() = testScheduler.createWorker()
 
-    fun advanceTimeBy(delayTime: Long, unit: TimeUnit) =
-        testScheduler.advanceTimeBy(delayTime, unit)
+    fun advanceTimeBy(
+        delayTime: Long,
+        unit: TimeUnit,
+    ) = testScheduler.advanceTimeBy(delayTime, unit)
 
     fun triggerActions() = testScheduler.triggerActions()
 }

@@ -16,7 +16,6 @@ import org.mockito.kotlin.whenever
 import java.util.concurrent.TimeUnit
 
 class AppListViewModelTest {
-
     @get:Rule
     val instantExecutorRule = InstantTaskExecutorRule()
 
@@ -43,10 +42,11 @@ class AppListViewModelTest {
     fun `Given apps successfully loaded, when action LoadApps is received, then State contains apps`() {
         // GIVEN
         val systemApps = false
-        val uiModels = listOf(
-            AppUiModel("foo1", "bar1", "baz1"),
-            AppUiModel("foo2", "bar2", "baz2"),
-        )
+        val uiModels =
+            listOf(
+                AppUiModel("foo1", "bar1", "baz1"),
+                AppUiModel("foo2", "bar2", "baz2"),
+            )
 
         val successState = State(uiModels)
         whenever(getAppListUseCase.loadApps(systemApps)).thenReturn(Single.just(uiModels))
@@ -88,10 +88,11 @@ class AppListViewModelTest {
         // GIVEN
         val systemApps = false
         val query = "foo"
-        val uiModels = listOf(
-            AppUiModel("foo1", "bar1", "baz1"),
-            AppUiModel("foo2", "bar2", "baz2"),
-        )
+        val uiModels =
+            listOf(
+                AppUiModel("foo1", "bar1", "baz1"),
+                AppUiModel("foo2", "bar2", "baz2"),
+            )
 
         val successState = State(uiModels)
         whenever(getAppListUseCase.searchApps(query, systemApps)).thenReturn(Single.just(uiModels))

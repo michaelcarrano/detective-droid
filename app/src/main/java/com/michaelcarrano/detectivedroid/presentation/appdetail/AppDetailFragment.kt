@@ -1,11 +1,11 @@
 package com.michaelcarrano.detectivedroid.presentation.appdetail
 
 import android.content.Intent
-import android.net.Uri
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.core.net.toUri
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.Observer
@@ -21,9 +21,8 @@ import javax.inject.Inject
 
 @AndroidEntryPoint
 class AppDetailFragment : Fragment() {
-
     @Inject
-    protected lateinit var viewModelFactory: AppDetailViewModelFactory
+    lateinit var viewModelFactory: AppDetailViewModelFactory
 
     private val viewModel by viewModels<AppDetailViewModel> { viewModelFactory }
 
@@ -35,6 +34,7 @@ class AppDetailFragment : Fragment() {
 
     private val args: AppDetailFragmentArgs by navArgs()
 
+    @Suppress("ktlint:standard:backing-property-naming")
     private var _binding: FragmentAppDetailBinding? = null
 
     // This property is only valid between onCreateView and onDestroyView.
@@ -49,7 +49,10 @@ class AppDetailFragment : Fragment() {
         return binding.root
     }
 
-    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+    override fun onViewCreated(
+        view: View,
+        savedInstanceState: Bundle?,
+    ) {
         super.onViewCreated(view, savedInstanceState)
 
         setupRecyclerView()
@@ -110,7 +113,7 @@ class AppDetailFragment : Fragment() {
 
     private fun onLibraryClick(library: LibraryUiModel) {
         val intent = Intent(Intent.ACTION_VIEW)
-        intent.data = Uri.parse(library.source)
+        intent.data = library.source.toUri()
         startActivity(intent)
     }
 }
